@@ -36,6 +36,10 @@ async function initSchema() {
   `);
 
   await pool.query(`
+    ALTER TABLE users
+    ADD COLUMN IF NOT EXISTS role TEXT NOT NULL DEFAULT 'user';
+  `);
+  await pool.query(`
     CREATE TABLE IF NOT EXISTS tasks (
       id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
       title TEXT NOT NULL,
@@ -101,6 +105,32 @@ async function initSchema() {
       meta JSONB DEFAULT '{}'::jsonb,
       created_at TIMESTAMPTZ NOT NULL DEFAULT now()
     );
+  `);
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS revenue_settings (
+      id INTEGER PRIMARY KEY DEFAULT 1,
+      booking_fee_percent NUMERIC NOT NULL DEFAULT 5,
+      tasker_service_fee_percent NUMERIC NOT NULL DEFAULT 10,
+      payment_margin_percent NUMERIC NOT NULL DEFAULT 2,
+      cancellation_fee_percent NUMERIC NOT NULL DEFAULT 5,
+      insurance_fee_percent NUMERIC NOT NULL DEFAULT 1,
+      partnership_commission_percent NUMERIC NOT NULL DEFAULT 10,
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    );
+  `);
+
+  await pool.query(`
+    INSERT INTO revenue_settings (
+      id,
+      booking_fee_percent,
+      tasker_service_fee_percent,
+      payment_margin_percent,
+      cancellation_fee_percent,
+      insurance_fee_percent,
+      partnership_commission_percent
+    )
+    VALUES (1, 5, 10, 2, 5, 1, 10)
+    ON CONFLICT (id) DO NOTHING;
   `);
 
   await pool.query(`CREATE INDEX IF NOT EXISTS idx_tasks_status ON tasks(status);`);

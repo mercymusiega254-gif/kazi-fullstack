@@ -10,6 +10,7 @@ const profilesRouter = require("./routes/profiles");
 const reviewsRouter = require("./routes/reviews");
 const messagesRouter = require("./routes/messages");
 const paymentsRouter = require("./routes/payments");
+const adminRouter = require("./routes/admin");
 
 const app = express();
 app.use(cors({ origin: process.env.FRONTEND_URL || "*" }));
@@ -23,6 +24,7 @@ app.use("/api/profiles", profilesRouter);
 app.use("/api/reviews", reviewsRouter);
 app.use("/api/messages", messagesRouter);
 app.use("/api/payments", paymentsRouter);
+app.use("/api/admin", adminRouter);
 
 app.use((req, res) => res.status(404).json({ error: "Not found." }));
 app.use((err, req, res, next) => {
