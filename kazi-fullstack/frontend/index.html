@@ -4,6 +4,66 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kazi — Get it done, near you</title>
+<meta name="description" content="Kazi is Kenya's local task marketplace. Post a task or find flexible work nearby across 80+ services — cleaning, handyman, moving, admin and more — in all 47 counties, with secure M-Pesa payments and reviews.">
+<link rel="canonical" href="https://dainty-gecko-cd182.netlify.app/">
+<meta name="theme-color" content="#071b49">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kazi">
+<meta property="og:url" content="https://dainty-gecko-cd182.netlify.app/">
+<meta property="og:title" content="Kazi — Get it done, near you">
+<meta property="og:description" content="Kenya's local task marketplace. Post a task or find flexible work nearby — cleaning, handyman, moving, admin and more — with secure M-Pesa payments.">
+<meta property="og:locale" content="en_KE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kazi — Get it done, near you">
+<meta name="twitter:description" content="Kenya's local task marketplace. Post a task or find flexible work nearby — cleaning, handyman, moving, admin and more — with secure M-Pesa payments.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kazi",
+  "url": "https://dainty-gecko-cd182.netlify.app/",
+  "description": "Kenya's local task marketplace connecting people who need tasks done with local taskers, with secure M-Pesa payments, ratings and reviews.",
+  "areaServed": { "@type": "Country", "name": "Kenya" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Kazi?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Kazi is a local task marketplace for Kenya. You can post a task you need done or browse tasks to earn money doing work that fits your skills, with in-app messaging, ratings and reviews, and secure M-Pesa payments." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to post a task on Kazi?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Posting a task requires an active poster plan of KSh 500 per month." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to send an offer on a task?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sending an offer (bid) on a task costs a KSh 50 bidding fee." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Kazi Pro?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Kazi Pro is a KSh 250 per month plan for taskers that gives 2-hour early access to new tasks and top placement in the poster's offer list." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is paying through Kazi safe?",
+      "acceptedAnswer": { "@type": "Answer", "text": "All charges run through Safaricom's M-Pesa STK Push. Your plan or offer is only activated once M-Pesa confirms the payment, so a cancelled or failed prompt never charges you or creates a free post or offer." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which parts of Kenya does Kazi cover?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Kazi covers all 47 counties in Kenya, from Nairobi and Mombasa to Turkana and Lamu." }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -238,6 +298,15 @@ input[type=text],input[type=tel],input[type=number],input[type=date],select,text
  .dash-v2{padding:22px 16px 90px}
  .dash-v2-head{align-items:flex-start}
 }
+
+.chip-list{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:20px;padding:7px 13px;font-size:12.5px;font-weight:600}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.faq-item{padding:18px 20px}
+.faq-item h3{font-size:15px;margin:0 0 6px}
+.faq-item p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.55}
+@media(max-width:760px){.faq-grid{grid-template-columns:1fr}}
 
 </style>
 </head>
