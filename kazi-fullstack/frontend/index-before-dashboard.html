@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kazi — Get it done, near you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-900: #0A1D40;
+    --teal-800: #122E5C;
+    --teal-700: #1D4179;
+    --teal-100: #E7EBF5;
+    --marigold: #E8871E;
+    --marigold-dark: #C96F12;
+    --ink: #17213A;
+    --paper: #FAF3DF;
+    --paper-dim: #F1E4C3;
+    --line: #E2D3A8;
+    --white: #FFFFFF;
+    --good: #2F855A;
+    --warn: #B5471B;
+    --muted: #5C6577;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-sizing: border-box;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #EFE7CE; --paper: #0B1526; --paper-dim: #101E36; --line: #223151;
+      --white: #12213C; --teal-100: #12213C; --muted: #93A0B8;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #EFE7CE; --paper: #0B1526; --paper-dim: #101E36; --line: #223151;
+    --white: #12213C; --teal-100: #12213C; --muted: #93A0B8;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display { font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 600; letter-spacing: -0.01em; }
+  button { font-family: inherit; cursor: pointer; }
+  input, select, textarea { font-family: inherit; font-size: 15px; }
+  a { color: inherit; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+
+  #app { max-width: 1080px; margin: 0 auto; min-height: 100%; padding-bottom: 78px; }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--teal-900); color: var(--paper);
+    padding: calc(12px + env(safe-area-inset-top, 0px)) 16px 12px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .brand { display: flex; align-items: baseline; gap: 6px; font-family: 'Space Grotesk'; font-weight: 700; font-size: 22px; color: var(--white); }
+  .brand small { font-family: 'Inter'; font-weight: 400; font-size: 12px; color: #B9D6CB; }
+  .topbar .spacer { flex: 1; }
+  .loc-pill {
+    display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.16); color: var(--paper); border-radius: 20px;
+    padding: 7px 12px; font-size: 13px; max-width: 160px;
+  }
+  .loc-pill select { background: transparent; border: none; color: inherit; font-size: 13px; max-width: 120px; }
+  .loc-pill select option { color: #111; }
+  .btn-post-top {
+    background: var(--marigold); color: #241300; border: none; border-radius: 20px;
+    padding: 9px 16px; font-weight: 600; font-size: 13px; white-space: nowrap;
+  }
+  .btn-post-top:hover { background: var(--marigold-dark); }
+
+  /* ---------- Generic ---------- */
+  .page { padding: 18px 16px 8px; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; margin: 22px 0 12px; }
+  .section-head h2 { font-size: 17px; margin: 0; }
+  .muted { color: var(--muted); }
+  .btn {
+    border: 1px solid var(--line); background: var(--white); color: var(--ink);
+    border-radius: 10px; padding: 11px 16px; font-weight: 600; font-size: 14px;
+  }
+  .btn:hover { border-color: var(--teal-700); }
+  .btn-primary { background: var(--teal-800); color: #fff; border-color: var(--teal-800); }
+  .btn-primary:hover { background: var(--teal-700); }
+  .btn-marigold { background: var(--marigold); color: #241300; border-color: var(--marigold); }
+  .btn-marigold:hover { background: var(--marigold-dark); }
+  .btn-block { width: 100%; }
+  .btn-ghost { background: transparent; border-color: transparent; color: var(--teal-700); font-weight: 600; }
+  .btn-sm { padding: 7px 12px; font-size: 13px; border-radius: 8px; }
+  .btn:disabled { opacity: .5; cursor: default; }
+  .pill { display: inline-flex; align-items: center; gap: 4px; border-radius: 20px; padding: 4px 10px; font-size: 12px; font-weight: 600; }
+  .pill-open { background: var(--teal-100); color: var(--teal-800); }
+  .pill-assigned { background: #FCEBD8; color: var(--marigold-dark); }
+  .pill-done { background: #E6F0EA; color: var(--good); }
+  .card { background: var(--white); border: 1px solid var(--line); border-radius: 14px; }
+  .empty { text-align: center; padding: 48px 20px; color: var(--muted); }
+  .empty .glyph { font-size: 34px; margin-bottom: 10px; }
+  input[type=text], input[type=tel], input[type=number], input[type=date], select, textarea {
+    width: 100%; padding: 12px 13px; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--white); color: var(--ink);
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--teal-700); outline-offset: 1px; }
+  label { display: block; font-size: 13px; font-weight: 600; margin: 16px 0 6px; }
+  label:first-child { margin-top: 0; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stars { color: var(--marigold-dark); letter-spacing: 1px; font-size: 13px; }
+  .hidden { display: none !important; }
+  .toast {
+    position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: var(--paper); padding: 11px 18px; border-radius: 10px;
+    font-size: 13px; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,.2); max-width: 90%; text-align: center;
+  }
+
+  /* ---------- Hero / categories ---------- */
+  .hero {
+    background: linear-gradient(160deg, var(--teal-900), var(--teal-700));
+    color: var(--paper); margin: 14px 16px 0; border-radius: 18px; padding: 26px 22px 22px;
+  }
+  .hero h1 { color: #fff; font-size: 26px; margin: 0 0 6px; line-height: 1.15; }
+  .hero p { color: #C9DED5; margin: 0 0 18px; font-size: 14px; max-width: 40ch; }
+  .search-row { display: flex; gap: 8px; background: var(--white); border-radius: 12px; padding: 5px; }
+  .search-row input { border: none; border-radius: 8px; }
+  .search-row input:focus { outline: none; }
+  .search-row button { border-radius: 8px; }
+  .cat-scroll { display: flex; gap: 10px; overflow-x: auto; padding: 4px 16px 4px; margin: 18px 0 0; scrollbar-width: none; }
+  .cat-scroll::-webkit-scrollbar { display: none; }
+  .cat-chip {
+    flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 6px;
+    background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px;
+    width: 84px; font-size: 11.5px; font-weight: 600; text-align: center; color: var(--ink);
+  }
+  .cat-chip.active { border-color: var(--teal-800); background: var(--teal-100); }
+  .cat-chip .glyph { font-size: 22px; }
+
+  /* ---------- Task cards ---------- */
+  .task-list { display: flex; flex-direction: column; gap: 10px; }
+  .task-card { padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+  .task-card .top-row { display: flex; justify-content: space-between; gap: 10px; }
+  .task-card h3 { font-size: 15.5px; margin: 0; }
+  .task-card .meta { font-size: 12.5px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
+  .task-card .budget { font-family: 'Space Grotesk'; font-weight: 700; font-size: 15px; color: var(--teal-800); white-space: nowrap; }
+  .filters-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+  .filters-bar select { width: auto; padding: 8px 10px; font-size: 13px; border-radius: 8px; }
+
+  /* ---------- Detail ---------- */
+  .detail-head h1 { font-size: 21px; margin: 4px 0 8px; }
+  .detail-budget { font-family: 'Space Grotesk'; font-size: 26px; font-weight: 700; color: var(--teal-800); }
+  .avatar {
+    width: 38px; height: 38px; border-radius: 50%; background: var(--teal-100); color: var(--teal-800);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex: 0 0 auto;
+  }
+  .poster-row { display: flex; align-items: center; gap: 10px; margin: 14px 0; }
+  .poster-row .name { font-weight: 600; font-size: 14px; }
+  .offer-row { display: flex; gap: 10px; align-items: flex-start; padding: 12px 0; border-top: 1px solid var(--line); }
+  .offer-row:first-child { border-top: none; }
+  .offer-box { flex: 1; }
+  .offer-box .amount { font-family: 'Space Grotesk'; font-weight: 700; }
+
+  /* ---------- Forms / steps ---------- */
+  .step-dots { display: flex; gap: 6px; margin-bottom: 18px; }
+  .step-dots span { height: 4px; flex: 1; border-radius: 3px; background: var(--line); }
+  .step-dots span.active { background: var(--teal-800); }
+  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .cat-grid .cat-chip { width: auto; }
+
+  /* ---------- Chat ---------- */
+  .chat-thread { display: flex; flex-direction: column; gap: 10px; padding: 4px 0 12px; }
+  .msg { max-width: 78%; padding: 9px 13px; border-radius: 14px; font-size: 13.5px; }
+  .msg.mine { align-self: flex-end; background: var(--teal-800); color: #fff; border-bottom-right-radius: 4px; }
+  .msg.theirs { align-self: flex-start; background: var(--white); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+  .msg .who { font-size: 10.5px; opacity: .7; margin-bottom: 2px; }
+  .chat-input-row { display: flex; gap: 8px; position: sticky; bottom: 70px; background: var(--paper); padding-top: 8px; }
+
+  /* ---------- Bottom nav ---------- */
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 30;
+    background: var(--white); border-top: 1px solid var(--line);
+    display: flex; padding: 8px 6px calc(8px + env(safe-area-inset-bottom, 0px));
+    max-width: 1080px; margin: 0 auto;
+  }
+  .nav-btn {
+    flex: 1; background: none; border: none; display: flex; flex-direction: column; align-items: center;
+    gap: 3px; padding: 6px 2px; color: var(--muted); font-size: 10.5px; font-weight: 600; border-radius: 10px;
+  }
+  .nav-btn .glyph { font-size: 19px; }
+  .nav-btn.active { color: var(--teal-800); }
+  .nav-btn .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--marigold); position: relative; top: -14px; left: 10px; margin: 0 -6px; }
+
+  /* ---------- Modal ---------- */
+  .modal-back { position: fixed; inset: 0; background: rgba(10,15,13,.5); z-index: 50; display: flex; align-items: flex-end; justify-content: center; }
+  @media (min-width: 640px) { .modal-back { align-items: center; } }
+  .modal { background: var(--paper); width: 100%; max-width: 420px; border-radius: 18px 18px 0 0; padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px)); max-height: 88vh; overflow-y: auto; }
+  @media (min-width: 640px) { .modal { border-radius: 18px; } }
+  .modal h2 { margin: 0 0 4px; font-size: 18px; }
+  .close-x { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 20px; color: var(--muted); }
+  .modal-wrap { position: relative; }
+  .mpesa-badge { display: inline-flex; align-items: center; gap: 6px; background: #E6F0EA; color: var(--good); padding: 5px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 700; margin-bottom: 12px; }
+  .pin-anim { text-align: center; padding: 22px 0; }
+  .pin-anim .phone-glyph { font-size: 40px; animation: buzz 1.1s infinite; }
+  @keyframes buzz { 0%,100%{transform:rotate(0)} 20%{transform:rotate(-6deg)} 40%{transform:rotate(6deg)} 60%{transform:rotate(-4deg)} 80%{transform:rotate(4deg)} }
+  .review-stars { display: flex; gap: 6px; font-size: 26px; }
+  .review-stars span { cursor: pointer; color: var(--line); }
+  .review-stars span.on { color: var(--marigold-dark); }
+
+  .rating-summary { display: flex; align-items: center; gap: 10px; }
+  .rating-summary .big { font-family: 'Space Grotesk'; font-size: 22px; font-weight: 700; }
+  .skeleton { background: linear-gradient(90deg, var(--paper-dim) 25%, var(--line) 37%, var(--paper-dim) 63%); background-size: 400% 100%; animation: sk 1.4s ease infinite; border-radius: 10px; }
+  @keyframes sk { 0% {background-position: 100% 50%} 100% {background-position: 0 50%} }
+</style>
+<style>
+  .auth-wrap { max-width: 380px; margin: 40px auto; padding: 0 16px; }
+  .auth-logo { font-family:'Space Grotesk'; font-weight:700; font-size:28px; text-align:center; color:var(--teal-800); margin-bottom:4px; }
+  .auth-sub { text-align:center; color:var(--muted); font-size:13px; margin-bottom:24px; }
+  .auth-toggle { text-align:center; margin-top:16px; font-size:13.5px; }
+  .auth-toggle a { color:var(--teal-700); font-weight:600; cursor:pointer; }
+  .auth-error { background:#FBE7E1; color:var(--warn); border-radius:10px; padding:10px 13px; font-size:13px; margin-bottom:14px; }
+  .spinner-inline { display:inline-block; width:14px; height:14px; border:2px solid rgba(255,255,255,.4); border-top-color:#fff; border-radius:50%; animation: spin 0.7s linear infinite; vertical-align:-2px; margin-right:6px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="modal-root"></div>
+<div id="toast-root"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ===================== Config ===================== */
+// Point this at your deployed backend before you go live.
+// Local dev default assumes the backend from /backend is running on :4000.
+var API_BASE = window.KAZI_API_BASE || "https://kazi-backend-79hj.onrender.com";
+
+/* ===================== Static data ===================== */
+var COUNTIES = ["Nairobi","Mombasa","Kisumu","Nakuru","Uasin Gishu","Kiambu","Machakos","Kajiado","Kilifi","Kwale",
+  "Taita Taveta","Garissa","Wajir","Mandera","Marsabit","Isiolo","Meru","Tharaka-Nithi","Embu","Kitui","Makueni",
+  "Nyandarua","Nyeri","Kirinyaga","Murang'a","Turkana","West Pokot","Samburu","Trans Nzoia","Elgeyo-Marakwet",
+  "Nandi","Baringo","Laikipia","Kericho","Bomet","Kakamega","Vihiga","Bungoma","Busia","Siaya","Homa Bay",
+  "Migori","Kisii","Nyamira","Narok","Tana River","Lamu"];
+
+var CATEGORIES = [
+  {id:"cleaning", label:"Cleaning", glyph:"🧹"},
+  {id:"laundry", label:"Laundry & Ironing", glyph:"👕"},
+  {id:"moving", label:"Moving & Delivery", glyph:"🚚"},
+  {id:"handyman", label:"Handyman / Fundi", glyph:"🔧"},
+  {id:"carpentry", label:"Carpentry & Furniture", glyph:"🪑"},
+  {id:"construction", label:"Masonry & Construction", glyph:"🧱"},
+  {id:"welding", label:"Welding & Metalwork", glyph:"🛠️"},
+  {id:"electrical", label:"Electrical", glyph:"💡"},
+  {id:"plumbing", label:"Plumbing", glyph:"🚿"},
+  {id:"painting", label:"Painting", glyph:"🎨"},
+  {id:"gardening", label:"Gardening & Shamba", glyph:"🌿"},
+  {id:"carwash", label:"Car Wash & Detailing", glyph:"🚗"},
+  {id:"driving", label:"Driving & Errands", glyph:"🛵"},
+  {id:"beauty", label:"Beauty & Salon", glyph:"💇"},
+  {id:"tailoring", label:"Tailoring & Alterations", glyph:"🧵"},
+  {id:"catering", label:"Catering & Chef", glyph:"🍲"},
+  {id:"childcare", label:"Childcare & Nanny", glyph:"🧒"},
+  {id:"events", label:"Events & Photography", glyph:"🎉"},
+  {id:"tech", label:"Tech & Cyber Services", glyph:"💻"},
+  {id:"tutoring", label:"Tutoring", glyph:"📘"},
+  {id:"security", label:"Security", glyph:"🛡️"},
+  {id:"other", label:"Other", glyph:"✳️"}
+];
+function catLabel(id){ for (var i=0;i<CATEGORIES.length;i++) if (CATEGORIES[i].id===id) return CATEGORIES[i].label; return "Other"; }
+function catGlyph(id){ for (var i=0;i<CATEGORIES.length;i++) if (CATEGORIES[i].id===id) return CATEGORIES[i].glyph; return "✳️"; }
+
+var POSTER_FEE = 500, BID_FEE = 50, PRO_FEE = 250;
+var EARLY_ACCESS_HOURS = 2;
+
+/* ===================== Utilities ===================== */
+function esc(s){ var d=document.createElement("div"); d.textContent = (s==null?"":String(s)); return d.innerHTML; }
+function fmtKES(n){ n = Number(n)||0; return "KSh " + n.toLocaleString("en-KE"); }
+function fmtDate(ts){ return ts ? new Date(ts).toLocaleDateString("en-KE",{day:"numeric",month:"short",year:"numeric"}) : ""; }
+function timeAgo(ts){
+  if (!ts) return "";
+  var s = Math.floor((Date.now()-new Date(ts).getTime())/1000);
+  if (s<60) return "just now";
+  var m=Math.floor(s/60); if (m<60) return m+"m ago";
+  var h=Math.floor(m/60); if (h<24) return h+"h ago";
+  var d=Math.floor(h/24); if (d<30) return d+"d ago";
+  return new Date(ts).toLocaleDateString("en-KE",{day:"numeric",month:"short"});
+}
+function initials(name){
+  name = (name||"").trim(); if(!name) return "?";
+  var p = name.split(/\s+/); return ((p[0]||"")[0]||"") + ((p[1]||"")[0]||"");
+}
+function stars(avg){
+  avg = avg || 0; var full = Math.round(avg);
+  var s=""; for (var i=0;i<5;i++) s += (i<full ? "★" : "☆");
+  return s;
+}
+function proBadge(isPro){ return isPro ? ' <span class="pill" style="background:#FCEBD8;color:var(--marigold-dark);vertical-align:1px;">PRO</span>' : ''; }
+function isPosterSubActive(p){ return !!(p && p.posterSubExpiresAt && new Date(p.posterSubExpiresAt).getTime() > Date.now()); }
+function isProActive(p){ return !!(p && p.proExpiresAt && new Date(p.proExpiresAt).getTime() > Date.now()); }
+function showToast(msg){
+  var root = document.getElementById("toast-root");
+  root.innerHTML = '<div class="toast">'+esc(msg)+'</div>';
+  setTimeout(function(){ root.innerHTML=""; }, 2800);
+}
+
+/* ===================== API client ===================== */
+var api = {
+  token: localStorage.getItem("kazi_token") || null,
+  setToken: function(t){ this.token = t; if (t) localStorage.setItem("kazi_token", t); else localStorage.removeItem("kazi_token"); },
+  call: async function(method, path, body){
+    var headers = { "Content-Type": "application/json" };
+    if (this.token) headers.Authorization = "Bearer " + this.token;
+    var resp;
+    try {
+      resp = await fetch(API_BASE + path, { method: method, headers: headers, body: body ? JSON.stringify(body) : undefined });
+    } catch (e) {
+      throw { networkError: true, message: "Can't reach the Kazi server. Check API_BASE / your connection." };
+    }
+    var data = {};
+    try { data = await resp.json(); } catch(e){}
+    if (!resp.ok) throw { status: resp.status, error: data.error, message: data.message || data.error || "Something went wrong." };
+    return data;
+  },
+  get: function(path){ return this.call("GET", path); },
+  post: function(path, body){ return this.call("POST", path, body); },
+  patch: function(path, body){ return this.call("PATCH", path, body); },
+};
+
+/* ===================== App state ===================== */
+var state = {
+  view: "browse",
+  authMode: "login",
+  taskId: null,
+  profileId: null,
+  county: "", category: "", query: "",
+  tasks: [], tasksLoaded: false,
+  offersByTask: {}, reviewsByUser: {},
+  messagesByTask: {}, chatTaskId: null, chatPoll: null,
+  me: null, // full profile object once logged in
+  postDraft: { step:1, category:"", title:"", description:"", county:"", area:"", budgetType:"fixed", budget:"", dueDate:"" }
+};
+
+/* ===================== Boot ===================== */
+async function boot(){
+  render();
+  if (api.token) {
+    try {
+      var r = await api.get("/api/auth/me");
+      state.me = r.user;
+    } catch(e){ api.setToken(null); }
+  }
+  if (state.me) await loadTasks();
+  render();
+}
+
+async function loadTasks(){
+  var qs = [];
+  if (state.county) qs.push("county="+encodeURIComponent(state.county));
+  if (state.category) qs.push("category="+encodeURIComponent(state.category));
+  if (state.query) qs.push("q="+encodeURIComponent(state.query));
+  try {
+    var r = await api.get("/api/tasks" + (qs.length? "?"+qs.join("&") : ""));
+    state.tasks = r.tasks;
+  } catch(e){ showToast(e.message || "Couldn't load tasks."); }
+  state.tasksLoaded = true;
+  render();
+}
+async function loadOffers(taskId){
+  try { var r = await api.get("/api/tasks/"+taskId+"/offers"); state.offersByTask[taskId] = r.offers; render(); }
+  catch(e){}
+}
+async function loadProfile(id){
+  try { var r = await api.get("/api/profiles/"+id); state._viewedProfile = r.profile; render(); }
+  catch(e){ showToast("Couldn't load that profile."); }
+}
+async function loadReviews(userId){
+  try { var r = await api.get("/api/reviews/user/"+userId); state.reviewsByUser[userId] = r.reviews; render(); }
+  catch(e){}
+}
+async function loadMessages(taskId){
+  try { var r = await api.get("/api/messages/"+taskId); state.messagesByTask[taskId] = r.messages; render();
+    var thread = document.querySelector(".chat-thread"); if (thread) thread.scrollTop = thread.scrollHeight;
+  } catch(e){}
+}
+
+/* ===================== Auth ===================== */
+async function doLogin(email, password){
+  try {
+    var r = await api.post("/api/auth/login", { email: email, password: password });
+    api.setToken(r.token); state.me = r.user;
+    await loadTasks(); render();
+  } catch(e){ renderAuthError(e.message); }
+}
+async function doRegister(name, email, phone, password){
+  try {
+    var r = await api.post("/api/auth/register", { name: name, email: email, phone: phone, password: password });
+    api.setToken(r.token); state.me = r.user;
+    await loadTasks(); render();
+  } catch(e){ renderAuthError(e.message); }
+}
+function doLogout(){
+  api.setToken(null); state.me = null; state.tasks = []; state.tasksLoaded = false;
+  goView("browse");
+}
+function renderAuthError(msg){
+  state._authError = msg || "Something went wrong.";
+  render();
+}
+
+/* ===================== Task / offer actions ===================== */
+function attemptPostTask(){
+  var d = state.postDraft;
+  if (!d.title.trim() || !d.description.trim() || !d.county || !d.budget) { showToast("Fill in all required fields."); return; }
+  if (isPosterSubActive(state.me)) { doPostTask(); return; }
+  openChargeModal({
+    purpose: "poster_sub", amount: POSTER_FEE,
+    title: "Poster plan", subtitle: "Unlimited task posting for 30 days",
+    meta: { title: d.title.trim(), description: d.description.trim(), category: d.category||"other",
+            county: d.county, area: d.area||"", budgetType: d.budgetType, budget: Number(d.budget), dueDate: d.dueDate||null },
+    successHeadline: "You're subscribed!", successNote: "Your task is now posted."
+  });
+}
+async function doPostTask(){
+  var d = state.postDraft;
+  try {
+    await api.post("/api/tasks", {
+      title: d.title.trim(), description: d.description.trim(), category: d.category||"other",
+      county: d.county, area: d.area||"", budgetType: d.budgetType, budget: Number(d.budget), dueDate: d.dueDate||null
+    });
+    state.postDraft = { step:1, category:"", title:"", description:"", county:"", area:"", budgetType:"fixed", budget:"", dueDate:"" };
+    await loadTasks();
+    goView("mytasks");
+  } catch(e){ showToast(e.message || "Couldn't post right now."); }
+}
+
+function attemptSendOffer(taskId, amount, message){
+  if (!amount) { showToast("Enter an amount."); return; }
+  var t = state.tasks.filter(function(x){return x.id===taskId;})[0];
+  if (t && t.lockedForMe) { showToast("This task is still in its Pro early-access window."); return; }
+  openChargeModal({
+    purpose: "bid_fee", amount: BID_FEE,
+    title: "Bidding fee", subtitle: "One-time fee to send this offer",
+    meta: { taskId: taskId, amount: Number(amount), message: message },
+    successHeadline: "Offer sent!", successNote: "The poster can now see your offer.",
+    afterSuccess: function(){ loadOffers(taskId); }
+  });
+}
+
+async function acceptOffer(task, offer){
+  try { await api.post("/api/tasks/"+task.id+"/accept-offer", { offerId: offer.id }); showToast("Offer accepted — chat with them to arrange details."); await loadTasks(); }
+  catch(e){ showToast(e.message || "Couldn't accept offer."); }
+}
+async function markComplete(task){
+  try { await api.post("/api/tasks/"+task.id+"/complete", {}); showToast("Marked as completed. You can now pay & review."); await loadTasks(); }
+  catch(e){ showToast(e.message || "Couldn't update task."); }
+}
+async function submitReview(taskId, forUserId, rating, comment){
+  try {
+    await api.post("/api/reviews", { taskId: taskId, forUserId: forUserId, rating: rating, comment: comment||"" });
+    showToast("Thanks for the review!"); closeModal();
+  } catch(e){ showToast(e.message || "Couldn't save review."); }
+}
+async function saveProfile(fields){
+  try { var r = await api.patch("/api/profiles/me", fields); state.me = Object.assign({}, state.me, r.profile); showToast("Profile updated."); render(); }
+  catch(e){ showToast(e.message || "Couldn't save profile."); }
+}
+function sendChatMessage(taskId, text){
+  if (!text.trim()) return;
+  api.post("/api/messages/"+taskId, { text: text.trim() }).then(function(){ loadMessages(taskId); }).catch(function(e){ showToast("Message didn't send."); });
+}
+function payViaMpesa(task){
+  openChargeModal({
+    purpose: "task_payment", amount: task.budget,
+    title: "Pay "+esc(task.assignedToName), subtitle: 'for "'+task.title+'"',
+    meta: { taskId: task.id },
+    successHeadline: "Payment successful", successNote: fmtKES(task.budget)+" sent to "+task.assignedToName,
+    afterSuccess: function(){ loadTasks(); }
+  });
+}
+
+/* ===================== Charge / M-Pesa modal (real STK Push via backend) ===================== */
+function openChargeModal(cfg){
+  state._charge = cfg;
+  openModal(renderChargeModal("phone"));
+}
+function renderChargeModal(stage, extra){
+  var c = state._charge || {};
+  if (stage === "phone") {
+    return '' +
+    '<button class="close-x" data-close="1">✕</button>' +
+    '<div class="mpesa-badge">🟢 M-Pesa · Lipa na M-Pesa</div>' +
+    '<h2>'+esc(c.title)+'</h2>' +
+    '<p class="muted" style="margin:0 0 16px;">'+esc(c.subtitle)+'</p>' +
+    '<div class="card" style="padding:12px 16px;margin-bottom:16px;background:var(--teal-100);border:none;display:flex;justify-content:space-between;align-items:center;">' +
+      '<span>Amount</span><b style="font-family:\'Space Grotesk\';font-size:17px;">'+fmtKES(c.amount)+'</b>' +
+    '</div>' +
+    '<label style="margin-top:0;">M-Pesa phone number</label>' +
+    '<input type="tel" id="charge-phone" placeholder="07XX XXX XXX">' +
+    '<button class="btn btn-marigold btn-block" style="margin-top:16px;" data-action="docharge">Send STK push</button>';
+  }
+  if (stage === "pin") {
+    return '<div class="pin-anim"><div class="phone-glyph">📱</div><h2 style="margin-top:10px;">Enter M-Pesa PIN</h2><p class="muted">Check your phone…</p></div>';
+  }
+  if (stage === "failed") {
+    return '' +
+    '<button class="close-x" data-close="1">✕</button>' +
+    '<div style="text-align:center;padding:10px 0 4px;"><div style="font-size:40px;">⚠️</div>' +
+    '<h2>Payment didn\'t go through</h2><p class="muted">'+esc(extra||"You can try again.")+'</p>' +
+    '<button class="btn btn-primary btn-block" style="margin-top:12px;" data-action="docharge">Try again</button></div>';
+  }
+  return '' +
+  '<button class="close-x" data-close="1">✕</button>' +
+  '<div style="text-align:center;padding:10px 0 4px;">' +
+  '<div style="font-size:40px;">✅</div>' +
+  '<h2>'+esc(c.successHeadline||"Payment successful")+'</h2>' +
+  '<p class="muted">'+esc(c.successNote||"")+'</p>' +
+  '<button class="btn btn-primary btn-block" style="margin-top:12px;" data-close="1">Done</button>' +
+  '</div>';
+}
+async function runChargeFlow(phone){
+  var c = state._charge;
+  setModalBody(renderChargeModal("pin"));
+  try {
+    var r = await api.post("/api/payments/stk", { purpose: c.purpose, phone: phone, meta: c.meta || {} });
+    var tries = 0;
+    var poll = setInterval(async function(){
+      tries++;
+      try {
+        var s = await api.get("/api/payments/status/"+r.checkoutRequestId);
+        if (s.status === "success") {
+          clearInterval(poll);
+          if (c.purpose === "poster_sub") { state.me = Object.assign({}, state.me, { posterSubExpiresAt: new Date(Date.now()+30*86400000).toISOString() }); await loadTasks(); }
+          if (c.purpose === "pro_sub") { state.me = Object.assign({}, state.me, { proExpiresAt: new Date(Date.now()+30*86400000).toISOString() }); }
+          setModalBody(renderChargeModal("success"));
+          if (c.afterSuccess) c.afterSuccess();
+          render();
+        } else if (s.status === "failed") {
+          clearInterval(poll);
+          setModalBody(renderChargeModal("failed", "The M-Pesa prompt was cancelled or timed out."));
+        } else if (tries > 25) {
+          clearInterval(poll);
+          setModalBody(renderChargeModal("failed", "We didn't hear back in time — check your phone and try again."));
+        }
+      } catch(e){}
+    }, 2200);
+  } catch (e) {
+    setModalBody(renderChargeModal("failed", e.message));
+  }
+}
+
+/* ===================== Navigation ===================== */
+function goView(v, extra){
+  state.view = v;
+  if (state.chatPoll) { clearInterval(state.chatPoll); state.chatPoll = null; }
+  if (extra) Object.assign(state, extra);
+  window.scrollTo(0,0);
+  if (v === "browse" || v === "mytasks") loadTasks();
+  render();
+}
+function openTask(id){
+  state.taskId = id; state.view = "detail";
+  loadOffers(id);
+  window.scrollTo(0,0); render();
+}
+function openProfile(id){
+  state.profileId = id; state.view = "profile"; state._viewedProfile = null;
+  loadProfile(id); loadReviews(id);
+  window.scrollTo(0,0); render();
+}
+function openChat(taskId){
+  goView("messages", { chatTaskId: taskId });
+  loadMessages(taskId);
+  state.chatPoll = setInterval(function(){ loadMessages(taskId); }, 4000);
+}
+
+/* ===================== Modal ===================== */
+function openModal(html){
+  document.getElementById("modal-root").innerHTML = '<div class="modal-back"><div class="modal-wrap">'+html+'</div></div>';
+  bindModalEvents();
+}
+function setModalBody(html){
+  var wrap = document.querySelector(".modal-wrap");
+  if (wrap) { wrap.innerHTML = html; bindModalEvents(); }
+}
+function closeModal(){ document.getElementById("modal-root").innerHTML = ""; }
+
+/* ===================== Render: shell ===================== */
+function render(){
+  var app = document.getElementById("app");
+  if (!state.me) { app.innerHTML = renderAuthScreen(); bindAuthEvents(); return; }
+  app.innerHTML = topbarHtml() + '<div class="page">' + viewHtml() + '</div>' + bottomNavHtml();
+  bindGlobalEvents();
+}
+
+function renderAuthScreen(){
+  var mode = state.authMode;
+  return '<div class="auth-wrap">' +
+    '<div class="auth-logo">Kazi</div>' +
+    '<div class="auth-sub">Get it done, near you</div>' +
+    (state._authError ? '<div class="auth-error">'+esc(state._authError)+'</div>' : '') +
+    (mode==="login" ?
+      '<label style="margin-top:0;">Email</label><input type="text" id="auth-email">' +
+      '<label>Password</label><input type="text" id="auth-password">' +
+      '<button class="btn btn-primary btn-block" style="margin-top:16px;" data-action="dologin">Log in</button>' +
+      '<div class="auth-toggle">New to Kazi? <a data-action="toregister">Create an account</a></div>'
+    :
+      '<label style="margin-top:0;">Full name</label><input type="text" id="auth-name">' +
+      '<label>Email</label><input type="text" id="auth-email">' +
+      '<label>Phone (M-Pesa number)</label><input type="tel" id="auth-phone" placeholder="07XX XXX XXX">' +
+      '<label>Password</label><input type="text" id="auth-password" placeholder="At least 6 characters">' +
+      '<button class="btn btn-primary btn-block" style="margin-top:16px;" data-action="doregister">Create account</button>' +
+      '<div class="auth-toggle">Already have an account? <a data-action="tologin">Log in</a></div>'
+    ) +
+  '</div>';
+}
+function bindAuthEvents(){
+  var l = document.querySelector('[data-action="dologin"]');
+  if (l) l.addEventListener("click", function(){ doLogin(document.getElementById("auth-email").value.trim(), document.getElementById("auth-password").value); });
+  var r = document.querySelector('[data-action="doregister"]');
+  if (r) r.addEventListener("click", function(){ doRegister(document.getElementById("auth-name").value.trim(), document.getElementById("auth-email").value.trim(), document.getElementById("auth-phone").value.trim(), document.getElementById("auth-password").value); });
+  var tr = document.querySelector('[data-action="toregister"]');
+  if (tr) tr.addEventListener("click", function(){ state.authMode="register"; state._authError=null; render(); });
+  var tl = document.querySelector('[data-action="tologin"]');
+  if (tl) tl.addEventListener("click", function(){ state.authMode="login"; state._authError=null; render(); });
+}
+
+function topbarHtml(){
+  var opts = '<option value="">All Kenya</option>' + COUNTIES.map(function(c){
+    return '<option value="'+esc(c)+'" '+(state.county===c?'selected':'')+'>'+esc(c)+'</option>';
+  }).join("");
+  return '' +
+  '<div class="topbar">' +
+    '<div class="brand" data-nav="browse">Kazi<small>get it done</small></div>' +
+    '<div class="spacer"></div>' +
+    '<div class="loc-pill">📍<select id="county-select">'+opts+'</select></div>' +
+    '<button class="btn-post-top" data-nav="post">+ Post task</button>' +
+  '</div>';
+}
+function bottomNavHtml(){
+  var items = [
+    {id:"browse", glyph:"🔎", label:"Browse"},
+    {id:"post", glyph:"➕", label:"Post"},
+    {id:"messages", glyph:"💬", label:"Chats"},
+    {id:"mytasks", glyph:"🗂️", label:"My tasks"},
+    {id:"profile", glyph:"👤", label:"Profile", self:true}
+  ];
+  return '<div class="bottom-nav">' + items.map(function(it){
+    var active = (state.view===it.id) || (it.self && state.view==="profile" && state.profileId===state.me.id);
+    return '<button class="nav-btn '+(active?'active':'')+'" data-nav="'+it.id+(it.self?'|me':'')+'">'+
+      '<span class="glyph">'+it.glyph+'</span>'+it.label+'</button>';
+  }).join("") + '</div>';
+}
+function bindGlobalEvents(){
+  document.querySelectorAll("[data-nav]").forEach(function(el){
+    el.addEventListener("click", function(){
+      var v = el.getAttribute("data-nav");
+      if (v==="profile|me") { openProfile(state.me.id); return; }
+      goView(v);
+    });
+  });
+  var cs = document.getElementById("county-select");
+  if (cs) cs.addEventListener("change", function(){ state.county = cs.value; loadTasks(); });
+  bindViewEvents();
+}
+
+/* ===================== Render: views ===================== */
+function viewHtml(){
+  switch(state.view){
+    case "post": return renderPost();
+    case "detail": return renderDetail();
+    case "mytasks": return renderMyTasks();
+    case "messages": return renderMessagesList();
+    case "profile": return renderProfilePage();
+    default: return renderBrowse();
+  }
+}
+function tasksListHtml(list){
+  if (!state.tasksLoaded) return '<div class="task-list">' + [1,2,3].map(function(){ return '<div class="skeleton" style="height:78px;"></div>'; }).join("") + '</div>';
+  if (!list.length) return '<div class="empty"><div class="glyph">🗒️</div>No tasks match yet.<br>Be the first to post one nearby.</div>';
+  return '<div class="task-list">' + list.map(taskCardHtml).join("") + '</div>';
+}
+function taskCardHtml(t){
+  var pillClass = t.status==="completed" ? "pill-done" : (t.status==="assigned" ? "pill-assigned" : "pill-open");
+  var pillLabel = t.status==="completed" ? "Completed" : (t.status==="assigned" ? "Assigned" : "Open");
+  return '' +
+  '<div class="card task-card" data-open="'+t.id+'">' +
+    '<div class="top-row"><h3>'+esc(t.title)+'</h3><div class="budget">'+fmtKES(t.budget)+(t.budgetType==="hourly"?"/hr":"")+'</div></div>' +
+    '<div class="meta">' +
+      '<span>'+catGlyph(t.category)+' '+esc(catLabel(t.category))+'</span>' +
+      '<span>📍 '+esc(t.area? t.area+", " : "")+esc(t.county||"")+'</span>' +
+      '<span class="pill '+pillClass+'">'+pillLabel+'</span>' +
+      (t.earlyAccessWindow ? '<span class="pill" style="background:#FFF1DC;color:var(--marigold-dark);">⏳ Pro early access</span>' : '') +
+      '<span>'+timeAgo(t.createdAt)+'</span>' +
+    '</div>' +
+  '</div>';
+}
+function renderBrowse(){
+  var html = '' +
+  '<div class="hero" style="margin:-18px -16px 0;border-radius:0 0 18px 18px;">' +
+    '<h1>Odd jobs done by people near you</h1>' +
+    '<p>Post what you need in Kenyan shillings, get offers from local taskers, pay safely with M-Pesa.</p>' +
+    '<p style="color:#B9D6CB;font-size:12px;margin:-10px 0 16px;">'+fmtKES(POSTER_FEE)+'/mo to post tasks · '+fmtKES(BID_FEE)+' per bid for taskers · Kazi Pro '+fmtKES(PRO_FEE)+'/mo for priority</p>' +
+    '<div class="search-row">' +
+      '<input type="text" id="search-input" placeholder="Search tasks — e.g. \'clean house\'" value="'+esc(state.query)+'">' +
+      '<button class="btn btn-marigold" data-action="search">Search</button>' +
+    '</div>' +
+  '</div>' +
+  '<div class="cat-scroll">' +
+    '<div class="cat-chip '+(state.category===""?"active":"")+'" data-cat=""><span class="glyph">🌐</span>All</div>' +
+    CATEGORIES.map(function(c){ return '<div class="cat-chip '+(state.category===c.id?"active":"")+'" data-cat="'+c.id+'"><span class="glyph">'+c.glyph+'</span>'+esc(c.label)+'</div>'; }).join("") +
+  '</div>' +
+  '<div class="page" style="padding-left:0;padding-right:0;">' +
+    '<div class="section-head"><h2>'+(state.county? esc(state.county)+" tasks" : "Open tasks")+'</h2><span class="muted">'+state.tasks.length+' found</span></div>' +
+    tasksListHtml(state.tasks) +
+  '</div>';
+  return html;
+}
+function renderDetail(){
+  var t = state.tasks.filter(function(x){return x.id===state.taskId;})[0];
+  if (!t) return '<div class="empty"><div class="glyph">🔍</div>Task not found.</div>';
+  var offers = state.offersByTask[t.id] || [];
+  var isOwner = t.postedById === state.me.id;
+  var isAssignedTasker = t.assignedToId === state.me.id;
+  var iOffered = offers.filter(function(o){return o.taskerId===state.me.id;}).length>0;
+
+  var actionBlock = "";
+  if (isOwner) {
+    if (t.status==="open") {
+      actionBlock = '<div class="section-head"><h2>Offers ('+offers.length+')</h2></div>' + offersHtml(t, offers, true);
+    } else if (t.status==="assigned") {
+      actionBlock = '<div class="card" style="padding:16px;margin-top:8px;">' +
+        '<p style="margin:0 0 12px;">Assigned to <b>'+esc(t.assignedToName)+'</b>'+proBadge(t.assigneeIsPro)+'. Chat to arrange details, then mark complete when the job is done.</p>' +
+        '<div style="display:flex;gap:10px;flex-wrap:wrap;">' +
+        '<button class="btn btn-primary" data-action="chat" data-task="'+t.id+'">💬 Message '+esc((t.assignedToName||"").split(" ")[0])+'</button>' +
+        '<button class="btn" data-action="complete" data-task="'+t.id+'">Mark as completed</button>' +
+        '</div></div>';
+    } else if (t.status==="completed") {
+      actionBlock = '<div class="card" style="padding:16px;margin-top:8px;display:flex;flex-direction:column;gap:10px;">' +
+        '<p style="margin:0;">Task completed by <b>'+esc(t.assignedToName)+'</b>.</p>' +
+        (t.paid ? '<div class="pill pill-done" style="align-self:flex-start;">Paid</div>' :
+        '<button class="btn btn-marigold" data-action="pay" data-task="'+t.id+'">📲 Pay '+fmtKES(t.budget)+' with M-Pesa</button>') +
+        '<button class="btn" data-action="review" data-task="'+t.id+'" data-for="'+t.assignedToId+'">⭐ Leave a review</button>' +
+        '</div>';
+    }
+  } else {
+    if (t.status==="open" && t.lockedForMe) {
+      actionBlock = '<div class="card" style="padding:16px;margin-top:8px;background:#FFF7EC;border-color:var(--marigold);">' +
+        '<p style="margin:0 0 12px;">⏳ <b>Pro early access.</b> Pro taskers can see and bid on this task before it opens to everyone.</p>' +
+        '<button class="btn btn-marigold btn-block" data-action="gopro">Go Pro — '+fmtKES(PRO_FEE)+'/month</button>' +
+        '</div>';
+    } else if (t.status==="open") {
+      actionBlock = '<button class="btn btn-marigold btn-block" data-action="offer" data-task="'+t.id+'">'+(iOffered? "Update your offer" : "Send an offer")+'</button>' +
+        '<p class="muted" style="font-size:12px;margin-top:8px;">A '+fmtKES(BID_FEE)+' bidding fee applies each time you send an offer.</p>';
+    } else if (isAssignedTasker) {
+      actionBlock = '<div class="card" style="padding:16px;margin-top:8px;">' +
+        '<p style="margin:0 0 12px;">You\'re doing this task. Message the poster if you need details.</p>' +
+        '<button class="btn btn-primary btn-block" data-action="chat" data-task="'+t.id+'">💬 Message '+esc((t.postedByName||"").split(" ")[0])+'</button>' +
+        '</div>';
+    } else {
+      actionBlock = '<div class="card" style="padding:14px 16px;margin-top:8px;color:var(--muted);">This task has already been '+(t.status==="completed"?"completed":"assigned")+'.</div>';
+    }
+  }
+
+  return '' +
+  '<button class="btn btn-ghost btn-sm" data-nav="browse" style="padding-left:0;">← Back to browse</button>' +
+  '<div class="detail-head">' +
+    '<span class="pill '+(t.status==="completed"?"pill-done":t.status==="assigned"?"pill-assigned":"pill-open")+'">'+(t.status==="completed"?"Completed":t.status==="assigned"?"Assigned":"Open")+'</span>' +
+    '<h1>'+esc(t.title)+'</h1>' +
+    '<div class="meta muted">'+catGlyph(t.category)+' '+esc(catLabel(t.category))+' · 📍 '+esc(t.area? t.area+", ":"")+esc(t.county)+' · '+timeAgo(t.createdAt)+'</div>' +
+  '</div>' +
+  '<div class="detail-budget">'+fmtKES(t.budget)+(t.budgetType==="hourly"?'<span style="font-size:14px;color:var(--muted);font-weight:500;"> / hour</span>':'')+'</div>' +
+  '<p style="margin:14px 0;white-space:pre-wrap;">'+esc(t.description)+'</p>' +
+  '<div class="poster-row" data-openprofile="'+esc(t.postedById)+'">' +
+    '<div class="avatar">'+esc(initials(t.postedByName))+'</div>' +
+    '<div><div class="name">'+esc(t.postedByName)+'</div><div class="muted" style="font-size:12px;">Posted this task</div></div>' +
+  '</div>' +
+  actionBlock;
+}
+function offersHtml(task, offers, ownerView){
+  if (!offers.length) return '<div class="empty" style="padding:24px 12px;"><div class="glyph">📨</div>No offers yet — check back soon.</div>';
+  return '<div class="card" style="padding:4px 16px;">' + offers.map(function(o){
+    return '<div class="offer-row">' +
+      '<div class="avatar" data-openprofile="'+esc(o.taskerId)+'">'+esc(initials(o.taskerName))+'</div>' +
+      '<div class="offer-box">' +
+        '<div style="display:flex;justify-content:space-between;gap:8px;">' +
+          '<span data-openprofile="'+esc(o.taskerId)+'" style="font-weight:600;">'+esc(o.taskerName)+proBadge(o.taskerIsPro)+'</span>' +
+          '<span class="amount">'+fmtKES(o.amount)+'</span>' +
+        '</div>' +
+        (o.message? '<div class="muted" style="font-size:13px;margin-top:4px;">"'+esc(o.message)+'"</div>' : '') +
+        (ownerView && task.status==="open" ? '<button class="btn btn-primary btn-sm" style="margin-top:8px;" data-action="accept" data-task="'+task.id+'" data-offer="'+o.id+'">Accept offer</button>' : (o.status==="accepted"? '<span class="pill pill-assigned" style="margin-top:8px;display:inline-block;">Accepted</span>':'')) +
+      '</div>' +
+    '</div>';
+  }).join("") + '</div>';
+}
+function renderPost(){
+  var d = state.postDraft;
+  var body = "";
+  if (d.step===1) {
+    body = '<label>What kind of task is it?</label><div class="cat-grid">' + CATEGORIES.map(function(c){
+      return '<div class="cat-chip '+(d.category===c.id?"active":"")+'" data-draftcat="'+c.id+'"><span class="glyph">'+c.glyph+'</span>'+esc(c.label)+'</div>';
+    }).join("") + '</div>';
+  } else if (d.step===2) {
+    body = '<label>Title</label><input type="text" id="d-title" placeholder="e.g. Deep clean 2-bedroom flat" value="'+esc(d.title)+'">' +
+      '<label>Describe what needs doing</label><textarea id="d-desc" rows="4" placeholder="Give details a tasker would need to quote accurately">'+esc(d.description)+'</textarea>';
+  } else if (d.step===3) {
+    var opts = COUNTIES.map(function(c){ return '<option value="'+esc(c)+'" '+(d.county===c?'selected':'')+'>'+esc(c)+'</option>'; }).join("");
+    body = '<label>County</label><select id="d-county"><option value="">Select county</option>'+opts+'</select>' +
+      '<label>Area / estate (optional)</label><input type="text" id="d-area" value="'+esc(d.area)+'">' +
+      '<label>Needed by (optional)</label><input type="date" id="d-date" value="'+esc(d.dueDate)+'">';
+  } else if (d.step===4) {
+    body = '<label>Budget type</label><div style="display:flex;gap:8px;">' +
+        '<button class="btn '+(d.budgetType==="fixed"?"btn-primary":"")+'" style="flex:1;" data-budtype="fixed">Fixed price</button>' +
+        '<button class="btn '+(d.budgetType==="hourly"?"btn-primary":"")+'" style="flex:1;" data-budtype="hourly">Hourly rate</button>' +
+      '</div>' +
+      '<label>Amount (KES)</label><input type="number" min="0" id="d-budget" value="'+esc(d.budget)+'">' +
+      '<div class="card" style="padding:14px 16px;margin-top:18px;background:var(--teal-100);border:none;">' +
+        '<b>'+esc(d.title||"Your task")+'</b><br><span class="muted">'+catGlyph(d.category)+' '+esc(catLabel(d.category))+' · '+esc(d.county||"—")+(d.area? ", "+esc(d.area):"")+'</span>' +
+      '</div>';
+  }
+  var canNext = (d.step===1 && d.category) || (d.step===2 && d.title.trim() && d.description.trim()) || (d.step===3 && d.county) || d.step===4;
+  return '<h1 style="font-size:20px;">Post a task</h1>' +
+  '<div class="step-dots">'+[1,2,3,4].map(function(i){return '<span class="'+(i<=d.step?'active':'')+'"></span>';}).join("")+'</div>' +
+  body +
+  '<div style="display:flex;gap:10px;margin-top:22px;">' +
+    (d.step>1? '<button class="btn" data-postnav="back">Back</button>' : '') +
+    (d.step<4? '<button class="btn btn-primary" style="flex:1;" data-postnav="next" '+(canNext?'':'disabled')+'>Continue</button>' :
+      '<button class="btn btn-marigold" style="flex:1;" data-action="submitpost" '+(d.budget?'':'disabled')+'>Post task</button>') +
+  '</div>';
+}
+function renderMyTasks(){
+  var posted = state.tasks.filter(function(t){ return t.postedById===state.me.id; });
+  var working = state.tasks.filter(function(t){ return t.assignedToId===state.me.id; });
+  return '<h1 style="font-size:20px;">My tasks</h1>' +
+  '<div class="section-head"><h2>Posted by me ('+posted.length+')</h2></div>' + tasksListHtml(posted) +
+  '<div class="section-head"><h2>I\'m working on ('+working.length+')</h2></div>' + tasksListHtml(working);
+}
+function renderMessagesList(){
+  var mine = state.tasks.filter(function(t){ return (t.postedById===state.me.id || t.assignedToId===state.me.id) && t.status!=="open"; });
+  if (state.chatTaskId) return renderChat(state.chatTaskId);
+  if (!mine.length) return '<div class="empty"><div class="glyph">💬</div>No conversations yet.<br>Once a task is assigned, you can chat here.</div>';
+  return '<h1 style="font-size:20px;">Chats</h1><div class="task-list">' + mine.map(function(t){
+    var other = t.postedById===state.me.id ? t.assignedToName : t.postedByName;
+    return '<div class="card task-card" data-chat="'+t.id+'"><h3 style="font-size:14.5px;">'+esc(t.title)+'</h3><div class="muted" style="font-size:12.5px;">with '+esc(other||"—")+'</div></div>';
+  }).join("") + '</div>';
+}
+function renderChat(taskId){
+  var t = state.tasks.filter(function(x){return x.id===taskId;})[0];
+  if (!t) return '<div class="empty">Conversation not found.</div>';
+  var msgs = state.messagesByTask[taskId] || [];
+  var otherName = t.postedById===state.me.id ? t.assignedToName : t.postedByName;
+  return '' +
+  '<button class="btn btn-ghost btn-sm" data-action="closechat" style="padding-left:0;">← Chats</button>' +
+  '<h2 style="font-size:16px;margin:4px 0 0;">'+esc(t.title)+'</h2>' +
+  '<div class="muted" style="font-size:12.5px;margin-bottom:6px;">with '+esc(otherName||"—")+'</div>' +
+  '<div class="chat-thread">' + (msgs.length? msgs.map(function(m){
+    var mine = m.fromId===state.me.id;
+    return '<div class="msg '+(mine?"mine":"theirs")+'">'+(mine?'':'<div class="who">'+esc(m.fromName)+'</div>')+esc(m.text)+'</div>';
+  }).join("") : '<div class="muted" style="text-align:center;padding:20px 0;">Say hello 👋</div>') + '</div>' +
+  '<div class="chat-input-row">' +
+    '<input type="text" id="chat-input" placeholder="Message '+esc((otherName||"").split(" ")[0]||"")+'…">' +
+    '<button class="btn btn-primary" data-action="sendchat" data-task="'+taskId+'">Send</button>' +
+  '</div>';
+}
+function renderProfilePage(){
+  var pid = state.profileId || state.me.id;
+  var isMe = pid === state.me.id;
+  var p = isMe ? state.me : (state._viewedProfile || {});
+  var avgRating = p.ratingCount ? (p.ratingSum/p.ratingCount) : 0;
+  var reviews = state.reviewsByUser[pid] || [];
+
+  var editBlock = "";
+  if (isMe) {
+    var posterActive = isPosterSubActive(p), proActive = isProActive(p);
+    editBlock = '' +
+    '<div class="card" style="padding:16px;margin-top:16px;">' +
+      '<h3 style="font-size:14.5px;margin:0 0 10px;">Poster plan</h3>' +
+      (posterActive ? '<p class="muted" style="margin:0 0 10px;font-size:13px;">✅ Active — post as many tasks as you like until <b>'+fmtDate(p.posterSubExpiresAt)+'</b>.</p>' :
+        '<p class="muted" style="margin:0 0 10px;font-size:13px;">Post your first task any time — you\'ll subscribe for '+fmtKES(POSTER_FEE)+'/month right when you post.</p>') +
+      '<button class="btn '+(posterActive?'btn-sm':'btn-marigold btn-sm')+'" data-action="renewposter">'+(posterActive?"Renew now":"Subscribe — "+fmtKES(POSTER_FEE)+"/mo")+'</button>' +
+    '</div>' +
+    '<div class="card" style="padding:16px;margin-top:10px;">' +
+      '<h3 style="font-size:14.5px;margin:0 0 6px;">Kazi Pro '+(proActive?proBadge(true):'')+'</h3>' +
+      '<ul class="muted" style="margin:0 0 12px;padding-left:18px;font-size:13px;line-height:1.7;">' +
+        '<li>See and bid on new tasks '+EARLY_ACCESS_HOURS+'h before everyone else</li>' +
+        '<li>Your offers show first to posters</li><li>PRO badge on your profile and offers</li>' +
+      '</ul>' +
+      (proActive ? '<p class="muted" style="margin:0 0 10px;font-size:13px;">✅ Active until <b>'+fmtDate(p.proExpiresAt)+'</b>.</p>' : '') +
+      '<button class="btn btn-marigold btn-sm" data-action="gopro">'+(proActive?"Renew — ":"Upgrade — ")+fmtKES(PRO_FEE)+'/mo</button>' +
+    '</div>' +
+    '<div class="card" style="padding:16px;margin-top:16px;">' +
+      '<label style="margin-top:0;">Display bio</label><textarea id="p-bio" rows="2" placeholder="What can you help with?">'+esc(p.bio||"")+'</textarea>' +
+      '<div class="field-row">' +
+        '<div><label>County</label><select id="p-county"><option value="">—</option>'+COUNTIES.map(function(c){return '<option '+((p.county===c)?'selected':'')+' value="'+esc(c)+'">'+esc(c)+'</option>';}).join("")+'</select></div>' +
+        '<div><label>Area</label><input type="text" id="p-area" value="'+esc(p.area||"")+'"></div>' +
+      '</div>' +
+      '<label style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="p-tasker" '+(p.isTasker?"checked":"")+' style="width:auto;">Available to be hired as a tasker</label>' +
+      '<button class="btn btn-primary btn-block" style="margin-top:14px;" data-action="saveprofile">Save profile</button>' +
+    '</div>' +
+    '<button class="btn" style="margin-top:16px;width:100%;" data-action="logout">Log out</button>';
+  }
+
+  return '' +
+  (state.profileId && state.profileId!==state.me.id ? '<button class="btn btn-ghost btn-sm" data-nav="browse" style="padding-left:0;">← Back</button>' : '') +
+  '<div style="display:flex;align-items:center;gap:14px;margin-top:8px;">' +
+    '<div class="avatar" style="width:56px;height:56px;font-size:19px;">'+esc(initials(p.name))+'</div>' +
+    '<div><h1 style="font-size:19px;margin:0;">'+esc(p.name || "")+proBadge(isProActive(p))+'</h1>' +
+    '<div class="muted" style="font-size:12.5px;">'+esc(p.area? p.area+", ":"")+esc(p.county||"Location not set")+'</div></div>' +
+  '</div>' +
+  '<div class="rating-summary" style="margin:16px 0;">' +
+    '<span class="big">'+(avgRating? avgRating.toFixed(1) : "—")+'</span>' +
+    '<div><div class="stars">'+stars(avgRating)+'</div><div class="muted" style="font-size:12px;">'+(p.ratingCount||0)+' review'+((p.ratingCount||0)===1?"":"s")+' · '+(p.completedTasks||0)+' tasks done</div></div>' +
+  '</div>' +
+  (p.bio? '<p style="margin:0 0 6px;">'+esc(p.bio)+'</p>' : '') +
+  editBlock +
+  '<div class="section-head"><h2>Reviews</h2></div>' +
+  (reviews.length? reviews.map(function(r){
+    return '<div class="card" style="padding:12px 16px;margin-bottom:8px;">' +
+      '<div style="display:flex;justify-content:space-between;"><b style="font-size:13.5px;">'+esc(r.fromName)+'</b><span class="stars">'+stars(r.rating)+'</span></div>' +
+      (r.comment? '<div class="muted" style="font-size:13px;margin-top:4px;">'+esc(r.comment)+'</div>' : '') +
+    '</div>';
+  }).join("") : '<div class="empty" style="padding:24px 0;">No reviews yet.</div>');
+}
+
+/* ===================== Modals content ===================== */
+function renderOfferModal(task){
+  return '<button class="close-x" data-close="1">✕</button>' +
+  '<h2>Send an offer</h2><p class="muted" style="margin:0 0 16px;">for "'+esc(task.title)+'"</p>' +
+  '<label style="margin-top:0;">Your price (KES)</label><input type="number" id="offer-amount" min="0" value="'+task.budget+'">' +
+  '<label>Message to the poster</label><textarea id="offer-msg" rows="3" placeholder="Say when you\'re free and any questions"></textarea>' +
+  '<button class="btn btn-marigold btn-block" style="margin-top:16px;" data-action="submitoffer" data-task="'+task.id+'">Continue to bidding fee</button>';
+}
+function renderReviewModal(taskId, forUserId){
+  return '<button class="close-x" data-close="1">✕</button><h2>Leave a review</h2>' +
+  '<div class="review-stars" id="review-stars" style="margin:14px 0;">' + [1,2,3,4,5].map(function(n){ return '<span data-star="'+n+'">★</span>'; }).join("") + '</div>' +
+  '<textarea id="review-comment" rows="3" placeholder="How did it go?"></textarea>' +
+  '<button class="btn btn-marigold btn-block" style="margin-top:14px;" data-action="submitreview" data-task="'+taskId+'" data-for="'+forUserId+'">Submit review</button>';
+}
+
+/* ===================== Event binding ===================== */
+function bindViewEvents(){
+  document.querySelectorAll("[data-open]").forEach(function(el){ el.addEventListener("click", function(){ openTask(el.getAttribute("data-open")); }); });
+  document.querySelectorAll("[data-openprofile]").forEach(function(el){ el.addEventListener("click", function(ev){ ev.stopPropagation(); openProfile(el.getAttribute("data-openprofile")); }); });
+  document.querySelectorAll("[data-cat]").forEach(function(el){ el.addEventListener("click", function(){ state.category = el.getAttribute("data-cat"); loadTasks(); }); });
+  var searchBtn = document.querySelector('[data-action="search"]');
+  if (searchBtn) searchBtn.addEventListener("click", function(){ state.query = document.getElementById("search-input").value; loadTasks(); });
+  var searchInput = document.getElementById("search-input");
+  if (searchInput) searchInput.addEventListener("keydown", function(e){ if (e.key==="Enter"){ state.query = searchInput.value; loadTasks(); } });
+
+  document.querySelectorAll("[data-draftcat]").forEach(function(el){ el.addEventListener("click", function(){ state.postDraft.category = el.getAttribute("data-draftcat"); render(); }); });
+  document.querySelectorAll("[data-budtype]").forEach(function(el){ el.addEventListener("click", function(){ state.postDraft.budgetType = el.getAttribute("data-budtype"); render(); }); });
+  document.querySelectorAll("[data-postnav]").forEach(function(el){
+    el.addEventListener("click", function(){
+      captureDraftFields();
+      if (el.getAttribute("data-postnav")==="next") state.postDraft.step = Math.min(4, state.postDraft.step+1);
+      else state.postDraft.step = Math.max(1, state.postDraft.step-1);
+      render();
+    });
+  });
+  var submitPost = document.querySelector('[data-action="submitpost"]');
+  if (submitPost) submitPost.addEventListener("click", function(){ captureDraftFields(); attemptPostTask(); });
+
+  bindClick("offer", function(el){ var t = findTask(el); openModal(renderOfferModal(t)); });
+  bindClick("accept", function(el){ var t = findTask(el); var offerId = el.getAttribute("data-offer");
+    var offer = (state.offersByTask[t.id]||[]).filter(function(o){return o.id===offerId;})[0];
+    if (offer) acceptOffer(t, offer);
+  });
+  bindClick("complete", function(el){ markComplete(findTask(el)); });
+  bindClick("pay", function(el){ payViaMpesa(findTask(el)); });
+  bindClick("review", function(el){ openModal(renderReviewModal(el.getAttribute("data-task"), el.getAttribute("data-for"))); });
+  bindClick("chat", function(el){ openChat(el.getAttribute("data-task")); });
+  bindClick("closechat", function(){ state.chatTaskId = null; if (state.chatPoll) { clearInterval(state.chatPoll); state.chatPoll=null; } render(); });
+  bindClick("sendchat", function(el){ var inp = document.getElementById("chat-input"); if (!inp) return; sendChatMessage(el.getAttribute("data-task"), inp.value); inp.value=""; });
+  var chatInput = document.getElementById("chat-input");
+  if (chatInput) chatInput.addEventListener("keydown", function(e){ if (e.key==="Enter") { var btn=document.querySelector('[data-action="sendchat"]'); if(btn) btn.click(); } });
+  document.querySelectorAll("[data-chat]").forEach(function(el){ el.addEventListener("click", function(){ openChat(el.getAttribute("data-chat")); }); });
+
+  bindClick("gopro", function(){ openChargeModal({ purpose:"pro_sub", amount:PRO_FEE, title:"Kazi Pro", subtitle:"Priority offers + "+EARLY_ACCESS_HOURS+"h early access to new tasks", successHeadline:"You're Pro!", successNote:"Enjoy priority placement and early access." }); });
+  bindClick("renewposter", function(){ openChargeModal({ purpose:"poster_sub", amount:POSTER_FEE, meta:{}, title:"Poster plan", subtitle:"Unlimited task posting for 30 days", successHeadline:"Subscribed!", successNote:"Your poster plan is active." }); });
+  bindClick("logout", function(){ doLogout(); });
+
+  var saveBtn = document.querySelector('[data-action="saveprofile"]');
+  if (saveBtn) saveBtn.addEventListener("click", function(){
+    saveProfile({
+      bio: (document.getElementById("p-bio")||{}).value || "",
+      county: (document.getElementById("p-county")||{}).value || "",
+      area: (document.getElementById("p-area")||{}).value || "",
+      isTasker: !!(document.getElementById("p-tasker")||{}).checked
+    });
+  });
+}
+function bindModalEvents(){
+  var back = document.querySelector(".modal-back");
+  if (back) back.addEventListener("click", function(ev){ if (ev.target===back) closeModal(); });
+  document.querySelectorAll("[data-close]").forEach(function(el){ el.addEventListener("click", function(){ closeModal(); }); });
+
+  var submitOffer = document.querySelector('[data-action="submitoffer"]');
+  if (submitOffer) submitOffer.addEventListener("click", function(){
+    closeModal();
+    attemptSendOffer(submitOffer.getAttribute("data-task"), document.getElementById("offer-amount").value, document.getElementById("offer-msg").value);
+  });
+  var doCharge = document.querySelector('[data-action="docharge"]');
+  if (doCharge) doCharge.addEventListener("click", function(){
+    var phoneInput = document.getElementById("charge-phone");
+    var phone = phoneInput ? phoneInput.value.trim() : state._lastPhone;
+    if (!phone) { showToast("Enter a phone number."); return; }
+    state._lastPhone = phone;
+    runChargeFlow(phone);
+  });
+  var starWrap = document.getElementById("review-stars");
+  var chosenStar = 5;
+  if (starWrap) {
+    function paintStars(){ starWrap.querySelectorAll("span").forEach(function(s){ s.classList.toggle("on", Number(s.getAttribute("data-star"))<=chosenStar); }); }
+    paintStars();
+    starWrap.querySelectorAll("span").forEach(function(s){ s.addEventListener("click", function(){ chosenStar = Number(s.getAttribute("data-star")); paintStars(); }); });
+  }
+  var submitReviewBtn = document.querySelector('[data-action="submitreview"]');
+  if (submitReviewBtn) submitReviewBtn.addEventListener("click", function(){
+    submitReview(submitReviewBtn.getAttribute("data-task"), submitReviewBtn.getAttribute("data-for"), chosenStar, document.getElementById("review-comment").value);
+  });
+}
+function bindClick(action, fn){
+  document.querySelectorAll('[data-action="'+action+'"]').forEach(function(el){ el.addEventListener("click", function(){ fn(el); }); });
+}
+function findTask(el){ var id = el.getAttribute("data-task"); return state.tasks.filter(function(t){return t.id===id;})[0]; }
+function captureDraftFields(){
+  var d = state.postDraft, t;
+  if ((t=document.getElementById("d-title"))) d.title = t.value;
+  if ((t=document.getElementById("d-desc"))) d.description = t.value;
+  if ((t=document.getElementById("d-county"))) d.county = t.value;
+  if ((t=document.getElementById("d-area"))) d.area = t.value;
+  if ((t=document.getElementById("d-date"))) d.dueDate = t.value;
+  if ((t=document.getElementById("d-budget"))) d.budget = t.value;
+}
+
+/* Renewing an existing poster plan reuses the same "poster_sub" purpose with an
+   empty meta — the backend only creates a task from meta when meta.title is set,
+   so an empty meta safely just extends the subscription. */
+
+boot();
+})();
+</script>
+</body>
+</html>

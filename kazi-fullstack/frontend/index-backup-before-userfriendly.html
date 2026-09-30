@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kazi — Get it done, near you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f1e6;--surface:#fffdf8;--surface-2:#eee7da;--ink:#101a35;--muted:#667085;
+  --line:#ded6c8;--navy:#071b49;--navy-2:#0d2b68;--navy-3:#183b7a;--accent:#1f66ff;
+  --accent-2:#2d7cff;--orange:#e7b85c;--danger:#ef4b5f;--good:#16a878;--white:#fff;
+  --shadow:0 12px 30px rgba(20,24,39,.08);--radius:14px;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box;
+}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.display{font-family:'Space Grotesk',Inter,sans-serif;font-weight:600;letter-spacing:-.02em}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}
+#app{min-height:100%;padding-bottom:0}.page{padding:24px 28px 42px;max-width:1320px;margin:0 auto}.muted{color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 4px 18px rgba(20,24,39,.035)}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:10px 15px;font-weight:600;font-size:13px}.btn:hover{border-color:var(--accent)}
+.btn-primary{background:var(--navy-2);color:#fff;border-color:var(--navy-2)}.btn-primary:hover{background:var(--navy)}.btn-marigold{background:var(--orange);color:#241300;border-color:var(--orange)}.btn-marigold:hover{background:#c96f12}.btn-block{width:100%}.btn-ghost{background:transparent;border-color:transparent;color:var(--accent);font-weight:600}.btn-sm{padding:7px 11px;font-size:12px}.btn:disabled{opacity:.5;cursor:default}
+input[type=text],input[type=tel],input[type=number],input[type=date],select,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}input:focus,select:focus,textarea:focus{outline:2px solid rgba(18,184,242,.25);border-color:var(--accent)}label{display:block;font-size:12px;font-weight:700;margin:15px 0 6px}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* Public home */
+.public-home{min-height:100vh;background:var(--bg)}.home-nav{height:76px;display:flex;align-items:center;gap:24px;padding:0 7%;border-bottom:1px solid rgba(23,27,39,.07);background:rgba(255,253,248,.86);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20}.home-logo{font-family:'Space Grotesk';font-size:25px;font-weight:700;margin-right:auto}.home-logo span{color:var(--accent)}.home-links{display:flex;gap:25px;font-size:13px;color:var(--muted)}.home-actions{display:flex;gap:9px}.home-hero{max-width:1180px;margin:0 auto;padding:70px 28px 48px}.hero-switch{display:flex;gap:8px;margin-bottom:25px}.hero-switch button{border:1px solid var(--line);background:var(--surface);border-radius:22px;padding:9px 15px;font-weight:700;font-size:12px}.hero-switch .active{background:var(--navy);color:#fff;border-color:var(--navy)}.home-hero h1{font-size:clamp(42px,6vw,72px);line-height:.98;max-width:850px;margin:0 0 22px}.home-hero h1 em{font-style:normal;color:var(--accent)}.home-hero>p{max-width:610px;color:var(--muted);font-size:16px;margin:0 0 28px}.home-search{display:grid;grid-template-columns:1.4fr 1fr 1fr auto;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:6px;box-shadow:var(--shadow);max-width:980px}.home-search .search-cell{padding:10px 16px;border-right:1px solid var(--line)}.home-search .search-cell:last-of-type{border-right:0}.home-search label{margin:0 0 2px;font-size:10px;color:var(--muted);font-weight:600}.home-search input,.home-search select{border:0;padding:0;background:transparent;font-size:14px}.home-search button{width:52px;height:52px;border:0;border-radius:50%;background:var(--navy);color:#fff;font-size:20px}.home-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:48px}.home-card{min-height:245px;border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;position:relative;color:#fff;background-size:cover;background-position:center}.home-card:before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(0,0,0,.7))}.home-card>*{position:relative;z-index:1}.home-card h3{font-size:26px;max-width:310px;margin:0 0 8px}.home-card p{max-width:330px;margin:0 0 16px;color:rgba(255,255,255,.85)}.home-card .btn{align-self:flex-start;border:0;background:#fff;color:var(--ink);border-radius:22px}.home-card.jobs{background-image:linear-gradient(135deg,#0e4158,#1a9b9d)}.home-card.taskers{background-image:linear-gradient(135deg,#7a451c,#d69a42)}.home-features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}.feature{padding:20px}.feature .icon{font-size:24px;margin-bottom:10px}.feature h3{margin:0 0 5px;font-size:15px}.feature p{margin:0;color:var(--muted);font-size:12.5px}
+/* Auth */
+.auth-shell{min-height:100vh;display:grid;place-items:center;padding:24px;background:linear-gradient(135deg,#f4f1e8,#e9e5db)}.auth-card{width:min(420px,100%);padding:30px;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.auth-logo{font-family:'Space Grotesk';font-size:31px;font-weight:700;text-align:center;margin-bottom:3px}.auth-logo span{color:var(--accent)}.auth-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:24px}.auth-toggle{text-align:center;margin-top:16px;font-size:13px}.auth-toggle a{color:var(--accent);font-weight:700;cursor:pointer}.auth-error{background:#fde8eb;color:#b42335;border-radius:10px;padding:10px 13px;font-size:13px;margin-bottom:14px}
+/* Dashboard shell */
+.app-shell{min-height:100vh;background:#11121a;color:#edf0f8}.topbar{height:68px;background:#1d1e2d;border-bottom:1px solid #303247;display:flex;align-items:center;padding:0 24px;gap:18px;position:sticky;top:0;z-index:30}.brand{display:flex;align-items:center;gap:8px;font-family:'Space Grotesk';font-weight:700;font-size:20px;color:#fff;min-width:225px}.brand-mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#6672ff,#4bd1ff);display:grid;place-items:center;color:#fff;font-size:15px}.brand small{display:block;font-family:Inter;font-weight:400;font-size:10px;color:#9ba0b4;margin-left:2px}.top-search{width:min(360px,40vw);margin:auto;background:#2a2b3f;border:1px solid #35364c;border-radius:22px;display:flex;align-items:center;padding:8px 15px;color:#9fa4b7}.top-search input{border:0;background:transparent;color:#fff;outline:0;padding:0 0 0 8px}.top-tools{display:flex;align-items:center;gap:10px}.tool-btn{width:34px;height:34px;border-radius:50%;border:0;background:#2a2b3f;color:#cfd3e2}.avatar-sm{width:34px;height:34px;border-radius:50%;background:#c58f6c;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}.dashboard-layout{display:grid;grid-template-columns:225px 1fr;min-height:calc(100vh - 68px)}.sidebar{background:#1a1b29;border-right:1px solid #303247;padding:24px 10px}.sidebar-label{color:#7e8499;font-size:11px;padding:0 14px 10px}.side-link{display:flex;align-items:center;gap:12px;width:100%;border:0;background:transparent;color:#e1e4ef;text-align:left;padding:12px 14px;border-radius:8px;margin:3px 0;font-size:13px}.side-link:hover{background:#25273a}.side-link.active{background:#28324e;color:#16c8ff}.side-link .ico{width:18px;text-align:center;font-size:16px}.dashboard-main{background:#12131c;min-width:0}.dash-wrap{padding:28px;max-width:1320px;margin:0 auto}.dash-title{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px}.dash-title h1{font-size:23px;margin:0 0 3px;color:#fff}.dash-title p{margin:0;color:#9da2b5;font-size:12px}.dash-actions{display:flex;gap:8px}.dash-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.metric{background:#1d1e2d;border:1px solid #2b2c40;border-radius:9px;padding:20px;min-height:145px}.metric.wide{grid-column:span 2}.metric h3{margin:0;color:#f4f5fa;font-size:14px}.metric .value{font-family:'Space Grotesk';font-size:28px;font-weight:700;margin:8px 0 2px}.metric .sub{color:#8f95aa;font-size:11px}.trend{display:inline-flex;border-radius:12px;padding:3px 7px;background:rgba(22,199,154,.16);color:#19d09f;font-size:10px;font-weight:700;margin-left:6px}.trend.down{background:rgba(239,75,95,.14);color:#ff6173}.mini-bars{height:70px;display:flex;align-items:end;gap:8px;margin-top:14px}.mini-bars span{width:10px;border-radius:6px 6px 2px 2px;background:#12b8f2;opacity:.9}.donut-row{display:flex;align-items:center;gap:22px;margin-top:14px}.donut{width:76px;height:76px;border-radius:50%;background:conic-gradient(#d83bff 0 35%,#16c79a 35% 63%,#12b8f2 63% 82%,#ffbf2f 82% 100%);position:relative}.donut:after{content:'';position:absolute;inset:14px;background:#1d1e2d;border-radius:50%}.legend{display:grid;gap:5px;font-size:11px;color:#9fa4b7}.legend b{color:#e9ebf3}.chart-card{background:#1d1e2d;border:1px solid #2b2c40;border-radius:9px;padding:20px;min-height:310px}.chart-card h3{margin:0;color:#f4f5fa;font-size:16px}.chart-card p{margin:3px 0 14px;color:#858ba0;font-size:11px}.fake-chart{height:205px;position:relative;display:flex;align-items:flex-end;gap:8px;border-bottom:1px solid #34364b;background:repeating-linear-gradient(to bottom,transparent 0 40px,#2c2e42 41px 42px)}.fake-chart span{flex:1;max-width:32px;background:linear-gradient(to top,#16c79a,#16c79a88);border-radius:5px 5px 0 0}.recent-card{background:#1d1e2d;border:1px solid #2b2c40;border-radius:9px;padding:20px;min-height:300px}.recent-head{display:flex;justify-content:space-between;align-items:center}.recent-head h3{margin:0;color:#f4f5fa}.recent-table{margin-top:15px}.recent-row{display:grid;grid-template-columns:1.5fr .7fr .8fr .8fr;gap:10px;padding:12px 0;border-bottom:1px solid #303247;font-size:11px;color:#b5bacb}.recent-row.head{color:#7f859a;font-weight:700}.recent-row strong{color:#eef0f7}.status-dot{display:inline-flex;align-items:center;gap:5px}.status-dot:before{content:'';width:6px;height:6px;border-radius:50%;background:#16c79a}.dashboard-task-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:16px;margin-top:16px}.dark-task-list{display:grid;gap:9px}.dark-task{background:#1d1e2d;border:1px solid #2b2c40;border-radius:9px;padding:14px;cursor:pointer}.dark-task:hover{border-color:#3d4058}.dark-task .row{display:flex;justify-content:space-between;gap:10px}.dark-task h3{margin:0;color:#f0f2f8;font-size:13px}.dark-task .budget{color:#16c8ff;font-weight:700}.dark-task .meta{color:#8f95aa;font-size:11px;margin-top:5px}.section-head{display:flex;align-items:baseline;justify-content:space-between;margin:22px 0 12px}.section-head h2{font-size:16px;margin:0;color:#f0f2f8}
+
+.hero{background:#1d1e2d;color:#eef0f7;border:1px solid #2b2c40;border-radius:12px;padding:22px;margin:0 0 18px}.hero h1{color:#fff;font-size:26px;margin:0 0 6px}.hero p{color:#9fa4b7;margin:0 0 14px;font-size:13px}.search-row{display:flex;gap:8px;background:#25273a;border:1px solid #383a50;border-radius:12px;padding:5px}.search-row input{border:0;background:transparent;color:#fff}.search-row input:focus{outline:0}.hero .search-row button{border-radius:8px}.
+/* Existing views adapted to dark dashboard */
+.task-list{display:flex;flex-direction:column;gap:10px}.task-card{padding:14px 16px;display:flex;flex-direction:column;gap:6px}.task-card .top-row{display:flex;justify-content:space-between;gap:10px}.task-card h3{font-size:15px;margin:0;color:#eef0f7}.task-card .meta{font-size:12px;color:#8f95aa;display:flex;gap:10px;flex-wrap:wrap}.task-card .budget{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:#16c8ff;white-space:nowrap}.filters-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}.filters-bar select{width:auto;padding:8px 10px;font-size:13px;border-radius:8px}.cat-scroll{display:flex;gap:9px;overflow-x:auto;padding:4px 0 7px;margin:8px 0 0;scrollbar-width:none}.cat-scroll::-webkit-scrollbar{display:none}.cat-chip{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:6px;background:#1d1e2d;border:1px solid #2b2c40;border-radius:12px;padding:11px 12px;width:82px;font-size:10.5px;font-weight:600;text-align:center;color:#cdd1df}.cat-chip.active{border-color:#12b8f2;background:#202c3f;color:#fff}.cat-chip .glyph{font-size:20px}.pill{display:inline-flex;align-items:center;gap:4px;border-radius:20px;padding:4px 9px;font-size:11px;font-weight:600}.pill-open{background:#1e3540;color:#24c9ff}.pill-assigned{background:#3e3022;color:#f0a44e}.pill-done{background:#18372f;color:#28c79d}.avatar{width:38px;height:38px;border-radius:50%;background:#273047;color:#8edfff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:0 0 auto}.poster-row{display:flex;align-items:center;gap:10px;margin:14px 0}.poster-row .name{font-weight:600;font-size:14px;color:#eef0f7}.detail-head h1{font-size:21px;margin:4px 0 8px;color:#fff}.detail-budget{font-family:'Space Grotesk';font-size:26px;font-weight:700;color:#16c8ff}.offer-row{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-top:1px solid #303247}.offer-row:first-child{border-top:0}.offer-box{flex:1}.offer-box .amount{font-family:'Space Grotesk';font-weight:700;color:#16c8ff}.step-dots{display:flex;gap:6px;margin-bottom:18px}.step-dots span{height:4px;flex:1;border-radius:3px;background:#34364b}.step-dots span.active{background:#12b8f2}.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.cat-grid .cat-chip{width:auto}.chat-thread{display:flex;flex-direction:column;gap:10px;padding:4px 0 12px}.msg{max-width:78%;padding:9px 13px;border-radius:14px;font-size:13.5px}.msg.mine{align-self:flex-end;background:#253d50;color:#fff;border-bottom-right-radius:4px}.msg.theirs{align-self:flex-start;background:#1d1e2d;border:1px solid #303247;color:#e8ebf3;border-bottom-left-radius:4px}.msg .who{font-size:10.5px;opacity:.7;margin-bottom:2px}.chat-input-row{display:flex;gap:8px;position:sticky;bottom:0;background:#12131c;padding-top:8px}.rating-summary{display:flex;align-items:center;gap:10px}.rating-summary .big{font-family:'Space Grotesk';font-size:22px;font-weight:700;color:#fff}.stars{color:#ffbd3d;letter-spacing:1px;font-size:13px}.empty{text-align:center;padding:48px 20px;color:#8f95aa}.empty .glyph{font-size:34px;margin-bottom:10px}.skeleton{background:linear-gradient(90deg,#1d1e2d 25%,#2a2c40 37%,#1d1e2d 63%);background-size:400% 100%;animation:sk 1.4s ease infinite;border-radius:10px}@keyframes sk{0%{background-position:100% 50%}100%{background-position:0 50%}}
+/* Bottom navigation / modal */
+.bottom-nav{display:none}.modal-back{position:fixed;inset:0;background:rgba(5,7,12,.65);z-index:50;display:flex;align-items:flex-end;justify-content:center}.modal-wrap{position:relative;background:#1d1e2d;color:#eef0f7;width:100%;max-width:470px;border:1px solid #34364c;border-radius:18px 18px 0 0;padding:22px 20px;max-height:88vh;overflow-y:auto}.modal-wrap input,.modal-wrap select,.modal-wrap textarea{background:#25273a;color:#eef0f7;border-color:#383a50}.modal-wrap .card{background:#25273a;border-color:#383a50}.modal-wrap .muted{color:#9fa4b7}.modal h2,.modal-wrap h2{margin:0 0 4px;font-size:18px}.close-x{position:absolute;top:12px;right:14px;background:none;border:0;font-size:20px;color:#9fa4b7}.mpesa-badge{display:inline-flex;align-items:center;gap:6px;background:#18372f;color:#28c79d;padding:5px 10px;border-radius:20px;font-size:11.5px;font-weight:700;margin-bottom:12px}.pin-anim{text-align:center;padding:22px 0}.pin-anim .phone-glyph{font-size:40px;animation:buzz 1.1s infinite}@keyframes buzz{0%,100%{transform:rotate(0)}20%{transform:rotate(-6deg)}40%{transform:rotate(6deg)}60%{transform:rotate(-4deg)}80%{transform:rotate(4deg)}}.review-stars{display:flex;gap:6px;font-size:26px}.review-stars span{cursor:pointer;color:#45485b}.review-stars span.on{color:#ffbd3d}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#fff;color:#111;padding:11px 18px;border-radius:10px;font-size:13px;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,.25);max-width:90%;text-align:center}
+@media(max-width:900px){.hero-main-photo{height:360px}.home-links{display:none}.home-nav{padding:0 20px}.home-hero{padding:45px 20px}.home-search{grid-template-columns:1fr 1fr}.home-search .search-cell{border-bottom:1px solid var(--line)}.home-search button{grid-column:1/-1;width:100%;border-radius:12px;height:46px}.home-cards{grid-template-columns:1fr}.home-features{grid-template-columns:1fr}.dashboard-layout{grid-template-columns:1fr}.sidebar{display:none}.topbar{padding:0 14px}.brand{min-width:auto}.brand small{display:none}.top-search{width:auto;flex:1}.dash-wrap,.page{padding:20px 16px 90px}.dash-grid{grid-template-columns:1fr 1fr}.metric.wide{grid-column:span 2}.dashboard-task-grid{grid-template-columns:1fr}.bottom-nav{position:fixed;display:flex;bottom:0;left:0;right:0;z-index:40;background:#1d1e2d;border-top:1px solid #303247;padding:7px 6px calc(7px + env(safe-area-inset-bottom,0px));box-shadow:0 -8px 24px rgba(0,0,0,.18)}.nav-btn{flex:1;background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;color:#8f95aa;font-size:9.5px;font-weight:600;border-radius:9px}.nav-btn .glyph{font-size:17px}.nav-btn.active{color:#16c8ff}}
+@media(max-width:560px){.home-hero h1{font-size:43px}.home-search{grid-template-columns:1fr}.home-search .search-cell{border-right:0}.home-cards{margin-top:28px}.dash-grid{grid-template-columns:1fr}.metric.wide{grid-column:span 1}.top-tools .tool-btn{display:none}.field-row{grid-template-columns:1fr}.cat-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* Kazi homepage redesign - navy + cream marketplace style */
+.redesigned-home-hero{max-width:1240px;min-height:610px;display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:34px;padding:54px 30px 34px;position:relative;overflow:hidden;background:#f7f1e6}
+.hero-kicker,.eyebrow{font-size:11px;letter-spacing:.13em;font-weight:800;color:#1f66ff;display:inline-block;margin-bottom:12px}.eyebrow.light{color:#dce8ff}
+.hero-copy{position:relative;z-index:2}.redesigned-home-hero h1{font-size:clamp(48px,6.1vw,78px);line-height:.94;max-width:720px;margin:0 0 22px;color:#071b49}.redesigned-home-hero h1 em{font-style:normal;color:#1f66ff}.redesigned-home-hero>p,.hero-copy>p{max-width:600px;color:#536078;font-size:17px;margin:0 0 25px}
+.redesigned-search{max-width:740px;grid-template-columns:1.5fr 1fr 1fr auto;border-radius:18px;background:#fff;border:1px solid #d9d2c5;box-shadow:0 12px 30px rgba(7,27,73,.10)}.redesigned-search button{background:#071b49;box-shadow:none}.hero-proof{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;color:#536078;font-size:11px;font-weight:700}.hero-proof span{background:#fffdf8;border:1px solid #ded6c8;padding:7px 10px;border-radius:20px}
+.hero-visual{height:500px;position:relative;display:flex;align-items:center;justify-content:center}.hero-main-photo{width:min(100%,520px);height:430px;border-radius:30px;overflow:hidden;position:relative;background:#071b49;box-shadow:0 28px 60px rgba(7,27,73,.18);border:8px solid #fff}.hero-main-photo img{width:100%;height:100%;display:block;object-fit:cover}.hero-photo-caption{position:absolute;left:18px;right:18px;bottom:18px;padding:16px 18px;border-radius:16px;background:rgba(7,27,73,.9);color:#fff;display:flex;flex-direction:column;gap:3px}.hero-photo-caption strong{font:700 18px 'Space Grotesk'}.hero-photo-caption span{font-size:12px;color:#dce8ff}
+.float-photo{position:absolute;width:205px;height:158px;border-radius:20px;background:#fff;border:7px solid #fff;box-shadow:0 18px 38px rgba(7,27,73,.18);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:13px;font-weight:800;z-index:2}.float-photo span{position:relative;z-index:2;color:#fff;text-shadow:0 1px 5px #111}.photo-placeholder{position:absolute;inset:0;background-size:cover!important;background-position:center!important}.photo-placeholder:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(4,15,38,.72))}.photo-one .photo-placeholder{background-image:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=700&q=85')}.photo-two .photo-placeholder{background-image:url('https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=700&q=85')}.photo-three .photo-placeholder{background-image:url('https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&w=700&q=85')}.photo-one{left:0;top:5%;transform:rotate(-6deg)}.photo-two{right:0;top:10%;transform:rotate(6deg)}.photo-three{left:18%;bottom:3%;transform:rotate(4deg)}
+
+.home-services{max-width:1240px;margin:0 auto;padding:28px 30px 22px}.home-section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:18px}.home-section-head h2{font-size:32px;margin:0;max-width:680px;color:#071b49}.redesigned-cards{margin-top:0}.redesigned-cards .home-card{min-height:290px;border-radius:22px;padding:30px}.card-icon{width:42px;height:42px;border-radius:50%;background:#fff;color:#071b49;display:grid;place-items:center;font-weight:900;margin-bottom:auto}.redesigned-cards .home-card.jobs{background-image:linear-gradient(135deg,rgba(7,27,73,.93),rgba(19,59,122,.82)),url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=85')}.redesigned-cards .home-card.taskers{background-image:linear-gradient(135deg,rgba(7,27,73,.84),rgba(31,102,255,.70)),url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85')}
+.redesigned-features{max-width:1240px;margin:0 auto;padding:20px 30px 50px}.redesigned-features .feature{border-radius:18px;background:#fffdf8}.home-photo-strip{max-width:1240px;margin:0 auto;padding:28px 30px 55px}.home-photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.home-photo-tile{min-height:255px;border-radius:22px;overflow:hidden;position:relative;background-size:cover;background-position:center;box-shadow:none}.home-photo-tile.large{min-height:300px}.home-photo-tile:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(4,15,38,.78))}.home-photo-tile .tile-copy{position:absolute;left:20px;right:15px;bottom:18px;z-index:2;color:#fff}.home-photo-tile h3{margin:0 0 4px;font-size:20px}.home-photo-tile p{margin:0;font-size:12px;color:rgba(255,255,255,.9)}.home-photo-tile.clean{background-image:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=85')}.home-photo-tile.handyman{background-image:url('https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=800&q=85')}.home-photo-tile.moving{background-image:url('https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&w=800&q=85')}.home-photo-tile.admin{background-image:url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=85')}
+.home-steps{max-width:1240px;margin:0 auto;padding:20px 30px 30px}.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step-card{padding:24px;border-radius:20px;background:#fffdf8;border:1px solid #ded6c8}.step-number{width:34px;height:34px;border-radius:50%;background:#071b49;color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:16px}.step-card h3{margin:0 0 7px;font-size:18px;color:#071b49}.step-card p{margin:0;color:#667085;font-size:13px}.earn-banner{max-width:1240px;margin:10px auto 55px;padding:0 30px}.earn-banner-inner{border-radius:26px;background:#071b49;color:#fff;padding:38px;display:flex;justify-content:space-between;align-items:center;gap:25px;overflow:hidden}.earn-banner-inner h2{font-size:36px;margin:0 0 8px}.earn-banner-inner p{margin:0;color:#d8e3ff;max-width:680px}.earn-banner-inner .btn{background:#fff;color:#071b49;border:0}.community-note{max-width:1240px;margin:0 auto;padding:0 30px 65px}.community-note-inner{border-radius:22px;background:#ebe4d7;padding:30px;display:flex;align-items:center;justify-content:space-between;gap:25px}.community-note h2{margin:0 0 7px;font-size:28px;color:#071b49}.community-note p{margin:0;color:#667085;max-width:700px}
+@media(max-width:900px){.redesigned-home-hero{grid-template-columns:1fr;min-height:auto;padding-top:45px}.hero-visual{height:390px}.hero-circle{width:240px;height:240px}.hero-circle:after{font-size:27px}.float-photo{width:165px;height:130px}.home-photo-grid{grid-template-columns:1fr 1fr}.home-photo-tile.large{grid-column:1/-1}.steps-grid{grid-template-columns:1fr}.earn-banner-inner,.community-note-inner{display:block}.earn-banner-inner .btn,.community-note-inner .btn{margin-top:18px}}
+@media(max-width:560px){.redesigned-home-hero{padding:34px 18px}.redesigned-home-hero h1{font-size:45px}.hero-visual{height:320px}.hero-circle{width:190px;height:190px}.hero-circle:after{font-size:22px;padding:25px}.float-photo{width:135px;height:105px;border-width:5px}.photo-one{left:0}.photo-two{right:0}.photo-three{left:10%;bottom:0}.home-services,.redesigned-features,.home-photo-strip,.home-steps,.earn-banner,.community-note{padding-left:18px;padding-right:18px}.home-section-head{align-items:start;flex-direction:column}.home-section-head h2{font-size:26px}.home-photo-grid{grid-template-columns:1fr}.home-photo-tile.large{grid-column:auto}.home-photo-tile{min-height:220px}.home-photo-tile.large{min-height:240px}}
+
+.filter-extra{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.filter-checks{display:flex;gap:8px;flex-wrap:wrap}.filter-check{border:1px solid #383a50;background:#25273a;color:#dfe3ed;border-radius:18px;padding:7px 10px;font-size:11px;cursor:pointer}.filter-check.active{border-color:#16c8ff;background:#18384a;color:#fff}.alerts-list{display:grid;gap:12px}.alert-card{background:#1d1e2d;border:1px solid #2b2c40;border-radius:12px;padding:16px;display:flex;justify-content:space-between;gap:18px;align-items:center}.alert-card h3{margin:0 0 5px;color:#fff;font-size:14px}.alert-card p{margin:0;color:#969cb0;font-size:11px}.alert-card .alert-icon{width:42px;height:42px;border-radius:12px;background:#24344a;display:grid;place-items:center;color:#16c8ff;font-size:20px}.calculator-card{max-width:760px;background:#1d1e2d;border:1px solid #2b2c40;border-radius:16px;padding:24px}.calculator-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.calculator-result{margin-top:20px;border-radius:14px;background:#122a63;padding:22px;color:#fff}.calculator-result .big{font:700 38px 'Space Grotesk';margin:6px 0}.guidelines-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.guideline-card{background:#1d1e2d;border:1px solid #2b2c40;border-radius:14px;padding:20px}.guideline-card h3{color:#fff;margin:0 0 7px}.guideline-card p{color:#9fa4b7;font-size:12px;margin:0}.completion-banner{border-radius:16px;background:linear-gradient(135deg,#183b35,#122a63);padding:24px;color:#fff;margin-bottom:18px}.completion-banner h2{margin:0 0 5px}.completion-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+@media(max-width:900px){.home-photo-grid{grid-template-columns:1fr 1fr}.home-photo-tile.large{grid-column:1/-1}.steps-grid,.guidelines-grid{grid-template-columns:1fr}.earn-banner-inner,.community-note-inner{display:block}.earn-banner-inner .btn,.community-note-inner .btn{margin-top:18px}.filter-extra{grid-template-columns:1fr 1fr}.calculator-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.home-photo-grid{grid-template-columns:1fr}.home-photo-tile.large{grid-column:auto}.home-photo-tile{min-height:210px}.home-photo-tile.large{min-height:240px}.home-photo-strip,.home-steps,.earn-banner,.community-note{padding-left:18px;padding-right:18px}.filter-extra{grid-template-columns:1fr}.earn-banner-inner{padding:25px}.earn-banner-inner h2{font-size:27px}.community-note-inner{padding:23px}}
+
+.filter-panel{padding:16px;margin-top:16px;background:#1b1c29;border-color:#303247}.filter-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;color:#eef0f7}.filter-title .muted{color:#858ba0;font-size:11px}.filter-grid{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:12px}.filter-grid label{color:#9fa4b7}.filter-grid select,.filter-grid input[type=range]{background:#25273a;color:#eef0f7;border-color:#383a50}.price-filter{padding:0 2px}.range-values,.range-labels{display:flex;justify-content:space-between;font-size:11px;color:#dfe3ed}.range-values{font-weight:800;color:#19c9ff;margin-bottom:6px}.range-pair{display:grid;gap:3px}.range-pair input{width:100%}.range-labels{color:#777e92}.browse-hero{display:flex;align-items:end;justify-content:space-between;gap:20px}.browse-hero h1{margin:3px 0 5px}
+@media(max-width:900px){.redesigned-home-hero{grid-template-columns:1fr;min-height:auto;padding-top:50px}.hero-visual{height:380px}.hero-circle{width:220px;height:220px;font-size:70px}.float-photo{width:155px;height:125px}.filter-grid{grid-template-columns:1fr 1fr}.browse-hero{display:block}.browse-hero .search-row{margin-top:18px}}
+@media(max-width:560px){.redesigned-home-hero{padding:38px 18px}.redesigned-home-hero h1{font-size:45px}.hero-visual{height:320px}.photo-one{left:0}.photo-two{right:0}.photo-three{left:10%;bottom:0}.home-services,.redesigned-features{padding-left:18px;padding-right:18px}.home-section-head{align-items:start;flex-direction:column}.home-section-head h2{font-size:26px}.filter-grid{grid-template-columns:1fr}.filter-panel{margin-left:0;margin-right:0}.range-pair{gap:0}}
+
+
+/* ===================== Kazi dashboard v2 ===================== */
+.dash-v2{max-width:1320px;margin:0 auto;padding:26px 28px 42px;color:#eef3ff}
+.dash-v2-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:20px}
+.dash-v2-head h1{margin:0 0 4px;color:#fff;font-size:26px;letter-spacing:-.03em}
+.dash-v2-head p{margin:0;color:#8f98ad;font-size:12px}
+.dash-v2-actions{display:flex;gap:9px;flex-wrap:wrap}
+.dash-v2 .btn{border-color:#363a52;background:#202234;color:#eef3ff}
+.dash-v2 .btn:hover{border-color:#4f79ff}
+.dash-v2 .btn-primary{background:#2e63e8;border-color:#2e63e8;color:#fff}
+.dash-v2 .btn-primary:hover{background:#2457cf}
+.dash-v2 .btn-amber{background:#e7b85c;border-color:#e7b85c;color:#071b49}
+.dash-grid-v2{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.dash-card-v2,.dash-panel-v2{background:#1c1d2b;border:1px solid #2a2c3f;border-radius:11px;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.dash-card-v2{padding:18px;min-height:160px;position:relative;overflow:hidden}
+.dash-card-v2 .small-label{color:#8b93a8;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.dash-card-v2 h3{margin:4px 0 0;color:#f2f5ff;font-size:15px}
+.dash-card-v2 .v2-value{font:700 29px 'Space Grotesk';margin:10px 0 2px;color:#fff;letter-spacing:-.03em}
+.dash-card-v2 .v2-value .unit{font:500 13px Inter;color:#8f98ad;margin-left:2px}
+.dash-card-v2 .v2-sub{font-size:11px;color:#8f98ad}
+.v2-trend{display:inline-flex;align-items:center;margin-left:7px;padding:4px 7px;border-radius:12px;background:#123d33;color:#22cf9c;font-size:10px;font-weight:800;vertical-align:5px}
+.v2-trend.blue{background:#17305c;color:#67a1ff}
+.v2-bar-strip{height:48px;display:flex;align-items:flex-end;gap:7px;margin-top:14px}
+.v2-bar-strip span{flex:1;max-width:16px;border-radius:6px 6px 2px 2px;background:linear-gradient(to top,#2e63e8,#61a8ff);opacity:.92}
+.v2-right-chart{grid-column:span 2;grid-row:span 2;min-height:334px;padding:20px}
+.v2-chart-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
+.v2-chart-head h3{margin:0;color:#f5f7ff;font-size:17px}
+.v2-chart-head p{margin:3px 0 0;color:#858da2;font-size:11px}
+.v2-chart-value{font:700 28px 'Space Grotesk';color:#fff;margin-top:8px}
+.v2-line-chart{height:198px;margin-top:16px;position:relative;border-bottom:1px solid #303347;border-left:1px solid #303347;background:repeating-linear-gradient(to bottom,transparent 0 38px,#292c3e 39px 40px);overflow:hidden}
+.v2-line-chart svg{position:absolute;inset:0;width:100%;height:100%}
+.v2-axis{display:flex;justify-content:space-between;margin-top:7px;color:#737b90;font-size:10px}
+.v2-ring-row{display:flex;align-items:center;gap:18px;margin-top:14px}
+.v2-ring{width:74px;height:74px;border-radius:50%;background:conic-gradient(#2e63e8 0 42%,#27c995 42% 68%,#f4ba46 68% 84%,#8d62ff 84% 100%);position:relative;flex:0 0 auto}
+.v2-ring:after{content:'';position:absolute;inset:13px;background:#1c1d2b;border-radius:50%}
+.v2-legend{display:grid;gap:6px;font-size:10.5px;color:#969eb1}.v2-legend span{display:flex;align-items:center;gap:6px}.v2-legend i{width:7px;height:7px;border-radius:50%;display:inline-block}.v2-legend b{color:#eef3ff}
+.v2-progress{height:7px;background:#2b2d40;border-radius:7px;overflow:hidden;margin-top:13px}.v2-progress span{display:block;height:100%;border-radius:7px;background:#2e63e8}
+.v2-lower{display:grid;grid-template-columns:1.35fr .65fr;gap:14px;margin-top:14px}
+.v2-wide-panel{padding:19px;min-height:318px}
+.v2-panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.v2-panel-head h3{margin:0;color:#f2f5ff;font-size:16px}.v2-panel-head p{margin:3px 0 0;color:#858da2;font-size:11px}
+.v2-task-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0 12px}.v2-task-tab{padding:9px 12px;border:1px solid #35384d;background:#202234;border-radius:8px;color:#bfc6d7;font-size:10px;font-weight:700}.v2-task-tab.active{border-color:#2e63e8;background:#172d59;color:#5fa0ff}
+.v2-table{width:100%;border-collapse:collapse}.v2-table th{text-align:left;color:#747d92;font-size:10px;font-weight:700;padding:8px 10px;border-bottom:1px solid #2d3042}.v2-table td{padding:11px 10px;border-bottom:1px solid #2b2e40;color:#adb5c8;font-size:11px;vertical-align:middle}.v2-table tr:last-child td{border-bottom:0}.v2-table strong{color:#edf1fa;font-size:11.5px}.v2-status{display:inline-flex;align-items:center;gap:5px}.v2-status:before{content:'';width:6px;height:6px;border-radius:50%;background:#29c996}.v2-status.assigned:before{background:#f3b74b}.v2-status.completed:before{background:#8b72ff}
+.v2-quick{display:grid;gap:9px;margin-top:15px}.v2-quick-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:1px solid #303346;background:#202234;color:#e8edfa;border-radius:9px;padding:12px 13px;font-size:11px;font-weight:700}.v2-quick-btn:hover{border-color:#4f79ff}.v2-quick-btn span:last-child{color:#72809b}
+.v2-pop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:15px}.v2-pop{padding:12px;border:1px solid #2f3245;background:#202234;border-radius:9px}.v2-pop b{display:block;color:#eef3ff;font-size:11px}.v2-pop span{display:block;color:#858da2;font-size:10px;margin-top:3px}
+@media(max-width:1050px){.dash-grid-v2{grid-template-columns:repeat(2,minmax(0,1fr))}.v2-right-chart{grid-column:span 2;grid-row:auto}.v2-lower{grid-template-columns:1fr}}
+@media(max-width:650px){.dash-v2{padding:20px 16px 90px}.dash-v2-head{align-items:flex-start;flex-direction:column}.dash-grid-v2{grid-template-columns:1fr}.v2-right-chart{grid-column:span 1}.v2-table th:nth-child(4),.v2-table td:nth-child(4){display:none}.v2-table{table-layout:fixed}.v2-table th,.v2-table td{padding:9px 6px}.v2-chart-value{font-size:25px}}
+
+
+
+/* Centered hero layout */
+.redesigned-home-hero{
+  max-width:1240px;
+  min-height:610px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto;
+  padding:54px 30px 34px;
+  position:relative;
+  overflow:hidden;
+  background:#f7f1e6;
+}
+.redesigned-home-hero .hero-copy{
+  width:100%;
+  max-width:1080px;
+  margin:0 auto;
+  text-align:center;
+}
+.redesigned-home-hero .hero-kicker{
+  display:block;
+  text-align:center;
+}
+.redesigned-home-hero h1{
+  margin-left:auto;
+  margin-right:auto;
+}
+.redesigned-home-hero .hero-copy>p{
+  margin-left:auto;
+  margin-right:auto;
+}
+.redesigned-home-hero .redesigned-search{
+  width:100%;
+  max-width:980px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.redesigned-home-hero .hero-proof{
+  justify-content:center;
+}
+@media(max-width:800px){
+  .redesigned-home-hero{min-height:auto;padding:44px 18px 30px;}
+  .redesigned-home-hero .hero-copy{max-width:100%;}
+}
+
+/* Kazi dashboard: friendlier navy + cream palette */
+.app-shell{background:#f4f0e6;color:#17233d}
+.topbar{background:#071b49;border-bottom:1px solid #19366d;color:#fff}
+.brand{color:#fff}.brand small{color:#c8d5ee}.brand-mark{background:#fff;color:#071b49}
+.top-search{background:#102a5d;border-color:#2b477a;color:#dce6f7}.top-search input{color:#fff}.top-tools .tool-btn{background:#102a5d;color:#dce6f7}
+.avatar-sm{background:#d9c5a8;color:#071b49}
+.dashboard-layout{grid-template-columns:225px 1fr;background:#f4f0e6}
+.sidebar{background:#071b49;border-right:1px solid #19366d}
+.sidebar-label{color:#aebddd}.side-link{color:#e7edf8}.side-link:hover{background:#102a5d}.side-link.active{background:#fff;color:#071b49}
+.dashboard-main{background:#f4f0e6}.dash-wrap{color:#17233d}.dash-title h1{color:#071b49}.dash-title p{color:#667085}
+.metric,.chart-card,.recent-card,.dark-task{background:#fffdf8;border-color:#ddd6c8;box-shadow:0 5px 18px rgba(7,27,73,.06)}
+.metric h3,.chart-card h3,.recent-head h3,.dark-task h3,.section-head h2{color:#071b49}.metric .sub,.chart-card p,.recent-row,.dark-task .meta{color:#667085}.metric .value{color:#071b49}.trend{background:#e5f5ee;color:#16815f}.trend.down{background:#fdebed;color:#c43a4d}
+.fake-chart{border-bottom-color:#d9d2c5;background:repeating-linear-gradient(to bottom,transparent 0 40px,#ebe6dc 41px 42px)}.fake-chart span{background:linear-gradient(to top,#12aee8,#72d6f5)}
+.donut:after{background:#fffdf8}.legend{color:#667085}.legend b{color:#071b49}
+.recent-row{border-bottom-color:#e5dfd4}.recent-row strong{color:#17233d}.status-dot:before{background:#16a878}
+.dark-task:hover{border-color:#b9c7df}.pill-open{background:#e6f6fb;color:#087fae}.pill-assigned{background:#f8eddf;color:#9a5a12}.pill-done{background:#e4f4ed;color:#167b5b}
+.hero{background:#fffdf8;color:#17233d;border-color:#ddd6c8}.hero h1{color:#071b49}.hero p{color:#667085}.search-row{background:#f7f3eb;border-color:#ddd6c8}.search-row input{color:#17233d}
+.cat-chip{background:#fffdf8;border-color:#ddd6c8;color:#4d5870}.cat-chip.active{border-color:#12b8f2;background:#e8f7fc;color:#071b49}
+.task-card h3,.detail-head h1{color:#071b49}.task-card .meta{color:#667085}.task-card .budget,.detail-budget,.offer-box .amount{color:#078ebd}.poster-row .name{color:#071b49}.avatar{background:#e8edf6;color:#24558d}
+.modal-wrap{background:#fffdf8;color:#17233d;border-color:#ddd6c8}.modal-wrap input,.modal-wrap select,.modal-wrap textarea{background:#fff;color:#17233d;border-color:#d6d0c5}.modal-wrap .card{background:#f7f3eb;border-color:#ddd6c8}.modal-wrap .muted{color:#667085}
+@media(max-width:900px){.bottom-nav{background:#071b49;border-top-color:#19366d}.nav-btn{color:#b7c4dc}.nav-btn.active{color:#fff}}
+
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="modal-root"></div>
+<div id="toast-root"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ===================== Config ===================== */
+// Point this at your deployed backend before you go live.
+// Local dev default assumes the backend from /backend is running on :4000.
+var API_BASE = window.KAZI_API_BASE || "http://localhost:4000";
+
+/* ===================== Static data ===================== */
+var COUNTIES = ["Nairobi","Mombasa","Kisumu","Nakuru","Uasin Gishu","Kiambu","Machakos","Kajiado","Kilifi","Kwale",
+  "Taita Taveta","Garissa","Wajir","Mandera","Marsabit","Isiolo","Meru","Tharaka-Nithi","Embu","Kitui","Makueni",
+  "Nyandarua","Nyeri","Kirinyaga","Murang'a","Turkana","West Pokot","Samburu","Trans Nzoia","Elgeyo-Marakwet",
+  "Nandi","Baringo","Laikipia","Kericho","Bomet","Kakamega","Vihiga","Bungoma","Busia","Siaya","Homa Bay",
+  "Migori","Kisii","Nyamira","Narok","Tana River","Lamu"];
+
+var CATEGORIES = [
+  {id:"cleaning", label:"Cleaning", glyph:"🧹"},
+  {id:"laundry", label:"Laundry & Ironing", glyph:"👕"},
+  {id:"moving", label:"Moving & Delivery", glyph:"🚚"},
+  {id:"handyman", label:"Handyman / Fundi", glyph:"🔧"},
+  {id:"carpentry", label:"Carpentry & Furniture", glyph:"🪑"},
+  {id:"construction", label:"Masonry & Construction", glyph:"🧱"},
+  {id:"welding", label:"Welding & Metalwork", glyph:"🛠️"},
+  {id:"electrical", label:"Electrical", glyph:"💡"},
+  {id:"plumbing", label:"Plumbing", glyph:"🚿"},
+  {id:"painting", label:"Painting", glyph:"🎨"},
+  {id:"gardening", label:"Gardening & Shamba", glyph:"🌿"},
+  {id:"carwash", label:"Car Wash & Detailing", glyph:"🚗"},
+  {id:"driving", label:"Driving & Errands", glyph:"🛵"},
+  {id:"beauty", label:"Beauty & Salon", glyph:"💇"},
+  {id:"tailoring", label:"Tailoring & Alterations", glyph:"🧵"},
+  {id:"catering", label:"Catering & Chef", glyph:"🍲"},
+  {id:"childcare", label:"Childcare & Nanny", glyph:"🧒"},
+  {id:"events", label:"Events & Photography", glyph:"🎉"},
+  {id:"tech", label:"Tech & Cyber Services", glyph:"💻"},
+  {id:"tutoring", label:"Tutoring", glyph:"📘"},
+  {id:"security", label:"Security", glyph:"🛡️"},
+  {id:"other", label:"Other", glyph:"✳️"}
+];
+function catLabel(id){ for (var i=0;i<CATEGORIES.length;i++) if (CATEGORIES[i].id===id) return CATEGORIES[i].label; return "Other"; }
+function catGlyph(id){ for (var i=0;i<CATEGORIES.length;i++) if (CATEGORIES[i].id===id) return CATEGORIES[i].glyph; return "✳️"; }
+
+var POSTER_FEE = 500, BID_FEE = 50, PRO_FEE = 250;
+var EARLY_ACCESS_HOURS = 2;
+
+/* ===================== Utilities ===================== */
+function esc(s){ var d=document.createElement("div"); d.textContent = (s==null?"":String(s)); return d.innerHTML; }
+function fmtKES(n){ n = Number(n)||0; return "KSh " + n.toLocaleString("en-KE"); }
+function fmtDate(ts){ return ts ? new Date(ts).toLocaleDateString("en-KE",{day:"numeric",month:"short",year:"numeric"}) : ""; }
+function timeAgo(ts){
+  if (!ts) return "";
+  var s = Math.floor((Date.now()-new Date(ts).getTime())/1000);
+  if (s<60) return "just now";
+  var m=Math.floor(s/60); if (m<60) return m+"m ago";
+  var h=Math.floor(m/60); if (h<24) return h+"h ago";
+  var d=Math.floor(h/24); if (d<30) return d+"d ago";
+  return new Date(ts).toLocaleDateString("en-KE",{day:"numeric",month:"short"});
+}
+function initials(name){
+  name = (name||"").trim(); if(!name) return "?";
+  var p = name.split(/\s+/); return ((p[0]||"")[0]||"") + ((p[1]||"")[0]||"");
+}
+function stars(avg){
+  avg = avg || 0; var full = Math.round(avg);
+  var s=""; for (var i=0;i<5;i++) s += (i<full ? "★" : "☆");
+  return s;
+}
+function proBadge(isPro){ return isPro ? ' <span class="pill" style="background:#FCEBD8;color:var(--marigold-dark);vertical-align:1px;">PRO</span>' : ''; }
+function isPosterSubActive(p){ return !!(p && p.posterSubExpiresAt && new Date(p.posterSubExpiresAt).getTime() > Date.now()); }
+function isProActive(p){ return !!(p && p.proExpiresAt && new Date(p.proExpiresAt).getTime() > Date.now()); }
+function showToast(msg){
+  var root = document.getElementById("toast-root");
+  root.innerHTML = '<div class="toast">'+esc(msg)+'</div>';
+  setTimeout(function(){ root.innerHTML=""; }, 2800);
+}
+
+/* ===================== API client ===================== */
+var api = {
+  token: localStorage.getItem("kazi_token") || null,
+  setToken: function(t){ this.token = t; if (t) localStorage.setItem("kazi_token", t); else localStorage.removeItem("kazi_token"); },
+  call: async function(method, path, body){
+    var headers = { "Content-Type": "application/json" };
+    if (this.token) headers.Authorization = "Bearer " + this.token;
+    var resp;
+    try {
+      resp = await fetch(API_BASE + path, { method: method, headers: headers, body: body ? JSON.stringify(body) : undefined });
+    } catch (e) {
+      throw { networkError: true, message: "Can't reach the Kazi server. Check API_BASE / your connection." };
+    }
+    var data = {};
+    try { data = await resp.json(); } catch(e){}
+    if (!resp.ok) throw { status: resp.status, error: data.error, message: data.message || data.error || "Something went wrong." };
+    return data;
+  },
+  get: function(path){ return this.call("GET", path); },
+  post: function(path, body){ return this.call("POST", path, body); },
+  patch: function(path, body){ return this.call("PATCH", path, body); },
+};
+
+/* ===================== App state ===================== */
+var state = {
+  view: "browse",
+  authMode: "login",
+  taskId: null,
+  profileId: null,
+  county: "", category: "", query: "", minPrice: 500, maxPrice: 20000, sortBy: "newest",
+  tasks: [], tasksLoaded: false,
+  offersByTask: {}, reviewsByUser: {},
+  messagesByTask: {}, chatTaskId: null, chatPoll: null,
+  me: null, // full profile object once logged in
+  postDraft: { step:1, category:"", title:"", description:"", county:"", area:"", budgetType:"fixed", budget:"", dueDate:"" }
+};
+
+/* ===================== Boot ===================== */
+async function boot(){
+  render();
+  if (api.token) {
+    try {
+      var r = await api.get("/api/auth/me");
+      state.me = r.user;
+    } catch(e){ api.setToken(null); }
+  }
+  if (state.me) { state.view = "dashboard"; await loadTasks(); }
+  render();
+}
+
+async function loadTasks(){
+  var qs = [];
+  if (state.county) qs.push("county="+encodeURIComponent(state.county));
+  if (state.category) qs.push("category="+encodeURIComponent(state.category));
+  if (state.query) qs.push("q="+encodeURIComponent(state.query));
+  try {
+    var r = await api.get("/api/tasks" + (qs.length? "?"+qs.join("&") : ""));
+    state.tasks = r.tasks;
+  } catch(e){ showToast(e.message || "Couldn't load tasks."); }
+  state.tasksLoaded = true;
+  render();
+}
+async function loadOffers(taskId){
+  try { var r = await api.get("/api/tasks/"+taskId+"/offers"); state.offersByTask[taskId] = r.offers; render(); }
+  catch(e){}
+}
+async function loadProfile(id){
+  try { var r = await api.get("/api/profiles/"+id); state._viewedProfile = r.profile; render(); }
+  catch(e){ showToast("Couldn't load that profile."); }
+}
+async function loadReviews(userId){
+  try { var r = await api.get("/api/reviews/user/"+userId); state.reviewsByUser[userId] = r.reviews; render(); }
+  catch(e){}
+}
+async function loadMessages(taskId){
+  try { var r = await api.get("/api/messages/"+taskId); state.messagesByTask[taskId] = r.messages; render();
+    var thread = document.querySelector(".chat-thread"); if (thread) thread.scrollTop = thread.scrollHeight;
+  } catch(e){}
+}
+
+/* ===================== Auth ===================== */
+async function doLogin(email, password){
+  try {
+    var r = await api.post("/api/auth/login", { email: email, password: password });
+    api.setToken(r.token); state.me = r.user; state.view = "dashboard";
+    await loadTasks(); render();
+  } catch(e){ renderAuthError(e.message); }
+}
+async function doRegister(name, email, phone, password){
+  try {
+    var r = await api.post("/api/auth/register", { name: name, email: email, phone: phone, password: password });
+    api.setToken(r.token); state.me = r.user; state.view = "dashboard";
+    await loadTasks(); render();
+  } catch(e){ renderAuthError(e.message); }
+}
+function doLogout(){
+  api.setToken(null); state.me = null; state.tasks = []; state.tasksLoaded = false; state.view = "dashboard";
+  render();
+}
+function renderAuthError(msg){
+  state._authError = msg || "Something went wrong.";
+  var app=document.getElementById("app");
+  app.innerHTML=renderAuthScreen();
+  bindAuthEvents();
+}
+
+/* ===================== Task / offer actions ===================== */
+function attemptPostTask(){
+  var d = state.postDraft;
+  if (!d.title.trim() || !d.description.trim() || !d.county || !d.budget) { showToast("Fill in all required fields."); return; }
+  doPostTask();
+}
+async function doPostTask(){
+  var d = state.postDraft;
+  try {
+    await api.post("/api/tasks", {
+      title: d.title.trim(), description: d.description.trim(), category: d.category||"other",
+      county: d.county, area: d.area||"", budgetType: d.budgetType, budget: Number(d.budget), dueDate: d.dueDate||null
+    });
+    state.postDraft = { step:1, category:"", title:"", description:"", county:"", area:"", budgetType:"fixed", budget:"", dueDate:"" };
+    await loadTasks();
+    goView("mytasks");
+  } catch(e){ showToast(e.message || "Couldn't post right now."); }
+}
+
+function attemptSendOffer(taskId, amount, message){
+  if (!amount) { showToast("Enter an amount."); return; }
+  var t = state.tasks.filter(function(x){return x.id===taskId;})[0];
+  if (t && t.lockedForMe) { showToast("This task is still in its Pro early-access window."); return; }
+  openChargeModal({
+    purpose: "bid_fee", amount: BID_FEE,
+    title: "Bidding fee", subtitle: "One-time fee to send this offer",
+    meta: { taskId: taskId, amount: Number(amount), message: message },
+    successHeadline: "Offer sent!", successNote: "The poster can now see your offer.",
+    afterSuccess: function(){ loadOffers(taskId); }
+  });
+}
+
+async function acceptOffer(task, offer){
+  try { await api.post("/api/tasks/"+task.id+"/accept-offer", { offerId: offer.id }); showToast("Offer accepted — chat with them to arrange details."); await loadTasks(); }
+  catch(e){ showToast(e.message || "Couldn't accept offer."); }
+}
+async function markComplete(task){
+  try { await api.post("/api/tasks/"+task.id+"/complete", {}); showToast("Marked as completed. You can now pay & review."); await loadTasks(); }
+  catch(e){ showToast(e.message || "Couldn't update task."); }
+}
+async function submitReview(taskId, forUserId, rating, comment){
+  try {
+    await api.post("/api/reviews", { taskId: taskId, forUserId: forUserId, rating: rating, comment: comment||"" });
+    showToast("Thanks for the review!"); closeModal();
+  } catch(e){ showToast(e.message || "Couldn't save review."); }
+}
+async function saveProfile(fields){
+  try { var r = await api.patch("/api/profiles/me", fields); state.me = Object.assign({}, state.me, r.profile); showToast("Profile updated."); render(); }
+  catch(e){ showToast(e.message || "Couldn't save profile."); }
+}
+function sendChatMessage(taskId, text){
+  if (!text.trim()) return;
+  api.post("/api/messages/"+taskId, { text: text.trim() }).then(function(){ loadMessages(taskId); }).catch(function(e){ showToast("Message didn't send."); });
+}
+function payViaMpesa(task){
+  openChargeModal({
+    purpose: "task_payment", amount: task.budget,
+    title: "Pay "+esc(task.assignedToName), subtitle: 'for "'+task.title+'"',
+    meta: { taskId: task.id },
+    successHeadline: "Payment successful", successNote: fmtKES(task.budget)+" sent to "+task.assignedToName,
+    afterSuccess: function(){ loadTasks(); }
+  });
+}
+
+/* ===================== Charge / M-Pesa modal (real STK Push via backend) ===================== */
+function openChargeModal(cfg){
+  state._charge = cfg;
+  openModal(renderChargeModal("phone"));
+}
+function renderChargeModal(stage, extra){
+  var c = state._charge || {};
+  if (stage === "phone") {
+    return '' +
+    '<button class="close-x" data-close="1">✕</button>' +
+    '<div class="mpesa-badge">🟢 M-Pesa · Lipa na M-Pesa</div>' +
+    '<h2>'+esc(c.title)+'</h2>' +
+    '<p class="muted" style="margin:0 0 16px;">'+esc(c.subtitle)+'</p>' +
+    '<div class="card" style="padding:12px 16px;margin-bottom:16px;background:var(--teal-100);border:none;display:flex;justify-content:space-between;align-items:center;">' +
+      '<span>Amount</span><b style="font-family:\'Space Grotesk\';font-size:17px;">'+fmtKES(c.amount)+'</b>' +
+    '</div>' +
+    '<label style="margin-top:0;">M-Pesa phone number</label>' +
+    '<input type="tel" id="charge-phone" placeholder="07XX XXX XXX">' +
+    '<button class="btn btn-marigold btn-block" style="margin-top:16px;" data-action="docharge">Send STK push</button>';
+  }
+  if (stage === "pin") {
+    return '<div class="pin-anim"><div class="phone-glyph">📱</div><h2 style="margin-top:10px;">Enter M-Pesa PIN</h2><p class="muted">Check your phone…</p></div>';
+  }
+  if (stage === "failed") {
+    return '' +
+    '<button class="close-x" data-close="1">✕</button>' +
+    '<div style="text-align:center;padding:10px 0 4px;"><div style="font-size:40px;">⚠️</div>' +
+    '<h2>Payment didn\'t go through</h2><p class="muted">'+esc(extra||"You can try again.")+'</p>' +
+    '<button class="btn btn-primary btn-block" style="margin-top:12px;" data-action="docharge">Try again</button></div>';
+  }
+  return '' +
+  '<button class="close-x" data-close="1">✕</button>' +
+  '<div style="text-align:center;padding:10px 0 4px;">' +
+  '<div style="font-size:40px;">✅</div>' +
+  '<h2>'+esc(c.successHeadline||"Payment successful")+'</h2>' +
+  '<p class="muted">'+esc(c.successNote||"")+'</p>' +
+  '<button class="btn btn-primary btn-block" style="margin-top:12px;" data-close="1">Done</button>' +
+  '</div>';
+}
+async function runChargeFlow(phone){
+  var c = state._charge;
+  setModalBody(renderChargeModal("pin"));
+  try {
+    var r = await api.post("/api/payments/stk", { purpose: c.purpose, phone: phone, meta: c.meta || {} });
+    var tries = 0;
+    var poll = setInterval(async function(){
+      tries++;
+      try {
+        var s = await api.get("/api/payments/status/"+r.checkoutRequestId);
+        if (s.status === "success") {
+          clearInterval(poll);
+          if (c.purpose === "poster_sub") { state.me = Object.assign({}, state.me, { posterSubExpiresAt: new Date(Date.now()+30*86400000).toISOString() }); await loadTasks(); }
+          if (c.purpose === "pro_sub") { state.me = Object.assign({}, state.me, { proExpiresAt: new Date(Date.now()+30*86400000).toISOString() }); }
+          setModalBody(renderChargeModal("success"));
+          if (c.afterSuccess) c.afterSuccess();
+          render();
+        } else if (s.status === "failed") {
+          clearInterval(poll);
+          setModalBody(renderChargeModal("failed", "The M-Pesa prompt was cancelled or timed out."));
+        } else if (tries > 25) {
+          clearInterval(poll);
+          setModalBody(renderChargeModal("failed", "We didn't hear back in time — check your phone and try again."));
+        }
+      } catch(e){}
+    }, 2200);
+  } catch (e) {
+    setModalBody(renderChargeModal("failed", e.message));
+  }
+}
+
+/* ===================== Navigation ===================== */
+function goView(v, extra){
+  state.view = v;
+  if (state.chatPoll) { clearInterval(state.chatPoll); state.chatPoll = null; }
+  if (extra) Object.assign(state, extra);
+  window.scrollTo(0,0);
+  if (v === "dashboard" || v === "browse" || v === "mytasks") loadTasks();
+  render();
+}
+function openTask(id){
+  state.taskId = id; state.view = "detail";
+  loadOffers(id);
+  window.scrollTo(0,0); render();
+}
+function openProfile(id){
+  state.profileId = id; state.view = "profile"; state._viewedProfile = null;
+  loadProfile(id); loadReviews(id);
+  window.scrollTo(0,0); render();
+}
+function openChat(taskId){
+  goView("messages", { chatTaskId: taskId });
+  loadMessages(taskId);
+  state.chatPoll = setInterval(function(){ loadMessages(taskId); }, 4000);
+}
+
+/* ===================== Modal ===================== */
+function openModal(html){
+  document.getElementById("modal-root").innerHTML = '<div class="modal-back"><div class="modal-wrap">'+html+'</div></div>';
+  bindModalEvents();
+}
+function setModalBody(html){
+  var wrap = document.querySelector(".modal-wrap");
+  if (wrap) { wrap.innerHTML = html; bindModalEvents(); }
+}
+function closeModal(){ document.getElementById("modal-root").innerHTML = ""; }
+
+/* ===================== Render: shell ===================== */
+function render(){
+  var app = document.getElementById("app");
+  if (!state.me) { app.innerHTML = renderPublicHome(); bindPublicHomeEvents(); return; }
+  app.innerHTML = '<div class="app-shell">' + topbarHtml() + '<div class="dashboard-layout">' + sidebarHtml() + '<main class="dashboard-main"><div class="page">' + viewHtml() + '</div></main></div>' + bottomNavHtml() + '</div>';
+  bindGlobalEvents();
+}
+function renderPublicHome(){
+  return '<div class="public-home">' +
+    '<header class="home-nav">' +
+      '<div class="home-logo">Kazi<span>.</span></div>' +
+      '<nav class="home-links"><a href="#services">Browse tasks</a><a href="#how">How it works</a><a href="#popular">Popular on Kazi</a><a href="#earn">Earn money</a></nav>' +
+      '<div class="home-actions"><button class="btn" data-public-auth="login">Log in</button><button class="btn btn-primary" data-public-auth="register">Sign up</button></div>' +
+    '</header>' +
+    '<section class="redesigned-home-hero">' +
+      '<div class="hero-copy">' +
+        '<div class="hero-kicker">KENYA’S LOCAL TASK MARKETPLACE</div>' +
+        '<h1>Get things done.</h1>' +
+        '<p>Post a task and find the right person nearby — or turn the skills you already have into extra income.</p>' +
+        '<div class="home-search redesigned-search">' +
+          '<div class="search-cell"><label>What do you need?</label><input id="home-task" type="text" placeholder="e.g. Deep clean 1 bedroom"></div>' +
+          '<div class="search-cell"><label>Location</label><select id="home-county"><option value="">All Kenya</option>'+COUNTIES.map(function(c){return '<option value="'+esc(c)+'">'+esc(c)+'</option>';}).join('')+'</select></div>' +
+          '<div class="search-cell"><label>Service</label><select id="home-category"><option value="">Any service</option>'+CATEGORIES.map(function(c){return '<option value="'+esc(c.id)+'">'+esc(c.label)+'</option>';}).join('')+'</select></div>' +
+          '<button data-action="home-search" aria-label="Search">⌕</button>' +
+        '</div>' +
+        '<div class="hero-proof"><span>✓ Browse local tasks</span><span>✓ Compare offers</span><span>✓ Secure payments</span></div>' +
+      '</div>' +
+
+    '</section>' +
+    '<section class="home-photo-strip" id="popular">' +
+      '<div class="home-section-head"><div><span class="eyebrow">POPULAR ON KAZI</span><h2>Popular services people are booking right now.</h2></div><button class="btn btn-ghost" data-public-auth="login">See all tasks →</button></div>' +
+      '<div class="home-photo-grid">' +
+        '<div class="home-photo-tile large clean"><div class="tile-copy"><h3>Cleaning</h3><p>Deep cleans, regular cleaning and more.</p></div></div>' +
+        '<div class="home-photo-tile handyman"><div class="tile-copy"><h3>Handyman</h3><p>Repairs, installation and home maintenance.</p></div></div>' +
+        '<div class="home-photo-tile moving"><div class="tile-copy"><h3>Moving & delivery</h3><p>Get help moving, carrying or delivering.</p></div></div>' +
+        '<div class="home-photo-tile admin"><div class="tile-copy"><h3>Business & admin</h3><p>Virtual assistance, data entry and more.</p></div></div>' +
+      '</div>' +
+    '</section>' +
+    '<section class="home-services" id="services">' +
+      '<div class="home-section-head"><div><span class="eyebrow">CHOOSE YOUR SIDE OF KAZI</span><h2>Need help or ready to earn?</h2></div></div>' +
+      '<div class="home-cards redesigned-cards">' +
+        '<div class="home-card jobs"><div class="card-icon">✓</div><h3>Need a job done?</h3><p>Describe what you need, set your budget and receive offers from people ready to help.</p><button class="btn" data-public-auth="register">Post a task</button></div>' +
+        '<div class="home-card taskers"><div class="card-icon">↗</div><h3>Turn your skills into extra income.</h3><p>Browse tasks, choose work that fits your skills and schedule, and make an offer.</p><button class="btn" data-public-auth="register">Start earning</button></div>' +
+      '</div>' +
+    '</section>' +
+    '<section class="home-features redesigned-features" id="how">' +
+      '<div class="feature card"><div class="icon">1</div><h3>Post or browse</h3><p>Tell Kazi what you need or discover tasks that match your skills.</p></div>' +
+      '<div class="feature card"><div class="icon">2</div><h3>Compare and connect</h3><p>Review profiles, ratings and offers, then message the person you choose.</p></div>' +
+      '<div class="feature card"><div class="icon">3</div><h3>Get it done</h3><p>Complete the task, pay securely and leave a review.</p></div>' +
+    '</section>' +
+    '<section class="earn-banner" id="earn"><div class="earn-banner-inner"><div><span class="eyebrow light">FOR TASKERS</span><h2>Turn your skills into extra income.</h2><p>Find flexible opportunities across Kenya. Browse tasks from KSh 500 to KSh 20,000 and make offers that match your skills and time.</p></div><button class="btn" data-public-auth="register">Become a tasker</button></div></section>' +
+    '<section class="community-note" id="about"><div class="community-note-inner"><div><span class="eyebrow">THE KAZI COMMUNITY</span><h2>A simple marketplace for getting things done.</h2><p>Profiles, ratings, reviews, messaging, task alerts and secure payment flows keep the experience organized for both posters and taskers.</p></div><button class="btn btn-primary" data-public-auth="register">Join Kazi</button></div></section>' +
+  '</div>';
+}
+function renderAuthScreen(){
+  var mode = state.authMode;
+  return '<div class="auth-shell"><div class="auth-card">' +
+    '<button class="btn btn-ghost btn-sm" data-action="backhome">← Back to Kazi</button>' +
+    '<div class="auth-logo">Kazi<span>.</span></div>' +
+    '<div class="auth-sub">Get it done, near you</div>' +
+    (state._authError ? '<div class="auth-error">'+esc(state._authError)+'</div>' : '') +
+    (mode==="login" ?
+      '<label style="margin-top:0;">Email</label><input type="text" id="auth-email">' +
+      '<label>Password</label><input type="password" id="auth-password">' +
+      '<button class="btn btn-primary btn-block" style="margin-top:16px;" data-action="dologin">Log in</button>' +
+      '<div class="auth-toggle">New to Kazi? <a data-action="toregister">Create an account</a></div>'
+    :
+      '<label style="margin-top:0;">Full name</label><input type="text" id="auth-name">' +
+      '<label>Email</label><input type="text" id="auth-email">' +
+      '<label>Phone Number</label><input type="tel" id="auth-phone" placeholder="07XX XXX XXX">' +
+      '<label>Password</label><input type="password" id="auth-password" placeholder="At least 6 characters">' +
+      '<button class="btn btn-primary btn-block" style="margin-top:16px;" data-action="doregister">Create account</button>' +
+      '<div class="auth-toggle">Already have an account? <a data-action="tologin">Log in</a></div>'
+    ) +
+  '</div></div>';
+}
+function bindAuthEvents(){
+  var l=document.querySelector('[data-action="dologin"]');
+  if(l) l.addEventListener("click",function(){doLogin(document.getElementById("auth-email").value.trim(),document.getElementById("auth-password").value);});
+  var r=document.querySelector('[data-action="doregister"]');
+  if(r) r.addEventListener("click",function(){doRegister(document.getElementById("auth-name").value.trim(),document.getElementById("auth-email").value.trim(),document.getElementById("auth-phone").value.trim(),document.getElementById("auth-password").value);});
+  var tr=document.querySelector('[data-action="toregister"]'); if(tr) tr.addEventListener("click",function(){state.authMode="register";state._authError=null;render();});
+  var tl=document.querySelector('[data-action="tologin"]'); if(tl) tl.addEventListener("click",function(){state.authMode="login";state._authError=null;render();});
+  var bh=document.querySelector('[data-action="backhome"]'); if(bh) bh.addEventListener("click",function(){state._authError=null;renderPublicAndBind();});
+}
+function renderPublicAndBind(){var app=document.getElementById("app");app.innerHTML=renderPublicHome();bindPublicHomeEvents();}
+function bindPublicHomeEvents(){
+  document.querySelectorAll('[data-public-auth]').forEach(function(el){el.addEventListener('click',function(){state.authMode=el.getAttribute('data-public-auth');state._authError=null;document.getElementById('app').innerHTML=renderAuthScreen();bindAuthEvents();});});
+  var hs=document.querySelector('[data-action="home-search"]');
+  if(hs) hs.addEventListener('click',function(){state.query=(document.getElementById('home-task')||{}).value||'';state.county=(document.getElementById('home-county')||{}).value||'';state.category=(document.getElementById('home-category')||{}).value||'';state.authMode='login';document.getElementById('app').innerHTML=renderAuthScreen();bindAuthEvents();showToast('Log in or sign up to browse and post on Kazi.');});
+}
+function topbarHtml(){
+  return '<header class="topbar">' +
+    '<div class="brand" data-nav="dashboard"><span class="brand-mark">K</span><span>Kazi<small>get it done</small></span></div>' +
+    '<div class="top-search">⌕<input id="global-search" type="text" placeholder="Search tasks" value="'+esc(state.query)+'"></div>' +
+    '<div class="top-tools"><button class="tool-btn" title="Notifications">🔔</button><button class="tool-btn" title="Theme">☾</button><div class="avatar-sm">'+esc(initials(state.me.name))+'</div></div>' +
+  '</header>';
+}
+function sidebarHtml(){
+  var items=[
+    {id:'dashboard',glyph:'▦',label:'Dashboard'},
+    {id:'browse',glyph:'⌕',label:'Browse tasks'},
+    {id:'post',glyph:'＋',label:'Post a task'},
+    {id:'alerts',glyph:'🔔',label:'Task alerts'},
+    {id:'messages',glyph:'◌',label:'Chats'},
+    {id:'mytasks',glyph:'▤',label:'My tasks'},
+    {id:'calculator',glyph:'▣',label:'Earn calculator'},
+    {id:'guidelines',glyph:'♢',label:'Community guidelines'},
+    {id:'profile',glyph:'◎',label:'Profile'}
+  ];
+  return '<aside class="sidebar"><div class="sidebar-label">MANAGE KAZI</div>'+items.map(function(it){var active=state.view===it.id?' active':'';return '<button class="side-link'+active+'" data-nav="'+it.id+'"><span class="ico">'+it.glyph+'</span>'+it.label+'</button>';}).join('')+'</aside>';
+}
+function bottomNavHtml(){
+  var items=[{id:'dashboard',glyph:'▦',label:'Home'},{id:'browse',glyph:'⌕',label:'Browse'},{id:'post',glyph:'＋',label:'Post'},{id:'messages',glyph:'◌',label:'Chats'},{id:'profile',glyph:'◎',label:'Profile'}];
+  return '<nav class="bottom-nav">'+items.map(function(it){return '<button class="nav-btn '+(state.view===it.id?'active':'')+'" data-nav="'+it.id+'"><span class="glyph">'+it.glyph+'</span>'+it.label+'</button>';}).join('')+'</nav>';
+}
+function bindGlobalEvents(){
+  document.querySelectorAll('[data-nav]').forEach(function(el){el.addEventListener('click',function(){goView(el.getAttribute('data-nav'));});});
+  var gs=document.getElementById('global-search');
+  if(gs) gs.addEventListener('keydown',function(e){if(e.key==='Enter'){state.query=gs.value;goView('browse');}});
+  bindViewEvents();
+}
+
+/* ===================== Render: views ===================== */
+function viewHtml(){
+  switch(state.view){
+    case 'dashboard': return renderDashboard();
+    case 'post': return renderPost();
+    case 'detail': return renderDetail();
+    case 'mytasks': return renderMyTasks();
+    case 'messages': return renderMessagesList();
+    case 'alerts': return renderTaskAlerts();
+    case 'calculator': return renderEarnCalculator();
+    case 'guidelines': return renderGuidelines();
+    case 'profile': return renderProfilePage();
+    default: return renderBrowse();
+  }
+}
+function renderDashboard(){
+  var postedTasks=state.tasks.filter(function(t){return t.postedById===state.me.id;});
+  var workingTasks=state.tasks.filter(function(t){return t.assignedToId===state.me.id;});
+  var completedMine=state.tasks.filter(function(t){return t.status==='completed' && (t.postedById===state.me.id || t.assignedToId===state.me.id);});
+  var open=state.tasks.filter(function(t){return t.status==='open';});
+  var workingValue=workingTasks.reduce(function(sum,t){return sum+(Number(t.budget)||0);},0);
+  var postedValue=postedTasks.reduce(function(sum,t){return sum+(Number(t.budget)||0);},0);
+  var avgTaskValue=workingTasks.length ? Math.round(workingValue/workingTasks.length) : 0;
+  var avgRating=state.me.ratingCount ? (state.me.ratingSum/state.me.ratingCount) : 0;
+  var recent=state.tasks.slice(0,5);
+  var firstName=(state.me.name||'there').trim().split(/\s+/)[0];
+  var chartTasks=state.tasks.slice(0,8).reverse();
+  var vals=chartTasks.map(function(t){return Math.max(0,Number(t.budget)||0);});
+  var maxVal=Math.max.apply(null,vals.concat([1]));
+  var points=vals.map(function(v,i){
+    var x=8 + (i*(84/Math.max(vals.length-1,1)));
+    var y=88 - ((v/maxVal)*70);
+    return x.toFixed(1)+','+y.toFixed(1);
+  }).join(' ');
+  var areaPoints = points ? '8,94 '+points+' 92,94' : '8,94 24,70 42,79 60,52 78,64 92,42 92,94';
+  var catCounts={};
+  state.tasks.forEach(function(t){ catCounts[t.category]=(catCounts[t.category]||0)+1; });
+  var popular=CATEGORIES.slice().sort(function(a,b){return (catCounts[b.id]||0)-(catCounts[a.id]||0);}).slice(0,4);
+  var recentRows=recent.length?recent.map(function(t){
+    var cls=t.status==='completed'?' completed':t.status==='assigned'?' assigned':'';
+    return '<tr><td><strong>'+esc(t.title)+'</strong><div style="color:#6f778b;font-size:10px;margin-top:2px;">'+esc(catLabel(t.category))+'</div></td><td>'+fmtKES(t.budget)+'</td><td><span class="v2-status'+cls+'">'+esc(t.status)+'</span></td><td>'+esc(t.area||t.county||'—')+'</td></tr>';
+  }).join(''):'<tr><td colspan="4" style="text-align:center;color:#7c8498;padding:32px 8px;">No recent tasks yet.</td></tr>';
+  return '<div class="dash-v2">' +
+    '<div class="dash-v2-head"><div><h1>Good day, '+esc(firstName)+'</h1><p>Kazi overview · your work, tasks and activity in one place</p></div><div class="dash-v2-actions"><button class="btn" data-nav="browse">Browse tasks</button><button class="btn btn-amber" data-nav="post">+ Post a task</button></div></div>' +
+    '<div class="dash-grid-v2">' +
+      '<div class="dash-card-v2"><div class="small-label">Potential earnings</div><h3>Active work value</h3><div class="v2-value">'+fmtKES(workingValue)+'</div><div class="v2-sub">Based on '+workingTasks.length+' active assignment'+(workingTasks.length===1?'':'s')+'</div><div class="v2-bar-strip">'+[32,52,40,68,57,78,64].map(function(h){return '<span style="height:'+h+'%"></span>';}).join('')+'</div></div>' +
+      '<div class="dash-card-v2"><div class="small-label">Average task value</div><h3>What each active task is worth</h3><div class="v2-value">'+fmtKES(avgTaskValue)+'</div><div class="v2-sub">Across your current assignments</div><div class="v2-bar-strip">'+[44,66,55,72,48,78,60].map(function(h){return '<span style="height:'+h+'%;background:linear-gradient(to top,#27c995,#5ee0ba)"></span>';}).join('')+'</div></div>' +
+      '<div class="dash-card-v2 v2-right-chart"><div class="v2-chart-head"><div><h3>Task value & activity</h3><p>Recent task budgets in your Kazi feed</p><div class="v2-chart-value">'+fmtKES(workingValue+postedValue)+'</div><div class="v2-sub">Active work + posted task value</div></div><button class="tool-btn" aria-label="Chart options">•••</button></div><div class="v2-line-chart"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="'+areaPoints+'" fill="rgba(45,124,255,.13)"></polygon><polyline points="'+(points||'8,72 24,65 42,69 60,50 78,58 92,42')+'" fill="none" stroke="#2e9cff" stroke-width="1.8" vector-effect="non-scaling-stroke"></polyline></svg></div><div class="v2-axis"><span>Recent</span><span>Task activity</span><span>Latest</span></div></div>' +
+      '<div class="dash-card-v2"><div class="small-label">Completed</div><h3>Tasks completed</h3><div class="v2-value">'+completedMine.length+' <span class="v2-trend">Done</span></div><div class="v2-sub">Tasks finished for Kazi users</div><div class="v2-progress"><span style="width:'+Math.min(100,completedMine.length*12)+'%"></span></div></div>' +
+      '<div class="dash-card-v2"><div class="small-label">Opportunities</div><h3>Open tasks</h3><div class="v2-value">'+open.length+' <span class="v2-trend blue">Live</span></div><div class="v2-sub">Tasks currently available to browse</div><div class="v2-ring-row"><div class="v2-ring"></div><div class="v2-legend"><span><i style="background:#2e63e8"></i>Open <b>'+open.length+'</b></span><span><i style="background:#27c995"></i>Completed <b>'+completedMine.length+'</b></span><span><i style="background:#f4ba46"></i>Working <b>'+workingTasks.length+'</b></span></div></div></div>' +
+      '<div class="dash-card-v2"><div class="small-label">Profile</div><h3>Rating & reviews</h3><div class="v2-value">'+(avgRating?avgRating.toFixed(1):'—')+' <span class="unit">/ 5</span></div><div class="v2-sub">'+(state.me.ratingCount||0)+' review'+((state.me.ratingCount||0)===1?'':'s')+' · '+(state.me.completedTasks||0)+' completed</div><div style="margin-top:18px;color:#ffbf48;font-size:19px;letter-spacing:2px;">'+stars(avgRating)+'</div></div>' +
+    '</div>' +
+    '<div class="v2-lower">' +
+      '<section class="dash-panel-v2 v2-wide-panel"><div class="v2-panel-head"><div><h3>Recent tasks</h3><p>Latest activity from your Kazi marketplace</p></div><button class="btn btn-sm" data-nav="browse">View all</button></div><div class="v2-task-tabs"><button class="v2-task-tab active">All tasks</button><button class="v2-task-tab">Posted by me</button><button class="v2-task-tab">I’m working on</button><button class="v2-task-tab">Completed</button></div><table class="v2-table"><thead><tr><th>Task</th><th>Budget</th><th>Status</th><th>Location</th></tr></thead><tbody>'+recentRows+'</tbody></table></section>' +
+      '<section class="dash-panel-v2 v2-wide-panel"><div class="v2-panel-head"><div><h3>Popular on Kazi</h3><p>Most active categories in the current feed</p></div></div><div class="v2-pop-grid">'+popular.map(function(c){return '<div class="v2-pop"><b>'+esc(c.glyph)+' '+esc(c.label)+'</b><span>'+(catCounts[c.id]||0)+' task'+((catCounts[c.id]||0)===1?'':'s')+'</span></div>';}).join('')+'</div><div class="v2-quick"><button class="v2-quick-btn" data-nav="alerts"><span>🔔 Task alerts</span><span>Open →</span></button><button class="v2-quick-btn" data-nav="calculator"><span>▣ Earn calculator</span><span>Open →</span></button><button class="v2-quick-btn" data-nav="guidelines"><span>♢ Community guidelines</span><span>Read →</span></button><button class="v2-quick-btn" data-nav="profile"><span>◎ Complete profile</span><span>'+(state.me.bio?'Edit':'Set up')+' →</span></button></div></section>' +
+    '</div>' +
+  '</div>';
+}
+
+function filteredTasks(){
+  var min=Number(state.minPrice||500), max=Number(state.maxPrice||20000);
+  var list=state.tasks.filter(function(t){
+    var b=Number(t.budget)||0;
+    return b>=min && b<=max;
+  });
+  list.sort(function(a,b){
+    if(state.sortBy==='price_low') return (Number(a.budget)||0)-(Number(b.budget)||0);
+    if(state.sortBy==='price_high') return (Number(b.budget)||0)-(Number(a.budget)||0);
+    if(state.sortBy==='rating') return (Number(b.posterRating)||0)-(Number(a.posterRating)||0);
+    if(state.sortBy==='oldest') return new Date(a.createdAt||0)-new Date(b.createdAt||0);
+    return new Date(b.createdAt||0)-new Date(a.createdAt||0);
+  });
+  return list;
+}
+function renderBrowse(){
+  var visible=filteredTasks();
+  var html = '' +
+  '<div class="hero browse-hero" style="margin:-18px -16px 0;border-radius:0 0 18px 18px;">' +
+    '<div><span class="eyebrow light">KAZI MARKETPLACE</span><h1>Find work that fits you.</h1>' +
+    '<p>Search local tasks, compare budgets and choose work that matches your skills and earning goals.</p></div>' +
+    '<div class="search-row"><input type="text" id="search-input" placeholder="Search tasks — e.g. clean house" value="'+esc(state.query)+'"><button class="btn btn-marigold" data-action="search">Search</button></div>' +
+  '</div>' +
+  '<div class="cat-scroll"><div class="cat-chip '+(state.category===""?"active":"")+'" data-cat=""><span class="glyph">🌐</span>All</div>' +
+    CATEGORIES.map(function(c){return '<div class="cat-chip '+(state.category===c.id?"active":"")+'" data-cat="'+c.id+'"><span class="glyph">'+c.glyph+'</span>'+esc(c.label)+'</div>';}).join('') +
+  '</div>' +
+  '<div class="filter-panel card">' +
+    '<div class="filter-title"><div><b>Filters</b><span class="muted"> Refine the tasks you want to see</span></div><button class="btn btn-sm" data-action="resetfilters">Reset</button></div>' +
+    '<div class="filter-grid">' +
+      '<div><label>County</label><select id="filter-county"><option value="">All counties</option>'+COUNTIES.map(function(c){return '<option value="'+esc(c)+'" '+(state.county===c?'selected':'')+'>'+esc(c)+'</option>';}).join('')+'</select></div>' +
+      '<div><label>Sort by</label><select id="filter-sort"><option value="newest" '+(state.sortBy==='newest'?'selected':'')+'>Newest</option><option value="price_low" '+(state.sortBy==='price_low'?'selected':'')+'>Price: Low to High</option><option value="price_high" '+(state.sortBy==='price_high'?'selected':'')+'>Price: High to Low</option><option value="rating" '+(state.sortBy==='rating'?'selected':'')+'>Highest rated</option><option value="oldest" '+(state.sortBy==='oldest'?'selected':'')+'>Oldest</option></select></div>' +
+      '<div class="price-filter"><label>Price / earning range</label><div class="range-values"><span>KSh '+Number(state.minPrice).toLocaleString()+'</span><span>KSh '+Number(state.maxPrice).toLocaleString()+'</span></div><div class="range-pair"><input id="filter-min" type="range" min="500" max="20000" step="500" value="'+state.minPrice+'"><input id="filter-max" type="range" min="500" max="20000" step="500" value="'+state.maxPrice+'"></div><div class="range-labels"><span>500</span><span>20,000</span></div></div>' +
+    '</div>' +
+    '<div class="filter-extra">' +
+      '<div><label>Task type</label><div class="filter-checks"><span class="filter-check active">All</span><span class="filter-check">Fixed price</span><span class="filter-check">Hourly</span></div></div>' +
+      '<div><label>Availability</label><div class="filter-checks"><span class="filter-check active">Any time</span><span class="filter-check">Today</span><span class="filter-check">This week</span></div></div>' +
+      '<div><label>Other filters</label><div class="filter-checks"><span class="filter-check">Nearby</span><span class="filter-check">Highly rated</span><span class="filter-check">Verified</span></div></div>' +
+    '</div>' +
+  '</div>' +
+  '<div class="page" style="padding-left:0;padding-right:0;"><div class="section-head"><h2>'+(state.county?esc(state.county)+' tasks':'Open tasks')+'</h2><span class="muted">'+visible.length+' found</span></div>'+tasksListHtml(visible)+'</div>';
+  return html;
+}
+function renderDetail(){
+  var t = state.tasks.filter(function(x){return x.id===state.taskId;})[0];
+  if (!t) return '<div class="empty"><div class="glyph">🔍</div>Task not found.</div>';
+  var offers = state.offersByTask[t.id] || [];
+  var isOwner = t.postedById === state.me.id;
+  var isAssignedTasker = t.assignedToId === state.me.id;
+  var iOffered = offers.filter(function(o){return o.taskerId===state.me.id;}).length>0;
+
+  var actionBlock = "";
+  if (isOwner) {
+    if (t.status==="open") {
+      actionBlock = '<div class="section-head"><h2>Offers ('+offers.length+')</h2></div>' + offersHtml(t, offers, true);
+    } else if (t.status==="assigned") {
+      actionBlock = '<div class="card" style="padding:16px;margin-top:8px;">' +
+        '<p style="margin:0 0 12px;">Assigned to <b>'+esc(t.assignedToName)+'</b>'+proBadge(t.assigneeIsPro)+'. Chat to arrange details, then mark complete when the job is done.</p>' +
+        '<div style="display:flex;gap:10px;flex-wrap:wrap;">' +
+        '<button class="btn btn-primary" data-action="chat" data-task="'+t.id+'">💬 Message '+esc((t.assignedToName||"").split(" ")[0])+'</button>' +
+        '<button class="btn" data-action="complete" data-task="'+t.id+'">Mark as completed</button>' +
+        '</div></div>';
+    } else if (t.status==="completed") {
+      actionBlock = '<div class="card" style="padding:16px;margin-top:8px;display:flex;flex-direction:column;gap:10px;">' +
+        '<p style="margin:0;">Task completed by <b>'+esc(t.assignedToName)+'</b>.</p>' +
+        (t.paid ? '<div class="pill pill-done" style="align-self:flex-start;">Paid</div>' :
+        '<button class="btn btn-marigold" data-action="pay" data-task="'+t.id+'">📲 Pay '+fmtKES(t.budget)+' with M-Pesa</button>') +
+        '<button class="btn" data-action="review" data-task="'+t.id+'" data-for="'+t.assignedToId+'">⭐ Leave a review</button>' +
+        '</div>';
+    }
+  } else {
+    if (t.status==="open" && t.lockedForMe) {
+      actionBlock = '<div class="card" style="padding:16px;margin-top:8px;background:#FFF7EC;border-color:var(--marigold);">' +
+        '<p style="margin:0 0 12px;">⏳ <b>Pro early access.</b> Pro taskers can see and bid on this task before it opens to everyone.</p>' +
+        '<button class="btn btn-marigold btn-block" data-action="gopro">Go Pro — '+fmtKES(PRO_FEE)+'/month</button>' +
+        '</div>';
+    } else if (t.status==="open") {
+      actionBlock = '<button class="btn btn-marigold btn-block" data-action="offer" data-task="'+t.id+'">'+(iOffered? "Update your offer" : "Send an offer")+'</button>' +
+        '<p class="muted" style="font-size:12px;margin-top:8px;">A '+fmtKES(BID_FEE)+' bidding fee applies each time you send an offer.</p>';
+    } else if (isAssignedTasker) {
+      actionBlock = '<div class="card" style="padding:16px;margin-top:8px;">' +
+        '<p style="margin:0 0 12px;">You\'re doing this task. Message the poster if you need details.</p>' +
+        '<button class="btn btn-primary btn-block" data-action="chat" data-task="'+t.id+'">💬 Message '+esc((t.postedByName||"").split(" ")[0])+'</button>' +
+        '</div>';
+    } else {
+      actionBlock = '<div class="card" style="padding:14px 16px;margin-top:8px;color:var(--muted);">This task has already been '+(t.status==="completed"?"completed":"assigned")+'.</div>';
+    }
+  }
+
+  return '' +
+  '<button class="btn btn-ghost btn-sm" data-nav="browse" style="padding-left:0;">← Back to browse</button>' +
+  '<div class="detail-head">' +
+    '<span class="pill '+(t.status==="completed"?"pill-done":t.status==="assigned"?"pill-assigned":"pill-open")+'">'+(t.status==="completed"?"Completed":t.status==="assigned"?"Assigned":"Open")+'</span>' +
+    '<h1>'+esc(t.title)+'</h1>' +
+    '<div class="meta muted">'+catGlyph(t.category)+' '+esc(catLabel(t.category))+' · 📍 '+esc(t.area? t.area+", ":"")+esc(t.county)+' · '+timeAgo(t.createdAt)+'</div>' +
+  '</div>' +
+  '<div class="detail-budget">'+fmtKES(t.budget)+(t.budgetType==="hourly"?'<span style="font-size:14px;color:var(--muted);font-weight:500;"> / hour</span>':'')+'</div>' +
+  '<p style="margin:14px 0;white-space:pre-wrap;">'+esc(t.description)+'</p>' +
+  '<div class="poster-row" data-openprofile="'+esc(t.postedById)+'">' +
+    '<div class="avatar">'+esc(initials(t.postedByName))+'</div>' +
+    '<div><div class="name">'+esc(t.postedByName)+'</div><div class="muted" style="font-size:12px;">Posted this task</div></div>' +
+  '</div>' +
+  actionBlock;
+}
+function offersHtml(task, offers, ownerView){
+  if (!offers.length) return '<div class="empty" style="padding:24px 12px;"><div class="glyph">📨</div>No offers yet — check back soon.</div>';
+  return '<div class="card" style="padding:4px 16px;">' + offers.map(function(o){
+    return '<div class="offer-row">' +
+      '<div class="avatar" data-openprofile="'+esc(o.taskerId)+'">'+esc(initials(o.taskerName))+'</div>' +
+      '<div class="offer-box">' +
+        '<div style="display:flex;justify-content:space-between;gap:8px;">' +
+          '<span data-openprofile="'+esc(o.taskerId)+'" style="font-weight:600;">'+esc(o.taskerName)+proBadge(o.taskerIsPro)+'</span>' +
+          '<span class="amount">'+fmtKES(o.amount)+'</span>' +
+        '</div>' +
+        (o.message? '<div class="muted" style="font-size:13px;margin-top:4px;">"'+esc(o.message)+'"</div>' : '') +
+        (ownerView && task.status==="open" ? '<button class="btn btn-primary btn-sm" style="margin-top:8px;" data-action="accept" data-task="'+task.id+'" data-offer="'+o.id+'">Accept offer</button>' : (o.status==="accepted"? '<span class="pill pill-assigned" style="margin-top:8px;display:inline-block;">Accepted</span>':'')) +
+      '</div>' +
+    '</div>';
+  }).join("") + '</div>';
+}
+function renderPost(){
+  var d = state.postDraft;
+  var body = "";
+  if (d.step===1) {
+    body = '<label>What kind of task is it?</label><div class="cat-grid">' + CATEGORIES.map(function(c){
+      return '<div class="cat-chip '+(d.category===c.id?"active":"")+'" data-draftcat="'+c.id+'"><span class="glyph">'+c.glyph+'</span>'+esc(c.label)+'</div>';
+    }).join("") + '</div>';
+  } else if (d.step===2) {
+    body = '<label>Title</label><input type="text" id="d-title" placeholder="e.g. Deep clean 2-bedroom flat" value="'+esc(d.title)+'">' +
+      '<label>Describe what needs doing</label><textarea id="d-desc" rows="4" placeholder="Give details a tasker would need to quote accurately">'+esc(d.description)+'</textarea>';
+  } else if (d.step===3) {
+    var opts = COUNTIES.map(function(c){ return '<option value="'+esc(c)+'" '+(d.county===c?'selected':'')+'>'+esc(c)+'</option>'; }).join("");
+    body = '<label>County</label><select id="d-county"><option value="">Select county</option>'+opts+'</select>' +
+      '<label>Area / estate (optional)</label><input type="text" id="d-area" value="'+esc(d.area)+'">' +
+      '<label>Needed by (optional)</label><input type="date" id="d-date" value="'+esc(d.dueDate)+'">';
+  } else if (d.step===4) {
+    body = '<label>Budget type</label><div style="display:flex;gap:8px;">' +
+        '<button class="btn '+(d.budgetType==="fixed"?"btn-primary":"")+'" style="flex:1;" data-budtype="fixed">Fixed price</button>' +
+        '<button class="btn '+(d.budgetType==="hourly"?"btn-primary":"")+'" style="flex:1;" data-budtype="hourly">Hourly rate</button>' +
+      '</div>' +
+      '<label>Amount (KES)</label><input type="number" min="500" max="20000" id="d-budget" value="'+esc(d.budget)+'">' +
+      '<div class="card" style="padding:14px 16px;margin-top:18px;background:var(--teal-100);border:none;">' +
+        '<b>'+esc(d.title||"Your task")+'</b><br><span class="muted">'+catGlyph(d.category)+' '+esc(catLabel(d.category))+' · '+esc(d.county||"—")+(d.area? ", "+esc(d.area):"")+'</span>' +
+      '</div>';
+  }
+  var canNext = d.step < 4;
+  return '<h1 style="font-size:20px;">Post a task</h1>' +
+  '<div class="step-dots">'+[1,2,3,4].map(function(i){return '<span class="'+(i<=d.step?'active':'')+'"></span>';}).join("")+'</div>' +
+  body +
+  '<div style="display:flex;gap:10px;margin-top:22px;">' +
+    (d.step>1? '<button class="btn" data-postnav="back">Back</button>' : '') +
+    (d.step<4? '<button class="btn btn-primary" style="flex:1;" data-postnav="next" '+(canNext?'':'disabled')+'>Continue</button>' :
+      '<button class="btn btn-marigold" style="flex:1;" data-action="submitpost" '+(d.budget?'':'disabled')+'>Post task</button>') +
+  '</div>';
+}
+function renderMyTasks(){
+  var posted = state.tasks.filter(function(t){ return t.postedById===state.me.id; });
+  var working = state.tasks.filter(function(t){ return t.assignedToId===state.me.id; });
+  return '<h1 style="font-size:20px;">My tasks</h1>' +
+  '<div class="section-head"><h2>Posted by me ('+posted.length+')</h2></div>' + tasksListHtml(posted) +
+  '<div class="section-head"><h2>I\'m working on ('+working.length+')</h2></div>' + tasksListHtml(working);
+}
+function renderMessagesList(){
+  var mine = state.tasks.filter(function(t){ return (t.postedById===state.me.id || t.assignedToId===state.me.id) && t.status!=="open"; });
+  if (state.chatTaskId) return renderChat(state.chatTaskId);
+  if (!mine.length) return '<div class="empty"><div class="glyph">💬</div>No conversations yet.<br>Once a task is assigned, you can chat here.</div>';
+  return '<h1 style="font-size:20px;">Chats</h1><div class="task-list">' + mine.map(function(t){
+    var other = t.postedById===state.me.id ? t.assignedToName : t.postedByName;
+    return '<div class="card task-card" data-chat="'+t.id+'"><h3 style="font-size:14.5px;">'+esc(t.title)+'</h3><div class="muted" style="font-size:12.5px;">with '+esc(other||"—")+'</div></div>';
+  }).join("") + '</div>';
+}
+function renderChat(taskId){
+  var t = state.tasks.filter(function(x){return x.id===taskId;})[0];
+  if (!t) return '<div class="empty">Conversation not found.</div>';
+  var msgs = state.messagesByTask[taskId] || [];
+  var otherName = t.postedById===state.me.id ? t.assignedToName : t.postedByName;
+  return '' +
+  '<button class="btn btn-ghost btn-sm" data-action="closechat" style="padding-left:0;">← Chats</button>' +
+  '<h2 style="font-size:16px;margin:4px 0 0;">'+esc(t.title)+'</h2>' +
+  '<div class="muted" style="font-size:12.5px;margin-bottom:6px;">with '+esc(otherName||"—")+'</div>' +
+  '<div class="chat-thread">' + (msgs.length? msgs.map(function(m){
+    var mine = m.fromId===state.me.id;
+    return '<div class="msg '+(mine?"mine":"theirs")+'">'+(mine?'':'<div class="who">'+esc(m.fromName)+'</div>')+esc(m.text)+'</div>';
+  }).join("") : '<div class="muted" style="text-align:center;padding:20px 0;">Say hello 👋</div>') + '</div>' +
+  '<div class="chat-input-row">' +
+    '<input type="text" id="chat-input" placeholder="Message '+esc((otherName||"").split(" ")[0]||"")+'…">' +
+    '<button class="btn btn-primary" data-action="sendchat" data-task="'+taskId+'">Send</button>' +
+  '</div>';
+}
+function renderTaskAlerts(){
+  return '<div class="dash-wrap"><div class="dash-title"><div><h1>Task alerts</h1><p>Get notified when new work matches your preferences.</p></div><button class="btn btn-marigold" data-nav="browse">Browse tasks</button></div>' +
+    '<div class="card" style="padding:18px;margin-bottom:16px;"><h3 style="margin:0 0 6px;color:#fff;">Your alert preferences</h3><p class="muted" style="margin:0 0 15px;">Choose the kind of work you want Kazi to surface for you.</p><div class="filter-checks"><span class="filter-check active">Nearby tasks</span><span class="filter-check active">KSh 500–20,000</span><span class="filter-check">Today</span><span class="filter-check">This week</span><span class="filter-check">Highly rated posters</span></div></div>' +
+    '<div class="alerts-list">' +
+      '<div class="alert-card"><div style="display:flex;gap:13px;align-items:center;"><div class="alert-icon">🔔</div><div><h3>New jobs in your area</h3><p>We will notify you when tasks match your county, categories and earning range.</p></div></div><button class="btn btn-sm">View settings</button></div>' +
+      '<div class="alert-card"><div style="display:flex;gap:13px;align-items:center;"><div class="alert-icon">✨</div><div><h3>Recommended tasks</h3><p>Cleaning, moving, repairs and other work based on your activity.</p></div></div><button class="btn btn-sm" data-nav="browse">View tasks</button></div>' +
+    '</div></div>';
+}
+function renderEarnCalculator(){
+  return '<div class="dash-wrap"><div class="dash-title"><div><h1>Earn calculator</h1><p>Estimate what you could earn from your Kazi tasks.</p></div></div>' +
+    '<div class="calculator-card"><div class="calculator-grid"><div><label>Average task price (KSh)</label><input type="number" id="calc-price" min="500" max="20000" value="2500"></div><div><label>Tasks per week</label><input type="number" id="calc-tasks" min="1" max="50" value="5"></div><div><label>Weeks per month</label><input type="number" id="calc-weeks" min="1" max="5" value="4"></div><div><label>Estimated monthly expenses (KSh)</label><input type="number" id="calc-expenses" min="0" value="0"></div></div>' +
+    '<div class="calculator-result"><div>Estimated monthly gross</div><div class="big" id="calc-result">KSh 50,000</div><div style="color:#cfe0ff;font-size:12px;">Before any applicable Kazi fees, transport or other expenses.</div></div>' +
+    '<button class="btn btn-marigold" style="margin-top:15px;" data-action="calculate">Calculate again</button></div></div>';
+}
+function renderGuidelines(){
+  return '<div class="dash-wrap"><div class="dash-title"><div><h1>Community guidelines</h1><p>Simple rules for a respectful and reliable Kazi marketplace.</p></div></div><div class="guidelines-grid">' +
+    '<div class="guideline-card"><h3>Be clear</h3><p>Post accurate task details, budgets and locations. Taskers should describe their experience honestly.</p></div>' +
+    '<div class="guideline-card"><h3>Communicate respectfully</h3><p>Use Kazi messaging to discuss details, timing and expectations professionally.</p></div>' +
+    '<div class="guideline-card"><h3>Keep payments secure</h3><p>Use the Kazi payment flow for completed work and keep important task records on the platform.</p></div>' +
+    '<div class="guideline-card"><h3>Respect people and property</h3><p>Treat other members, homes, workplaces and belongings with care.</p></div>' +
+    '<div class="guideline-card"><h3>Review fairly</h3><p>Leave honest reviews based on the work completed and your actual experience.</p></div>' +
+    '<div class="guideline-card"><h3>Report problems</h3><p>If something goes wrong, keep communication and task information available so it can be reviewed.</p></div>' +
+    '</div></div>';
+}
+function renderProfilePage(){
+  var pid = state.profileId || state.me.id;
+  var isMe = pid === state.me.id;
+  var p = isMe ? state.me : (state._viewedProfile || {});
+  var avgRating = p.ratingCount ? (p.ratingSum/p.ratingCount) : 0;
+  var reviews = state.reviewsByUser[pid] || [];
+
+  var editBlock = "";
+  if (isMe) {
+    var posterActive = isPosterSubActive(p), proActive = isProActive(p);
+    '<div class="card" style="padding:16px;margin-top:10px;">' +
+      '<h3 style="font-size:14.5px;margin:0 0 6px;">Kazi Pro '+(proActive?proBadge(true):'')+'</h3>' +
+      '<ul class="muted" style="margin:0 0 12px;padding-left:18px;font-size:13px;line-height:1.7;">' +
+        '<li>See and bid on new tasks '+EARLY_ACCESS_HOURS+'h before everyone else</li>' +
+        '<li>Your offers show first to posters</li><li>PRO badge on your profile and offers</li>' +
+      '</ul>' +
+      (proActive ? '<p class="muted" style="margin:0 0 10px;font-size:13px;">✅ Active until <b>'+fmtDate(p.proExpiresAt)+'</b>.</p>' : '') +
+      '<button class="btn btn-marigold btn-sm" data-action="gopro">'+(proActive?"Renew — ":"Upgrade — ")+fmtKES(PRO_FEE)+'/mo</button>' +
+    '</div>' +
+    '<div class="card" style="padding:16px;margin-top:16px;">' +
+      '<label style="margin-top:0;">Display bio</label><textarea id="p-bio" rows="2" placeholder="What can you help with?">'+esc(p.bio||"")+'</textarea>' +
+      '<div class="field-row">' +
+        '<div><label>County</label><select id="p-county"><option value="">—</option>'+COUNTIES.map(function(c){return '<option '+((p.county===c)?'selected':'')+' value="'+esc(c)+'">'+esc(c)+'</option>';}).join("")+'</select></div>' +
+        '<div><label>Area</label><input type="text" id="p-area" value="'+esc(p.area||"")+'"></div>' +
+      '</div>' +
+      '<label style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="p-tasker" '+(p.isTasker?"checked":"")+' style="width:auto;">Available to be hired as a tasker</label>' +
+      '<button class="btn btn-primary btn-block" style="margin-top:14px;" data-action="saveprofile">Save profile</button>' +
+    '</div>' +
+    '<button class="btn" style="margin-top:16px;width:100%;" data-action="logout">Log out</button>';
+  }
+
+  return '' +
+  (state.profileId && state.profileId!==state.me.id ? '<button class="btn btn-ghost btn-sm" data-nav="browse" style="padding-left:0;">← Back</button>' : '') +
+  '<div style="display:flex;align-items:center;gap:14px;margin-top:8px;">' +
+    '<div class="avatar" style="width:56px;height:56px;font-size:19px;">'+esc(initials(p.name))+'</div>' +
+    '<div><h1 style="font-size:19px;margin:0;">'+esc(p.name || "")+proBadge(isProActive(p))+'</h1>' +
+    '<div class="muted" style="font-size:12.5px;">'+esc(p.area? p.area+", ":"")+esc(p.county||"Location not set")+'</div></div>' +
+  '</div>' +
+  '<div class="rating-summary" style="margin:16px 0;">' +
+    '<span class="big">'+(avgRating? avgRating.toFixed(1) : "—")+'</span>' +
+    '<div><div class="stars">'+stars(avgRating)+'</div><div class="muted" style="font-size:12px;">'+(p.ratingCount||0)+' review'+((p.ratingCount||0)===1?"":"s")+' · '+(p.completedTasks||0)+' tasks done</div></div>' +
+  '</div>' +
+  (p.bio? '<p style="margin:0 0 6px;">'+esc(p.bio)+'</p>' : '') +
+  editBlock +
+  '<div class="section-head"><h2>Reviews</h2></div>' +
+  (reviews.length? reviews.map(function(r){
+    return '<div class="card" style="padding:12px 16px;margin-bottom:8px;">' +
+      '<div style="display:flex;justify-content:space-between;"><b style="font-size:13.5px;">'+esc(r.fromName)+'</b><span class="stars">'+stars(r.rating)+'</span></div>' +
+      (r.comment? '<div class="muted" style="font-size:13px;margin-top:4px;">'+esc(r.comment)+'</div>' : '') +
+    '</div>';
+  }).join("") : '<div class="empty" style="padding:24px 0;">No reviews yet.</div>');
+}
+
+/* ===================== Modals content ===================== */
+function renderOfferModal(task){
+  return '<button class="close-x" data-close="1">✕</button>' +
+  '<h2>Send an offer</h2><p class="muted" style="margin:0 0 16px;">for "'+esc(task.title)+'"</p>' +
+  '<label style="margin-top:0;">Your price (KES)</label><input type="number" id="offer-amount" min="0" value="'+task.budget+'">' +
+  '<label>Message to the poster</label><textarea id="offer-msg" rows="3" placeholder="Say when you\'re free and any questions"></textarea>' +
+  '<button class="btn btn-marigold btn-block" style="margin-top:16px;" data-action="submitoffer" data-task="'+task.id+'">Continue to bidding fee</button>';
+}
+function renderReviewModal(taskId, forUserId){
+  return '<button class="close-x" data-close="1">✕</button><h2>Leave a review</h2>' +
+  '<div class="review-stars" id="review-stars" style="margin:14px 0;">' + [1,2,3,4,5].map(function(n){ return '<span data-star="'+n+'">★</span>'; }).join("") + '</div>' +
+  '<textarea id="review-comment" rows="3" placeholder="How did it go?"></textarea>' +
+  '<button class="btn btn-marigold btn-block" style="margin-top:14px;" data-action="submitreview" data-task="'+taskId+'" data-for="'+forUserId+'">Submit review</button>';
+}
+
+/* ===================== Event binding ===================== */
+function bindViewEvents(){
+  document.querySelectorAll("[data-open]").forEach(function(el){ el.addEventListener("click", function(){ openTask(el.getAttribute("data-open")); }); });
+  document.querySelectorAll("[data-openprofile]").forEach(function(el){ el.addEventListener("click", function(ev){ ev.stopPropagation(); openProfile(el.getAttribute("data-openprofile")); }); });
+  document.querySelectorAll("[data-cat]").forEach(function(el){ el.addEventListener("click", function(){ state.category = el.getAttribute("data-cat"); loadTasks(); }); });
+  var searchBtn = document.querySelector('[data-action="search"]');
+  if (searchBtn) searchBtn.addEventListener("click", function(){ state.query = document.getElementById("search-input").value; loadTasks(); });
+  var searchInput = document.getElementById("search-input");
+  if (searchInput) searchInput.addEventListener("keydown", function(e){ if (e.key==="Enter"){ state.query = searchInput.value; loadTasks(); } });
+  var fc=document.getElementById("filter-county"); if(fc) fc.addEventListener("change",function(){state.county=fc.value;loadTasks();});
+  var fs=document.getElementById("filter-sort"); if(fs) fs.addEventListener("change",function(){state.sortBy=fs.value;render();});
+  var fmin=document.getElementById("filter-min"), fmax=document.getElementById("filter-max");
+  function syncPrice(which){
+    if(which==='min') state.minPrice=Math.min(Number(fmin.value),Number(state.maxPrice)-500);
+    else state.maxPrice=Math.max(Number(fmax.value),Number(state.minPrice)+500);
+    render();
+  }
+  if(fmin) fmin.addEventListener("input",function(){syncPrice('min');});
+  if(fmax) fmax.addEventListener("input",function(){syncPrice('max');});
+  bindClick("resetfilters",function(){state.county="";state.category="";state.query="";state.minPrice=500;state.maxPrice=20000;state.sortBy="newest";loadTasks();});
+
+  document.querySelectorAll("[data-draftcat]").forEach(function(el){ el.addEventListener("click", function(){ state.postDraft.category = el.getAttribute("data-draftcat"); render(); }); });
+  document.querySelectorAll("[data-budtype]").forEach(function(el){ el.addEventListener("click", function(){ state.postDraft.budgetType = el.getAttribute("data-budtype"); render(); }); });
+  document.querySelectorAll("[data-postnav]").forEach(function(el){
+    el.addEventListener("click", function(){
+      captureDraftFields();
+      if (el.getAttribute("data-postnav")==="next") {
+        var d = state.postDraft;
+        if (d.step===1 && !d.category) { showToast("Choose a task category first."); return; }
+        if (d.step===2 && (!d.title.trim() || !d.description.trim())) { showToast("Add a title and description before continuing."); return; }
+        if (d.step===3 && !d.county) { showToast("Choose a county before continuing."); return; }
+        state.postDraft.step = Math.min(4, d.step+1);
+      } else state.postDraft.step = Math.max(1, state.postDraft.step-1);
+      render();
+    });
+  });
+  var submitPost = document.querySelector('[data-action="submitpost"]');
+  if (submitPost) submitPost.addEventListener("click", function(){ captureDraftFields(); attemptPostTask(); });
+
+  bindClick("offer", function(el){ var t = findTask(el); openModal(renderOfferModal(t)); });
+  bindClick("accept", function(el){ var t = findTask(el); var offerId = el.getAttribute("data-offer");
+    var offer = (state.offersByTask[t.id]||[]).filter(function(o){return o.id===offerId;})[0];
+    if (offer) acceptOffer(t, offer);
+  });
+  bindClick("complete", function(el){ markComplete(findTask(el)); });
+  bindClick("pay", function(el){ payViaMpesa(findTask(el)); });
+  bindClick("review", function(el){ openModal(renderReviewModal(el.getAttribute("data-task"), el.getAttribute("data-for"))); });
+  bindClick("chat", function(el){ openChat(el.getAttribute("data-task")); });
+  bindClick("closechat", function(){ state.chatTaskId = null; if (state.chatPoll) { clearInterval(state.chatPoll); state.chatPoll=null; } render(); });
+  bindClick("sendchat", function(el){ var inp = document.getElementById("chat-input"); if (!inp) return; sendChatMessage(el.getAttribute("data-task"), inp.value); inp.value=""; });
+  var chatInput = document.getElementById("chat-input");
+  if (chatInput) chatInput.addEventListener("keydown", function(e){ if (e.key==="Enter") { var btn=document.querySelector('[data-action="sendchat"]'); if(btn) btn.click(); } });
+  document.querySelectorAll("[data-chat]").forEach(function(el){ el.addEventListener("click", function(){ openChat(el.getAttribute("data-chat")); }); });
+
+  bindClick("gopro", function(){ openChargeModal({ purpose:"pro_sub", amount:PRO_FEE, title:"Kazi Pro", subtitle:"Priority offers + "+EARLY_ACCESS_HOURS+"h early access to new tasks", successHeadline:"You're Pro!", successNote:"Enjoy priority placement and early access." }); });
+  bindClick("renewposter", function(){ openChargeModal({ purpose:"poster_sub", amount:POSTER_FEE, meta:{}, title:"Poster plan", subtitle:"Unlimited task posting for 30 days", successHeadline:"Subscribed!", successNote:"Your poster plan is active." }); });
+  bindClick("logout", function(){ doLogout(); });
+
+  var calcBtn=document.querySelector('[data-action="calculate"]');
+  if(calcBtn) calcBtn.addEventListener('click',function(){
+    var p=Number((document.getElementById('calc-price')||{}).value)||0, n=Number((document.getElementById('calc-tasks')||{}).value)||0, w=Number((document.getElementById('calc-weeks')||{}).value)||0, e=Number((document.getElementById('calc-expenses')||{}).value)||0;
+    var result=Math.max(0,p*n*w-e); var out=document.getElementById('calc-result'); if(out) out.textContent=fmtKES(result);
+  });
+
+  var saveBtn = document.querySelector('[data-action="saveprofile"]');
+  if (saveBtn) saveBtn.addEventListener("click", function(){
+    saveProfile({
+      bio: (document.getElementById("p-bio")||{}).value || "",
+      county: (document.getElementById("p-county")||{}).value || "",
+      area: (document.getElementById("p-area")||{}).value || "",
+      isTasker: !!(document.getElementById("p-tasker")||{}).checked
+    });
+  });
+}
+function bindModalEvents(){
+  var back = document.querySelector(".modal-back");
+  if (back) back.addEventListener("click", function(ev){ if (ev.target===back) closeModal(); });
+  document.querySelectorAll("[data-close]").forEach(function(el){ el.addEventListener("click", function(){ closeModal(); }); });
+
+  var submitOffer = document.querySelector('[data-action="submitoffer"]');
+  if (submitOffer) submitOffer.addEventListener("click", function(){
+    closeModal();
+    attemptSendOffer(submitOffer.getAttribute("data-task"), document.getElementById("offer-amount").value, document.getElementById("offer-msg").value);
+  });
+  var doCharge = document.querySelector('[data-action="docharge"]');
+  if (doCharge) doCharge.addEventListener("click", function(){
+    var phoneInput = document.getElementById("charge-phone");
+    var phone = phoneInput ? phoneInput.value.trim() : state._lastPhone;
+    if (!phone) { showToast("Enter a phone number."); return; }
+    state._lastPhone = phone;
+    runChargeFlow(phone);
+  });
+  var starWrap = document.getElementById("review-stars");
+  var chosenStar = 5;
+  if (starWrap) {
+    function paintStars(){ starWrap.querySelectorAll("span").forEach(function(s){ s.classList.toggle("on", Number(s.getAttribute("data-star"))<=chosenStar); }); }
+    paintStars();
+    starWrap.querySelectorAll("span").forEach(function(s){ s.addEventListener("click", function(){ chosenStar = Number(s.getAttribute("data-star")); paintStars(); }); });
+  }
+  var submitReviewBtn = document.querySelector('[data-action="submitreview"]');
+  if (submitReviewBtn) submitReviewBtn.addEventListener("click", function(){
+    submitReview(submitReviewBtn.getAttribute("data-task"), submitReviewBtn.getAttribute("data-for"), chosenStar, document.getElementById("review-comment").value);
+  });
+}
+function bindClick(action, fn){
+  document.querySelectorAll('[data-action="'+action+'"]').forEach(function(el){ el.addEventListener("click", function(){ fn(el); }); });
+}
+function findTask(el){ var id = el.getAttribute("data-task"); return state.tasks.filter(function(t){return t.id===id;})[0]; }
+function captureDraftFields(){
+  var d = state.postDraft, t;
+  if ((t=document.getElementById("d-title"))) d.title = t.value;
+  if ((t=document.getElementById("d-desc"))) d.description = t.value;
+  if ((t=document.getElementById("d-county"))) d.county = t.value;
+  if ((t=document.getElementById("d-area"))) d.area = t.value;
+  if ((t=document.getElementById("d-date"))) d.dueDate = t.value;
+  if ((t=document.getElementById("d-budget"))) d.budget = t.value;
+}
+
+/* Renewing an existing poster plan reuses the same "poster_sub" purpose with an
+   empty meta — the backend only creates a task from meta when meta.title is set,
+   so an empty meta safely just extends the subscription. */
+
+boot();
+})();
+</script>
+</body>
+</html>
