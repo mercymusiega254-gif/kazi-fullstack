@@ -90,12 +90,9 @@ router.get("/:id", async (req, res) => {
 // "poster_sub" and the draft task in `meta` — the payment callback creates
 // the task once M-Pesa confirms, so this endpoint is only reached once a
 // subscription is already active.
+// Posting a task does not require a subscription.
 router.post("/", requireAuth, async (req, res) => {
-  const { rows } = await pool.query(`SELECT poster_sub_expires_at FROM users WHERE id=$1`, [req.userId]);
-  if (!isPosterSubActive(rows[0] && rows[0].poster_sub_expires_at)) {
-    return res.status(402).json({ error: "PAYMENT_REQUIRED", message: "An active poster plan is needed to post a task." });
-  }
-  const t = req.body || {};
+    const t = req.body || {};
   if (!t.title || !t.description || !t.county || !t.budget) {
     return res.status(400).json({ error: "title, description, county and budget are required." });
   }
