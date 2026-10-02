@@ -708,10 +708,28 @@ function goView(v, extra){
   if (v === "dashboard" || v === "browse" || v === "mytasks") loadTasks();
   render();
 }
-function openTask(id){
-  state.taskId = id; state.view = "detail";
-  loadOffers(id);
-  window.scrollTo(0,0); render();
+function openProfile(id){
+  state.profileId = id;
+  state.view = "profile";
+  state._viewedProfile = null;
+
+  if (id === state.me.id) {
+    api.get("/api/profiles/me")
+      .then(function(r){
+        state.me = Object.assign({}, state.me, r.profile);
+        render();
+      })
+      .catch(function(){
+        showToast("Couldn't load your profile.");
+        render();
+      });
+  } else {
+    loadProfile(id);
+    loadReviews(id);
+    render();
+  }
+
+  window.scrollTo(0,0);
 }
 function openProfile(id){
   state.profileId = id; state.view = "profile"; state._viewedProfile = null;
@@ -1161,6 +1179,29 @@ function renderProfilePage(){
         '<div><label>Area</label><input type="text" id="p-area" value="'+esc(p.area||"")+'"></div>' +
       '</div>' +
       '<label style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="p-tasker" '+(p.isTasker?"checked":"")+' style="width:auto;">Available to be hired as a tasker</label>' +
+
+'<div style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line);">' +
+  '<h3 style="font-size:16px;margin:0 0 6px;">Payment Methods</h3>' +
+  '<p class="muted" style="font-size:12.5px;margin:0 0 14px;">Your payment details are private and are not shown on your public profile.</p>' +
+
+  '<label>M-Pesa phone number</label>' +
+  '<input type="tel" id="p-mpesa" value="'+esc((p.paymentMethods&&p.paymentMethods.mpesaPhone)||"")+'" placeholder="07XX XXX XXX">' +
+
+  '<label>Bank name</label>' +
+  '<input type="text" id="p-bank-name" value="'+esc((p.paymentMethods&&p.paymentMethods.bankName)||"")+'" placeholder="Bank name">' +
+
+  '<label>Account name</label>' +
+  '<input type="text" id="p-bank-account-name" value="'+esc((p.paymentMethods&&p.paymentMethods.bankAccountName)||"")+'" placeholder="Name on account">' +
+
+  '<label>Account number</label>' +
+  '<input type="text" id="p-bank-account-number" value="'+esc((p.paymentMethods&&p.paymentMethods.bankAccountNumber)||"")+'" placeholder="Bank account number">' +
+
+  '<label>PayPal email</label>' +
+  '<input type="email" id="p-paypal" value="'+esc((p.paymentMethods&&p.paymentMethods.paypalEmail)||"")+'" placeholder="PayPal email">' +
+
+  '<label>Google Pay email</label>' +
+  '<input type="email" id="p-google-pay" value="'+esc((p.paymentMethods&&p.paymentMethods.googlePayEmail)||"")+'" placeholder="Google Pay email">' +
+'</div>' +
       '<button class="btn btn-primary btn-block" style="margin-top:14px;" data-action="saveprofile">Save profile</button>' +
     '</div>' +
     '<button class="btn" style="margin-top:16px;width:100%;" data-action="logout">Log out</button>';
@@ -1281,17 +1322,25 @@ function bindViewEvents(){
     var p=Number((document.getElementById('calc-price')||{}).value)||0, n=Number((document.getElementById('calc-tasks')||{}).value)||0, w=Number((document.getElementById('calc-weeks')||{}).value)||0, e=Number((document.getElementById('calc-expenses')||{}).value)||0;
     var result=Math.max(0,p*n*w-e); var out=document.getElementById('calc-result'); if(out) out.textContent=fmtKES(result);
   });
+var saveBtn = document.querySelector('[data-action="saveprofile"]');
+if (saveBtn) saveBtn.addEventListener("click", function(){
+  saveProfile({
+    bio: (document.getElementById("p-bio")||{}).value || "",
+    county: (document.getElementById("p-county")||{}).value || "",
+    area: (document.getElementById("p-area")||{}).value || "",
+    isTasker: !!(document.getElementById("p-tasker")||{}).checked,
 
-  var saveBtn = document.querySelector('[data-action="saveprofile"]');
-  if (saveBtn) saveBtn.addEventListener("click", function(){
-    saveProfile({
-      bio: (document.getElementById("p-bio")||{}).value || "",
-      county: (document.getElementById("p-county")||{}).value || "",
-      area: (document.getElementById("p-area")||{}).value || "",
-      isTasker: !!(document.getElementById("p-tasker")||{}).checked
-    });
+    paymentMethods: {
+      mpesaPhone: (document.getElementById("p-mpesa")||{}).value || "",
+      bankName: (document.getElementById("p-bank-name")||{}).value || "",
+      bankAccountName: (document.getElementById("p-bank-account-name")||{}).value || "",
+      bankAccountNumber: (document.getElementById("p-bank-account-number")||{}).value || "",
+      paypalEmail: (document.getElementById("p-paypal")||{}).value || "",
+      googlePayEmail: (document.getElementById("p-google-pay")||{}).value || ""
+    }
   });
-}
+});
+  }
 function bindModalEvents(){
   var back = document.querySelector(".modal-back");
   if (back) back.addEventListener("click", function(ev){ if (ev.target===back) closeModal(); });
