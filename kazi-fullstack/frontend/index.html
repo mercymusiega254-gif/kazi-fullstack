@@ -69,7 +69,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f7f1e6;--surface:#fffdf8;--surface-2:#eee7da;--ink:#101a35;--muted:#667085;
+  --teal-100:#eee7da;--bg:#f7f1e6;--surface:#fffdf8;--surface-2:#eee7da;--ink:#101a35;--muted:#667085;
   --line:#ded6c8;--navy:#071b49;--navy-2:#0d2b68;--navy-3:#183b7a;--accent:#1f66ff;
   --accent-2:#2d7cff;--orange:#e7b85c;--danger:#ef4b5f;--good:#16a878;--white:#fff;
   --shadow:0 12px 30px rgba(20,24,39,.08);--radius:14px;
@@ -1163,7 +1163,7 @@ function renderProfilePage(){
   var editBlock = "";
   if (isMe) {
     var posterActive = isPosterSubActive(p), proActive = isProActive(p);
-    '<div class="card" style="padding:16px;margin-top:10px;">' +
+    editBlock = '<div class="card" style="padding:16px;margin-top:10px;">' +
       '<h3 style="font-size:14.5px;margin:0 0 6px;">Kazi Pro '+(proActive?proBadge(true):'')+'</h3>' +
       '<ul class="muted" style="margin:0 0 12px;padding-left:18px;font-size:13px;line-height:1.7;">' +
         '<li>See and bid on new tasks '+EARLY_ACCESS_HOURS+'h before everyone else</li>' +
