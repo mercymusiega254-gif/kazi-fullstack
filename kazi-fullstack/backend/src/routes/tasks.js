@@ -13,10 +13,7 @@ const EARLY_ACCESS_MS = 2 * 60 * 60 * 1000;
 // --------------------------------------------------
 
 function isProActive(proExpiresAt) {
-  return (
-    !!proExpiresAt &&
-    new Date(proExpiresAt).getTime() > Date.now()
-  );
+  return !!proExpiresAt && new Date(proExpiresAt).getTime() > Date.now();
 }
 
 function toTaskJson(t) {
@@ -53,14 +50,10 @@ router.use(async (req, res, next) => {
 
     if (req.userId) {
       const { rows } = await pool.query(
-        `SELECT pro_expires_at
-         FROM users
-         WHERE id = $1`,
+        `SELECT pro_expires_at FROM users WHERE id = $1`,
         [req.userId]
       );
-
-      req._viewerIsPro =
-        rows[0] && isProActive(rows[0].pro_expires_at);
+      req._viewerIsPro = !!(rows[0] && isProActive(rows[0].pro_expires_at));
     }
 
     next();
@@ -100,10 +93,7 @@ router.get("/", async (req, res) => {
       );
     }
 
-    const where =
-      clauses.length > 0
-        ? "WHERE " + clauses.join(" AND ")
-        : "";
+    const where = clauses.length > 0 ? "WHERE " + clauses.join(" AND ") : "";
 
     const { rows } = await pool.query(
       `SELECT
@@ -123,17 +113,9 @@ router.get("/", async (req, res) => {
     const meId = req.userId;
 
     const tasks = rows.map((t) => {
-      const ageMs =
-        Date.now() - new Date(t.created_at).getTime();
-
-      const inWindow =
-        t.status === "open" &&
-        ageMs < EARLY_ACCESS_MS;
-
-      const locked =
-        inWindow &&
-        t.posted_by !== meId &&
-        !req._viewerIsPro;
+      const ageMs = Date.now() - new Date(t.created_at).getTime();
+      const inWindow = t.status === "open" && ageMs < EARLY_ACCESS_MS;
+      const locked = inWindow && t.posted_by !== meId && !req._viewerIsPro;
 
       return {
         ...toTaskJson(t),
@@ -145,9 +127,7 @@ router.get("/", async (req, res) => {
     res.json({ tasks });
   } catch (err) {
     console.error("GET /api/tasks error:", err);
-    res.status(500).json({
-      error: "Could not load tasks."
-    });
+    res.status(500).json({ error: "Could not load tasks." });
   }
 });
 
@@ -172,24 +152,13 @@ router.get("/:id", async (req, res) => {
     );
 
     if (!rows[0]) {
-      return res.status(404).json({
-        error: "Task not found."
-      });
+      return res.status(404).json({ error: "Task not found." });
     }
 
     const t = rows[0];
-
-    const ageMs =
-      Date.now() - new Date(t.created_at).getTime();
-
-    const inWindow =
-      t.status === "open" &&
-      ageMs < EARLY_ACCESS_MS;
-
-    const locked =
-      inWindow &&
-      t.posted_by !== req.userId &&
-      !req._viewerIsPro;
+    const ageMs = Date.now() - new Date(t.created_at).getTime();
+    const inWindow = t.status === "open" && ageMs < EARLY_ACCESS_MS;
+    const locked = inWindow && t.posted_by !== req.userId && !req._viewerIsPro;
 
     res.json({
       task: {
@@ -200,10 +169,7 @@ router.get("/:id", async (req, res) => {
     });
   } catch (err) {
     console.error("GET /api/tasks/:id error:", err);
-
-    res.status(500).json({
-      error: "Could not load task."
-    });
+    res.status(500).json({ error: "Could not load task." });
   }
 });
 
@@ -211,49 +177,25 @@ router.get("/:id", async (req, res) => {
 // CREATE TASK
 // POST /api/tasks
 //
-// IMPORTANT:
-// Posting a task does NOT require a subscription.
+// Posting a task is free. No subscription needed.
 // --------------------------------------------------
 
 router.post("/", requireAuth, async (req, res) => {
   try {
     const t = req.body || {};
 
-    if (
-      !t.title ||
-      !t.description ||
-      !t.county ||
-      !t.budget
-    ) {
+    if (!t.title || !t.description || !t.county || !t.budget) {
       return res.status(400).json({
-        error:
-          "title, description, county and budget are required."
+        error: "title, description, county and budget are required."
       });
     }
 
     const { rows: created } = await pool.query(
       `INSERT INTO tasks (
-         title,
-         description,
-         category,
-         county,
-         area,
-         budget_type,
-         budget,
-         due_date,
-         posted_by
+         title, description, category, county, area,
+         budget_type, budget, due_date, posted_by
        )
-       VALUES (
-         $1,
-         $2,
-         $3,
-         $4,
-         $5,
-         $6,
-         $7,
-         $8,
-         $9
-       )
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
        RETURNING *`,
       [
         t.title,
@@ -278,10 +220,7 @@ router.post("/", requireAuth, async (req, res) => {
     });
   } catch (err) {
     console.error("POST /api/tasks error:", err);
-
-    res.status(500).json({
-      error: "Could not create task."
-    });
+    res.status(500).json({ error: "Could not create task." });
   }
 });
 
@@ -295,76 +234,49 @@ router.post("/:id/accept-offer", requireAuth, async (req, res) => {
     const { offerId } = req.body || {};
 
     if (!offerId) {
-      return res.status(400).json({
-        error: "offerId is required."
-      });
+      return res.status(400).json({ error: "offerId is required." });
     }
 
     const { rows: taskRows } = await pool.query(
-      `SELECT *
-       FROM tasks
-       WHERE id = $1`,
+      `SELECT * FROM tasks WHERE id = $1`,
       [req.params.id]
     );
 
     const task = taskRows[0];
 
     if (!task) {
-      return res.status(404).json({
-        error: "Task not found."
-      });
+      return res.status(404).json({ error: "Task not found." });
     }
 
     if (task.posted_by !== req.userId) {
-      return res.status(403).json({
-        error:
-          "Only the poster can accept an offer."
-      });
+      return res.status(403).json({ error: "Only the poster can accept an offer." });
     }
 
     const { rows: offerRows } = await pool.query(
-      `SELECT *
-       FROM offers
-       WHERE id = $1
-       AND task_id = $2`,
+      `SELECT * FROM offers WHERE id = $1 AND task_id = $2`,
       [offerId, req.params.id]
     );
 
     const offer = offerRows[0];
 
     if (!offer) {
-      return res.status(404).json({
-        error: "Offer not found."
-      });
+      return res.status(404).json({ error: "Offer not found." });
     }
 
     await pool.query(
-      `UPDATE tasks
-       SET status = 'assigned',
-           assigned_to = $1
-       WHERE id = $2`,
+      `UPDATE tasks SET status = 'assigned', assigned_to = $1 WHERE id = $2`,
       [offer.tasker_id, req.params.id]
     );
 
     await pool.query(
-      `UPDATE offers
-       SET status = 'accepted'
-       WHERE id = $1`,
+      `UPDATE offers SET status = 'accepted' WHERE id = $1`,
       [offerId]
     );
 
-    res.json({
-      ok: true
-    });
+    res.json({ ok: true });
   } catch (err) {
-    console.error(
-      "POST /api/tasks/:id/accept-offer error:",
-      err
-    );
-
-    res.status(500).json({
-      error: "Could not accept offer."
-    });
+    console.error("POST /api/tasks/:id/accept-offer error:", err);
+    res.status(500).json({ error: "Could not accept offer." });
   }
 });
 
@@ -376,46 +288,29 @@ router.post("/:id/accept-offer", requireAuth, async (req, res) => {
 router.post("/:id/complete", requireAuth, async (req, res) => {
   try {
     const { rows } = await pool.query(
-      `SELECT *
-       FROM tasks
-       WHERE id = $1`,
+      `SELECT * FROM tasks WHERE id = $1`,
       [req.params.id]
     );
 
     const task = rows[0];
 
     if (!task) {
-      return res.status(404).json({
-        error: "Task not found."
-      });
+      return res.status(404).json({ error: "Task not found." });
     }
 
     if (task.posted_by !== req.userId) {
-      return res.status(403).json({
-        error:
-          "Only the poster can mark this complete."
-      });
+      return res.status(403).json({ error: "Only the poster can mark this complete." });
     }
 
     await pool.query(
-      `UPDATE tasks
-       SET status = 'completed'
-       WHERE id = $1`,
+      `UPDATE tasks SET status = 'completed' WHERE id = $1`,
       [req.params.id]
     );
 
-    res.json({
-      ok: true
-    });
+    res.json({ ok: true });
   } catch (err) {
-    console.error(
-      "POST /api/tasks/:id/complete error:",
-      err
-    );
-
-    res.status(500).json({
-      error: "Could not complete task."
-    });
+    console.error("POST /api/tasks/:id/complete error:", err);
+    res.status(500).json({ error: "Could not complete task." });
   }
 });
 
@@ -457,14 +352,8 @@ router.get("/:id/offers", async (req, res) => {
       }))
     });
   } catch (err) {
-    console.error(
-      "GET /api/tasks/:id/offers error:",
-      err
-    );
-
-    res.status(500).json({
-      error: "Could not load offers."
-    });
+    console.error("GET /api/tasks/:id/offers error:", err);
+    res.status(500).json({ error: "Could not load offers." });
   }
 });
 
@@ -472,15 +361,73 @@ router.get("/:id/offers", async (req, res) => {
 // SEND OFFER
 // POST /api/tasks/:id/offers
 //
-// Currently requires the bidding payment flow.
+// Sending an offer is free. Sending again on the same task updates
+// your earlier offer instead of creating a duplicate.
 // --------------------------------------------------
 
 router.post("/:id/offers", requireAuth, async (req, res) => {
-  return res.status(402).json({
-    error: "PAYMENT_REQUIRED",
-    message:
-      "A KSh 50 bidding fee applies to send an offer. Use /api/payments/stk."
-  });
+  try {
+    const amount = Number((req.body || {}).amount);
+    const message = String((req.body || {}).message || "").slice(0, 1000);
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+      return res.status(400).json({ error: "Enter a valid offer amount." });
+    }
+
+    const { rows: taskRows } = await pool.query(
+      `SELECT * FROM tasks WHERE id = $1`,
+      [req.params.id]
+    );
+    const task = taskRows[0];
+
+    if (!task) {
+      return res.status(404).json({ error: "Task not found." });
+    }
+
+    if (task.posted_by === req.userId) {
+      return res.status(400).json({ error: "You can't make an offer on your own task." });
+    }
+
+    if (task.status !== "open") {
+      return res.status(400).json({ error: "This task is no longer open for offers." });
+    }
+
+    // Pro early-access window: only Pro taskers can bid in the first 2 hours.
+    const ageMs = Date.now() - new Date(task.created_at).getTime();
+    if (ageMs < EARLY_ACCESS_MS && !req._viewerIsPro) {
+      return res.status(403).json({
+        error: "This task is still in its Pro early-access window."
+      });
+    }
+
+    const { rows: existing } = await pool.query(
+      `SELECT id, status FROM offers WHERE task_id = $1 AND tasker_id = $2`,
+      [req.params.id, req.userId]
+    );
+
+    if (existing[0]) {
+      if (existing[0].status === "accepted") {
+        return res.status(400).json({ error: "Your offer was already accepted." });
+      }
+      const { rows: updated } = await pool.query(
+        `UPDATE offers SET amount = $1, message = $2 WHERE id = $3 RETURNING *`,
+        [amount, message, existing[0].id]
+      );
+      return res.json({ ok: true, offer: updated[0] });
+    }
+
+    const { rows: created } = await pool.query(
+      `INSERT INTO offers (task_id, tasker_id, amount, message)
+       VALUES ($1, $2, $3, $4)
+       RETURNING *`,
+      [req.params.id, req.userId, amount, message]
+    );
+
+    res.status(201).json({ ok: true, offer: created[0] });
+  } catch (err) {
+    console.error("POST /api/tasks/:id/offers error:", err);
+    res.status(500).json({ error: "Could not send offer." });
+  }
 });
 
 // --------------------------------------------------
