@@ -39,12 +39,12 @@
     {
       "@type": "Question",
       "name": "How much does it cost to post a task on Kazi?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Posting a task on Kazi is free." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Posting a task requires an active poster plan of KSh 500 per month." }
     },
     {
       "@type": "Question",
       "name": "How much does it cost to send an offer on a task?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Sending an offer on a task is free." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Sending an offer (bid) on a task costs a KSh 50 bidding fee." }
     },
     {
       "@type": "Question",
@@ -54,7 +54,7 @@
     {
       "@type": "Question",
       "name": "Is paying through Kazi safe?",
-      "acceptedAnswer": { "@type": "Answer", "text": "All charges run through Safaricom's M-Pesa STK Push. Your Kazi Pro plan or task payment is only recorded once M-Pesa confirms the payment, so a cancelled or failed prompt never charges you." }
+      "acceptedAnswer": { "@type": "Answer", "text": "All charges run through Safaricom's M-Pesa STK Push. Your plan or offer is only activated once M-Pesa confirms the payment, so a cancelled or failed prompt never charges you or creates a free post or offer." }
     },
     {
       "@type": "Question",
@@ -64,13 +64,12 @@
   ]
 }
 </script>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2048%2048%22%20aria-hidden%3D%22true%22%3E%3Crect%20rx%3D%2213%22%20fill%3D%22%23071b49%22/%3E%3Cpath%20d%3D%22M16%2012v24M33%2014L19%2025l14%2011%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22/%3E%3Ccircle%20cx%3D%2235%22%20cy%3D%2213%22%20r%3D%224.5%22%20fill%3D%22%23e7b85c%22/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --teal-100:#eee7da;--bg:#f7f1e6;--surface:#fffdf8;--surface-2:#eee7da;--ink:#101a35;--muted:#667085;
+  --bg:#f7f1e6;--surface:#fffdf8;--surface-2:#eee7da;--ink:#101a35;--muted:#667085;
   --line:#ded6c8;--navy:#071b49;--navy-2:#0d2b68;--navy-3:#183b7a;--accent:#1f66ff;
   --accent-2:#2d7cff;--orange:#e7b85c;--danger:#ef4b5f;--good:#16a878;--white:#fff;
   --shadow:0 12px 30px rgba(20,24,39,.08);--radius:14px;
@@ -309,42 +308,6 @@ input[type=text],input[type=tel],input[type=number],input[type=date],select,text
 .faq-item p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.55}
 @media(max-width:760px){.faq-grid{grid-template-columns:1fr}}
 
-/* v3: task list, payout choices, wallet, trust */
-.service-tile .service-icon,.service-grid .service-icon{width:30px;height:30px;border-radius:9px;background:#071b49;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.post-q{font-size:22px;margin:0 0 4px}.cat-search{margin-bottom:12px}
-.cat-list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow-y:auto;background:var(--surface);max-height:62vh}
-.cat-row{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);padding:15px 16px;font-size:15px;font-weight:600}
-.cat-row:last-child{border-bottom:0}.cat-row:hover,.cat-row:active{background:var(--surface-2)}.cat-row.active{background:#e8f0ff}.cat-row i{font-style:normal;color:var(--muted);font-size:22px;line-height:1}
-.chosen-cat{display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font-weight:600;margin-bottom:4px}
-.pm-choices{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 6px}.pm-chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:22px;padding:8px 14px;font-size:13px;font-weight:600}.pm-chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}.pm-chip small{margin-left:7px;opacity:.7;font-weight:500}
-.wallet-bal{padding:18px 20px;margin:12px 0;color:var(--ink)}.wallet-bal b{font-family:'Space Grotesk';font-size:30px;display:block}
-.wd-row{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.wd-row:last-child{border-bottom:0}
-.wd-status{font-weight:700;font-size:12px}.wd-status.pending{color:#b7791f}.wd-status.paid,.wd-status.success{color:var(--good)}.wd-status.failed{color:var(--danger)}
-.trust-note{font-size:12.5px;color:var(--muted);margin:10px 0 0}
-.home-footer{padding:26px 7%;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}.home-footer a{margin-right:18px;text-decoration:none}
-.verified-pill{background:#dff5ec;color:#0b7a56;vertical-align:1px}
-
-.klogo{display:flex;align-items:center;gap:9px}.kword{font-family:'Space Grotesk',Inter,sans-serif;font-weight:700;font-size:24px;color:#071b49;letter-spacing:-.03em}.kword i{color:#e7b85c;font-style:normal}.brand .kword{color:#fff;font-size:20px}
-.promo-bar{background:linear-gradient(90deg,#071b49,#183b7a);color:#fff;padding:10px 7%;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;text-align:center;font-size:13.5px}.promo-bar b{color:#e7b85c}.promo-bar button{background:#e7b85c;color:#241300;border:0;border-radius:20px;padding:6px 14px;font-weight:700;font-size:12.5px}
-.top-filter{margin-top:0!important}.filter-grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))!important}
-.idv-steps{display:grid;gap:10px;margin:14px 0}.idv-step{display:flex;gap:14px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.idv-step.active{border-color:var(--accent);box-shadow:0 0 0 3px rgba(31,102,255,.1)}.idv-num{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:#e8edf7;color:#183b7a;flex:none}.idv-step.done .idv-num{background:var(--good);color:#fff}.idv-step b{display:block}.idv-step small{color:var(--muted)}
-.idv-panel{padding:18px;margin-bottom:14px}.code-input{font-size:26px;letter-spacing:.5em;text-align:center;font-weight:700}.idv-note{background:#eef3ff;border-radius:10px;padding:10px 12px;font-size:12.5px;color:#183b7a;margin-top:12px}
-.pp-linked{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;margin-top:10px}.pp-btn{background:#ffc439;color:#111;border:0;border-radius:24px;padding:11px 18px;font-weight:700;width:100%;margin-top:10px}.pp-btn b{color:#003087}
-
-.redesigned-home-hero{display:grid!important;grid-template-columns:1fr 1.25fr;gap:36px;align-items:center;justify-content:stretch}
-.redesigned-home-hero .hero-copy{text-align:left!important;margin:0!important;max-width:none!important}
-.redesigned-home-hero .hero-kicker{text-align:left!important}
-.redesigned-home-hero h1,.redesigned-home-hero .hero-copy>p,.redesigned-home-hero .redesigned-search{margin-left:0!important;margin-right:0!important}
-.redesigned-home-hero h1{font-size:clamp(40px,4.6vw,62px)!important}
-.redesigned-home-hero .redesigned-search{grid-template-columns:1fr 1fr!important;max-width:none!important}
-.redesigned-home-hero .redesigned-search .search-cell{border-bottom:1px solid var(--line)}
-.redesigned-home-hero .redesigned-search button{grid-column:1/-1;min-height:48px}
-.redesigned-home-hero .hero-proof{justify-content:flex-start!important;flex-wrap:wrap}
-.earn-left{background:linear-gradient(160deg,#071b49,#183b7a);color:#fff;border-radius:24px;padding:34px 30px;box-shadow:0 16px 40px rgba(7,27,73,.18)}
-.earn-left h2{color:#fff;font-size:clamp(30px,3.4vw,44px);line-height:1.05;margin:10px 0 14px}.earn-left p{color:#dce8ff;font-size:15.5px;margin:0 0 20px}
-.earn-chip{background:#e7b85c;color:#241300;font-size:11px;font-weight:800;letter-spacing:.12em;border-radius:20px;padding:4px 10px}
-.earn-left .btn{padding:13px 24px;font-size:15px}.earn-left ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:8px;color:#fff;font-size:13.5px}.earn-left li:before{content:"✓ ";color:#e7b85c;font-weight:800}
-@media(max-width:900px){.redesigned-home-hero{grid-template-columns:1fr!important}}
 </style>
 </head>
 <body>
@@ -369,102 +332,100 @@ var COUNTIES = ["Nairobi","Mombasa","Kisumu","Nakuru","Uasin Gishu","Kiambu","Ma
   "Migori","Kisii","Nyamira","Narok","Tana River","Lamu"];
 
 var CATEGORIES = [
-  {id:"accountants", label:"Accountants"},
-  {id:"admin", label:"Admin"},
-  {id:"alterations", label:"Alterations"},
-  {id:"appliances", label:"Appliances"},
-  {id:"assembly", label:"Assembly"},
-  {id:"auto_electricians", label:"Auto Electricians"},
-  {id:"bakers", label:"Bakers"},
-  {id:"barbers", label:"Barbers"},
-  {id:"beauticians", label:"Beauticians"},
-  {id:"bicycle_service", label:"Bicycle Service"},
-  {id:"bricklaying", label:"Bricklaying"},
-  {id:"construction", label:"Building & Construction"},
-  {id:"masonry", label:"Masonry & Construction"},
-  {id:"business", label:"Business"},
-  {id:"car_body_work", label:"Car Body Work"},
-  {id:"carwash_detailing", label:"Car Detailing"},
-  {id:"car_repair", label:"Car Repair"},
-  {id:"car_service", label:"Car Service"},
-  {id:"carpentry", label:"Carpentry"},
-  {id:"cat_care", label:"Cat Care"},
-  {id:"catering", label:"Catering"},
-  {id:"chef", label:"Chef"},
-  {id:"cladding", label:"Cladding"},
-  {id:"cleaning", label:"Cleaning"},
-  {id:"tech_it", label:"Computers & IT"},
-  {id:"concreting", label:"Concreting"},
-  {id:"decking", label:"Decking"},
-  {id:"delivery", label:"Delivery"},
-  {id:"design", label:"Design"},
-  {id:"dog_care", label:"Dog Care"},
-  {id:"draftsman", label:"Draftsman"},
-  {id:"driving", label:"Driving"},
-  {id:"electrical", label:"Electricians"},
-  {id:"entertainment", label:"Entertainment"},
-  {id:"events", label:"Events"},
-  {id:"fencing", label:"Fencing"},
-  {id:"flooring", label:"Flooring"},
-  {id:"florist", label:"Florist"},
-  {id:"furniture_assembly", label:"Furniture Assembly"},
-  {id:"gardening", label:"Gardening"},
-  {id:"gate_installation", label:"Gate Installation"},
-  {id:"hairdressers", label:"Hairdressers"},
-  {id:"handyman", label:"Handyman"},
-  {id:"heating_cooling", label:"Heating & Cooling"},
-  {id:"home_automation_security", label:"Home Automation & Security"},
-  {id:"home_theatre", label:"Home Theatre"},
-  {id:"house_hunting", label:"House Hunting"},
-  {id:"interior_designer", label:"Interior Designer"},
-  {id:"landscaping", label:"Landscaping"},
-  {id:"laundry", label:"Laundry"},
-  {id:"lawn_care", label:"Lawn Care"},
-  {id:"lessons", label:"Lessons"},
-  {id:"locksmith", label:"Locksmith"},
-  {id:"makeup_artist", label:"Makeup Artist"},
-  {id:"marketing", label:"Marketing"},
-  {id:"mobile_mechanic", label:"Mobile Mechanic"},
-  {id:"painting", label:"Painting"},
-  {id:"paving", label:"Paving"},
-  {id:"pest_control", label:"Pest Control"},
-  {id:"pet_care", label:"Pet Care"},
-  {id:"photographers", label:"Photographers"},
-  {id:"plasterer", label:"Plasterer"},
-  {id:"plumbing", label:"Plumbing"},
-  {id:"pool_maintenance", label:"Pool Maintenance"},
-  {id:"removals", label:"Removals"},
-  {id:"roofing", label:"Roofing"},
-  {id:"security", label:"Security"},
-  {id:"sharpening", label:"Sharpening"},
-  {id:"staffing", label:"Staffing"},
-  {id:"tailoring", label:"Tailors"},
-  {id:"tattoo_artists", label:"Tattoo Artists"},
-  {id:"tiling", label:"Tiling"},
-  {id:"tradesman", label:"Tradesman"},
-  {id:"tutoring", label:"Tutoring"},
-  {id:"wall_hanging_mounting", label:"Wall Hanging & Mounting"},
-  {id:"wallpapering", label:"Wallpapering"},
-  {id:"waterproofing", label:"Waterproofing"},
-  {id:"welding", label:"Welding & Metalwork"},
-  {id:"web", label:"Web"},
-  {id:"wheel_tyre_service", label:"Wheel & Tyre Service"},
-  {id:"writing", label:"Writing"},
-  {id:"moving", label:"Moving & Delivery"},
-  {id:"beauty", label:"Beauty & Salon"},
-  {id:"childcare", label:"Childcare & Nanny"},
-  {id:"carwash", label:"Car Wash"},
-  {id:"catering", label:"Catering & Chef"},
-  {id:"events", label:"Events & Photography"},
-  {id:"tech", label:"Tech & Cyber Services"},
-  {id:"other", label:"Other"}
+  {id:"accountants", label:"Accountants", glyph:"🧮"},
+  {id:"admin", label:"Admin", glyph:"🗂️"},
+  {id:"alterations", label:"Alterations", glyph:"🧵"},
+  {id:"appliances", label:"Appliances", glyph:"🔌"},
+  {id:"assembly", label:"Assembly", glyph:"🧩"},
+  {id:"auto_electricians", label:"Auto Electricians", glyph:"⚡"},
+  {id:"bakers", label:"Bakers", glyph:"🧁"},
+  {id:"barbers", label:"Barbers", glyph:"💈"},
+  {id:"beauticians", label:"Beauticians", glyph:"💄"},
+  {id:"bicycle_service", label:"Bicycle Service", glyph:"🚲"},
+  {id:"bricklaying", label:"Bricklaying", glyph:"🧱"},
+  {id:"construction", label:"Building & Construction", glyph:"🏗️"},
+  {id:"masonry", label:"Masonry & Construction", glyph:"🧱"},
+  {id:"business", label:"Business", glyph:"💼"},
+  {id:"car_body_work", label:"Car Body Work", glyph:"🚘"},
+  {id:"carwash_detailing", label:"Car Detailing", glyph:"✨"},
+  {id:"car_repair", label:"Car Repair", glyph:"🔧"},
+  {id:"car_service", label:"Car Service", glyph:"🚗"},
+  {id:"carpentry", label:"Carpentry", glyph:"🪚"},
+  {id:"cat_care", label:"Cat Care", glyph:"🐈"},
+  {id:"catering", label:"Catering", glyph:"🍲"},
+  {id:"chef", label:"Chef", glyph:"👨‍🍳"},
+  {id:"cladding", label:"Cladding", glyph:"🏠"},
+  {id:"cleaning", label:"Cleaning", glyph:"🧹"},
+  {id:"tech_it", label:"Computers & IT", glyph:"💻"},
+  {id:"concreting", label:"Concreting", glyph:"🧱"},
+  {id:"decking", label:"Decking", glyph:"🪵"},
+  {id:"delivery", label:"Delivery", glyph:"📦"},
+  {id:"design", label:"Design", glyph:"🎨"},
+  {id:"dog_care", label:"Dog Care", glyph:"🐕"},
+  {id:"draftsman", label:"Draftsman", glyph:"📐"},
+  {id:"driving", label:"Driving", glyph:"🚙"},
+  {id:"electrical", label:"Electricians", glyph:"💡"},
+  {id:"entertainment", label:"Entertainment", glyph:"🎤"},
+  {id:"events", label:"Events", glyph:"🎉"},
+  {id:"fencing", label:"Fencing", glyph:"🚧"},
+  {id:"flooring", label:"Flooring", glyph:"🪵"},
+  {id:"florist", label:"Florist", glyph:"💐"},
+  {id:"furniture_assembly", label:"Furniture Assembly", glyph:"🪑"},
+  {id:"gardening", label:"Gardening", glyph:"🌿"},
+  {id:"gate_installation", label:"Gate Installation", glyph:"🚪"},
+  {id:"hairdressers", label:"Hairdressers", glyph:"💇"},
+  {id:"handyman", label:"Handyman", glyph:"🔨"},
+  {id:"heating_cooling", label:"Heating & Cooling", glyph:"🌡️"},
+  {id:"home_automation_security", label:"Home Automation & Security", glyph:"🏡"},
+  {id:"home_theatre", label:"Home Theatre", glyph:"📺"},
+  {id:"house_hunting", label:"House Hunting", glyph:"🏠"},
+  {id:"interior_designer", label:"Interior Designer", glyph:"🛋️"},
+  {id:"landscaping", label:"Landscaping", glyph:"🌳"},
+  {id:"laundry", label:"Laundry", glyph:"👕"},
+  {id:"lawn_care", label:"Lawn Care", glyph:"🌱"},
+  {id:"lessons", label:"Lessons", glyph:"📚"},
+  {id:"locksmith", label:"Locksmith", glyph:"🔐"},
+  {id:"makeup_artist", label:"Makeup Artist", glyph:"💋"},
+  {id:"marketing", label:"Marketing", glyph:"📣"},
+  {id:"mobile_mechanic", label:"Mobile Mechanic", glyph:"🧰"},
+  {id:"painting", label:"Painting", glyph:"🖌️"},
+  {id:"paving", label:"Paving", glyph:"🛣️"},
+  {id:"pest_control", label:"Pest Control", glyph:"🪲"},
+  {id:"pet_care", label:"Pet Care", glyph:"🐾"},
+  {id:"photographers", label:"Photographers", glyph:"📷"},
+  {id:"plasterer", label:"Plasterer", glyph:"🧱"},
+  {id:"plumbing", label:"Plumbing", glyph:"🚿"},
+  {id:"pool_maintenance", label:"Pool Maintenance", glyph:"🏊"},
+  {id:"removals", label:"Removals", glyph:"🚚"},
+  {id:"roofing", label:"Roofing", glyph:"🏠"},
+  {id:"security", label:"Security", glyph:"🛡️"},
+  {id:"sharpening", label:"Sharpening", glyph:"🔪"},
+  {id:"staffing", label:"Staffing", glyph:"👥"},
+  {id:"tailoring", label:"Tailors", glyph:"🧵"},
+  {id:"tattoo_artists", label:"Tattoo Artists", glyph:"🖋️"},
+  {id:"tiling", label:"Tiling", glyph:"◻️"},
+  {id:"tradesman", label:"Tradesman", glyph:"🧰"},
+  {id:"tutoring", label:"Tutoring", glyph:"📘"},
+  {id:"wall_hanging_mounting", label:"Wall Hanging & Mounting", glyph:"🖼️"},
+  {id:"wallpapering", label:"Wallpapering", glyph:"🧱"},
+  {id:"waterproofing", label:"Waterproofing", glyph:"💧"},
+  {id:"welding", label:"Welding & Metalwork", glyph:"🛠️"},
+  {id:"web", label:"Web", glyph:"🌐"},
+  {id:"wheel_tyre_service", label:"Wheel & Tyre Service", glyph:"🛞"},
+  {id:"writing", label:"Writing", glyph:"✍️"},
+  {id:"moving", label:"Moving & Delivery", glyph:"🚚"},
+  {id:"beauty", label:"Beauty & Salon", glyph:"💇‍♀️"},
+  {id:"childcare", label:"Childcare & Nanny", glyph:"🧒"},
+  {id:"carwash", label:"Car Wash", glyph:"🚿"},
+  {id:"catering", label:"Catering & Chef", glyph:"🍽️"},
+  {id:"events", label:"Events & Photography", glyph:"📸"},
+  {id:"tech", label:"Tech & Cyber Services", glyph:"💻"},
+  {id:"other", label:"Other", glyph:"✳️"}
 ];
 function catLabel(id){ for (var i=0;i<CATEGORIES.length;i++) if (CATEGORIES[i].id===id) return CATEGORIES[i].label; return "Other"; }
-function catGlyph(id){ return ""; }
-function catMono(label){ return (label||"?").charAt(0).toUpperCase(); }
-function postCategories(){ var seen={}, out=[]; CATEGORIES.forEach(function(c){ if(!seen[c.id]){ seen[c.id]=1; out.push(c); } }); out.sort(function(a,b){ if(a.id==="other") return 1; if(b.id==="other") return -1; return a.label.localeCompare(b.label); }); return out; }
+function catGlyph(id){ for (var i=0;i<CATEGORIES.length;i++) if (CATEGORIES[i].id===id) return CATEGORIES[i].glyph; return "✳️"; }
 
-var PRO_FEE = 250;
+var POSTER_FEE = 500, BID_FEE = 50, PRO_FEE = 250;
 var EARLY_ACCESS_HOURS = 2;
 
 /* ===================== Utilities ===================== */
@@ -490,6 +451,7 @@ function stars(avg){
   return s;
 }
 function proBadge(isPro){ return isPro ? ' <span class="pill" style="background:#FCEBD8;color:var(--marigold-dark);vertical-align:1px;">PRO</span>' : ''; }
+function isPosterSubActive(p){ return !!(p && p.posterSubExpiresAt && new Date(p.posterSubExpiresAt).getTime() > Date.now()); }
 function isProActive(p){ return !!(p && p.proExpiresAt && new Date(p.proExpiresAt).getTime() > Date.now()); }
 function showToast(msg){
   var root = document.getElementById("toast-root");
@@ -526,7 +488,7 @@ var state = {
   authMode: "login",
   taskId: null,
   profileId: null,
-  status: "open", county: "", category: "", query: "", minPrice: 500, maxPrice: 20000, sortBy: "newest",
+  county: "", category: "", query: "", minPrice: 500, maxPrice: 20000, sortBy: "newest",
   tasks: [], tasksLoaded: false,
   offersByTask: {}, reviewsByUser: {},
   messagesByTask: {}, chatTaskId: null, chatPoll: null,
@@ -622,17 +584,17 @@ async function doPostTask(){
   } catch(e){ showToast(e.message || "Couldn't post right now."); }
 }
 
-async function attemptSendOffer(taskId, amount, message){
-  if (!amount || Number(amount) <= 0) { showToast("Enter an amount."); return; }
+function attemptSendOffer(taskId, amount, message){
+  if (!amount) { showToast("Enter an amount."); return; }
   var t = state.tasks.filter(function(x){return x.id===taskId;})[0];
   if (t && t.lockedForMe) { showToast("This task is still in its Pro early-access window."); return; }
-  try {
-    await api.post("/api/tasks/"+taskId+"/offers", { amount: Number(amount), message: message || "" });
-    showToast("Offer sent. The poster can now see it.");
-    await loadOffers(taskId);
-  } catch(e){
-    showToast((e && e.message) || "Couldn't send your offer.");
-  }
+  openChargeModal({
+    purpose: "bid_fee", amount: BID_FEE,
+    title: "Bidding fee", subtitle: "One-time fee to send this offer",
+    meta: { taskId: taskId, amount: Number(amount), message: message },
+    successHeadline: "Offer sent!", successNote: "The poster can now see your offer.",
+    afterSuccess: function(){ loadOffers(taskId); }
+  });
 }
 
 async function acceptOffer(task, offer){
@@ -677,7 +639,7 @@ function renderChargeModal(stage, extra){
   if (stage === "phone") {
     return '' +
     '<button class="close-x" data-close="1">✕</button>' +
-    '<div class="mpesa-badge">M-Pesa · Lipa na M-Pesa</div>' +
+    '<div class="mpesa-badge">🟢 M-Pesa · Lipa na M-Pesa</div>' +
     '<h2>'+esc(c.title)+'</h2>' +
     '<p class="muted" style="margin:0 0 16px;">'+esc(c.subtitle)+'</p>' +
     '<div class="card" style="padding:12px 16px;margin-bottom:16px;background:var(--teal-100);border:none;display:flex;justify-content:space-between;align-items:center;">' +
@@ -685,23 +647,22 @@ function renderChargeModal(stage, extra){
     '</div>' +
     '<label style="margin-top:0;">M-Pesa phone number</label>' +
     '<input type="tel" id="charge-phone" placeholder="07XX XXX XXX">' +
-    '<p class="trust-note">You will get an M-Pesa prompt on this phone. Enter your PIN there. Kazi never sees it.</p>' +
-    '<button class="btn btn-marigold btn-block" style="margin-top:12px;" data-action="docharge">Send STK push</button>';
+    '<button class="btn btn-marigold btn-block" style="margin-top:16px;" data-action="docharge">Send STK push</button>';
   }
   if (stage === "pin") {
-    return '<div class="pin-anim"><div class="phone-glyph" style="font-size:16px;font-weight:700;">M-PESA</div><h2 style="margin-top:10px;">Enter M-Pesa PIN</h2><p class="muted">Check your phone…</p></div>';
+    return '<div class="pin-anim"><div class="phone-glyph">📱</div><h2 style="margin-top:10px;">Enter M-Pesa PIN</h2><p class="muted">Check your phone…</p></div>';
   }
   if (stage === "failed") {
     return '' +
     '<button class="close-x" data-close="1">✕</button>' +
-    '<div style="text-align:center;padding:10px 0 4px;"><div style="font-size:34px;font-weight:700;color:var(--danger);">!</div>' +
+    '<div style="text-align:center;padding:10px 0 4px;"><div style="font-size:40px;">⚠️</div>' +
     '<h2>Payment didn\'t go through</h2><p class="muted">'+esc(extra||"You can try again.")+'</p>' +
     '<button class="btn btn-primary btn-block" style="margin-top:12px;" data-action="docharge">Try again</button></div>';
   }
   return '' +
   '<button class="close-x" data-close="1">✕</button>' +
   '<div style="text-align:center;padding:10px 0 4px;">' +
-  '<div style="font-size:40px;color:var(--good);">✓</div>' +
+  '<div style="font-size:40px;">✅</div>' +
   '<h2>'+esc(c.successHeadline||"Payment successful")+'</h2>' +
   '<p class="muted">'+esc(c.successNote||"")+'</p>' +
   '<button class="btn btn-primary btn-block" style="margin-top:12px;" data-close="1">Done</button>' +
@@ -719,6 +680,7 @@ async function runChargeFlow(phone){
         var s = await api.get("/api/payments/status/"+r.checkoutRequestId);
         if (s.status === "success") {
           clearInterval(poll);
+          if (c.purpose === "poster_sub") { state.me = Object.assign({}, state.me, { posterSubExpiresAt: new Date(Date.now()+30*86400000).toISOString() }); await loadTasks(); }
           if (c.purpose === "pro_sub") { state.me = Object.assign({}, state.me, { proExpiresAt: new Date(Date.now()+30*86400000).toISOString() }); }
           setModalBody(renderChargeModal("success"));
           if (c.afterSuccess) c.afterSuccess();
@@ -737,174 +699,6 @@ async function runChargeFlow(phone){
   }
 }
 
-/* ===================== Payment & withdrawal methods ===================== */
-var PM_METHODS = [
-  {id:"mpesa", label:"M-Pesa"},
-  {id:"bank", label:"Bank transfer"},
-  {id:"paypal", label:"PayPal"},
-  {id:"googlepay", label:"Google Pay"}
-];
-var MIN_WITHDRAW = 100;
-function pmLabel(id){ for (var i=0;i<PM_METHODS.length;i++) if (PM_METHODS[i].id===id) return PM_METHODS[i].label; return id; }
-function pmHasData(p,id){
-  var m = (p && p.paymentMethods) || {};
-  if (id==="mpesa") return !!m.mpesaPhone;
-  if (id==="bank") return !!m.bankAccountNumber;
-  if (id==="paypal") return !!m.paypalEmail;
-  if (id==="googlepay") return !!m.googlePayEmail;
-  return false;
-}
-function pmSelected(p){
-  if (state._pmChoice) return state._pmChoice;
-  var pref = p && p.paymentMethods && p.paymentMethods.preferredMethod;
-  if (pref && pmHasData(p,pref)) return pref;
-  for (var i=0;i<PM_METHODS.length;i++) if (pmHasData(p,PM_METHODS[i].id)) return PM_METHODS[i].id;
-  return "mpesa";
-}
-function pmShow(p,id){ return pmSelected(p)===id ? "" : "display:none;"; }
-function pmChoicesHtml(p){
-  var sel = pmSelected(p);
-  state._pmChoice = sel;
-  return '<div class="pm-choices">' + PM_METHODS.map(function(m){
-    return '<button type="button" class="pm-chip'+(sel===m.id?' active':'')+'" data-pmchoice="'+m.id+'">'+esc(m.label)+(pmHasData(p,m.id)?'<small>saved</small>':'')+'</button>';
-  }).join("") + '</div>';
-}
-function pmMasked(p,id){
-  var m = (p && p.paymentMethods) || {};
-  function tail(v){ v=String(v||""); return v.length>3 ? "••••"+v.slice(-3) : v; }
-  if (id==="mpesa") return tail(m.mpesaPhone);
-  if (id==="bank") return (m.bankName? m.bankName+" ":"")+tail(m.bankAccountNumber);
-  if (id==="paypal") return m.paypalEmail||"";
-  if (id==="googlepay") return m.googlePayEmail||"";
-  return "";
-}
-async function loadWallet(){
-  state.walletLoading = true; state.walletError = null;
-  try {
-    var r = await api.get("/api/wallet");
-    state.wallet = { balance: Number(r.balance)||0, withdrawals: r.withdrawals || [] };
-  } catch(e){
-    state.wallet = null;
-    state.walletError = (e && e.status===404) ? "setup" : ((e && e.message) || "Couldn't load your wallet.");
-  }
-  state.walletLoading = false;
-  if (state.view==="wallet") render();
-}
-async function requestWithdrawal(){
-  var amtEl = document.getElementById("w-amount");
-  var amount = Number(amtEl ? amtEl.value : state._wAmount);
-  var method = state._wMethod;
-  if (!method) { showToast("Choose where to send the money."); return; }
-  if (!amount || amount < MIN_WITHDRAW) { showToast("Minimum withdrawal is "+fmtKES(MIN_WITHDRAW)+"."); return; }
-  if (state.wallet && amount > state.wallet.balance) { showToast("That is more than your available balance."); return; }
-  try {
-    await api.post("/api/withdrawals", { method: method, amount: amount });
-    state._wAmount = "";
-    showToast("Withdrawal requested.");
-    await loadWallet();
-  } catch(e){
-    showToast(e && e.status===404 ? "Withdrawals are not switched on yet." : ((e && e.message) || "Couldn't request withdrawal."));
-  }
-}
-function renderWallet(){
-  var p = state.me || {};
-  var saved = PM_METHODS.filter(function(m){ return pmHasData(p,m.id); });
-  if (!state._wMethod || !pmHasData(p,state._wMethod)) state._wMethod = saved.length ? pmSelected(p) : null;
-  if (state._wMethod && !pmHasData(p,state._wMethod)) state._wMethod = saved.length ? saved[0].id : null;
-  var w = state.wallet;
-  var balanceHtml;
-  if (state.walletLoading && !w) balanceHtml = '<div class="muted">Loading your balance…</div>';
-  else if (state.walletError==="setup") balanceHtml = '<div class="muted">Withdrawals are not switched on yet. Your balance will appear here once they are.</div>';
-  else if (state.walletError) balanceHtml = '<div class="auth-error" style="margin:0;">'+esc(state.walletError)+'</div>';
-  else balanceHtml = '<span class="muted" style="font-size:12px;">Available to withdraw</span><b>'+fmtKES(w?w.balance:0)+'</b>';
-  var methodHtml;
-  if (!saved.length) {
-    methodHtml = '<p class="muted" style="margin:0 0 10px;">You have not added a payout method yet.</p><button class="btn btn-primary btn-sm" data-nav="profile">Add a payment method</button>';
-  } else {
-    methodHtml = '<label style="margin-top:0;">Withdraw to</label><div class="pm-choices">' + saved.map(function(m){
-      return '<button type="button" class="pm-chip'+(state._wMethod===m.id?' active':'')+'" data-wmethod="'+m.id+'">'+esc(m.label)+'<small>'+esc(pmMasked(p,m.id))+'</small></button>';
-    }).join("") + '</div>' +
-    '<label>Amount (KES)</label><input type="number" id="w-amount" min="'+MIN_WITHDRAW+'" placeholder="Minimum '+MIN_WITHDRAW+'" value="'+esc(state._wAmount||"")+'">' +
-    '<button class="btn btn-primary btn-block" style="margin-top:14px;" data-action="withdraw" '+(state.walletError?'disabled':'')+'>Request withdrawal</button>' +
-    '<p class="trust-note">Money is only sent to the payout details saved on your profile. You can change them there at any time.</p>';
-  }
-  var hist = (w && w.withdrawals && w.withdrawals.length) ? w.withdrawals.map(function(x){
-    var st = String(x.status||"pending").toLowerCase();
-    return '<div class="wd-row"><div><b>'+fmtKES(x.amount)+'</b><div class="muted">'+esc(pmLabel(x.method))+(x.createdAt?' · '+fmtDate(x.createdAt):'')+'</div></div><span class="wd-status '+esc(st)+'">'+esc(st.charAt(0).toUpperCase()+st.slice(1))+'</span></div>';
-  }).join("") : '<p class="muted" style="margin:0;">No withdrawals yet.</p>';
-  return '<h1 style="font-size:20px;">Wallet & withdrawals</h1>' +
-    '<div class="card wallet-bal">'+balanceHtml+'</div>' +
-    '<div class="card" style="padding:16px;">'+methodHtml+'</div>' +
-    '<div class="card" style="padding:16px;margin-top:16px;"><h3 style="font-size:14.5px;margin:0 0 8px;">Withdrawal history</h3>'+hist+'</div>';
-}
-
-/* ===================== Address verification ===================== */
-var VERIFY_DOCS = [
-  {id:"utility_bill", label:"Utility bill (electricity or water)"},
-  {id:"rent_lease", label:"Rent or lease agreement"},
-  {id:"bank_statement", label:"Bank statement"},
-  {id:"chief_letter", label:"Letter from chief or area administrator"},
-  {id:"other", label:"Other official document"}
-];
-var VERIFY_MAX_BYTES = 2 * 1024 * 1024;
-function verifiedBadge(v){ return v ? ' <span class="pill verified-pill">Address verified</span>' : ''; }
-async function loadVerification(){
-  state.verifyLoading = true; state.verifyError = null;
-  try { state.verify = await api.get("/api/verification/address"); }
-  catch(e){ state.verify = null; state.verifyError = (e && e.status===404) ? "setup" : ((e && e.message) || "Couldn't load your verification status."); }
-  state.verifyLoading = false;
-  if (state.view==="verify") render();
-}
-function readFileAsDataUrl(file){
-  return new Promise(function(res, rej){ var r = new FileReader(); r.onload = function(){ res(r.result); }; r.onerror = function(){ rej(new Error("Couldn't read that file.")); }; r.readAsDataURL(file); });
-}
-async function submitVerification(){
-  var county = (document.getElementById("v-county")||{}).value || "";
-  var area = ((document.getElementById("v-area")||{}).value || "").trim();
-  var street = ((document.getElementById("v-street")||{}).value || "").trim();
-  var docType = (document.getElementById("v-doctype")||{}).value || "";
-  var consent = !!(document.getElementById("v-consent")||{}).checked;
-  var file = state._vFile;
-  if (!county) { showToast("Choose your county."); return; }
-  if (!area) { showToast("Enter your area or estate."); return; }
-  if (!docType) { showToast("Choose which document you are uploading."); return; }
-  if (!file) { showToast("Attach a photo or PDF of the document."); return; }
-  if (!consent) { showToast("Please confirm the consent box."); return; }
-  var btn = document.querySelector('[data-action="submitverify"]'); if (btn) btn.disabled = true;
-  try {
-    var dataUrl = await readFileAsDataUrl(file);
-    await api.post("/api/verification/address", { county: county, area: area, street: street, docType: docType, fileName: file.name, fileType: file.type, fileData: dataUrl });
-    state._vFile = null;
-    showToast("Submitted. We will review it and update your status.");
-    await loadVerification();
-  } catch(e){
-    if (btn) btn.disabled = false;
-    showToast(e && e.status===404 ? "Address verification is not switched on yet." : (e && e.status===413 ? "That file is too large." : ((e && e.message) || "Couldn't submit.")));
-  }
-}
-function renderAddressVerify(){
-  var v = state.verify, st = v && v.status ? String(v.status).toLowerCase() : "none";
-  var head = '<h2 style="font-size:17px;margin:0 0 6px;">Verify your address</h2>' +
-    '<p class="muted" style="margin:0 0 14px;">Verified members show an "Address verified" badge on their profile, which helps others trust who they are dealing with. Only the badge is shown. Your address and document are never public.</p>';
-  if (state.verifyLoading && !v) return head + '<div class="card" style="padding:16px;">Loading…</div>';
-  if (state.verifyError==="setup") return head + '<div class="card" style="padding:16px;">Address verification is not switched on yet. Check back soon.</div>';
-  if (state.verifyError) return head + '<div class="auth-error">'+esc(state.verifyError)+'</div>';
-  if (st==="verified") return head + '<div class="card" style="padding:16px;"><b>Your address is verified.</b><div class="muted" style="margin-top:4px;">'+esc((v.area?v.area+", ":"")+(v.county||""))+(v.verifiedAt?' · verified '+fmtDate(v.verifiedAt):'')+'</div></div>';
-  if (st==="pending") return head + '<div class="card" style="padding:16px;"><b>Under review.</b><div class="muted" style="margin-top:4px;">We received your document'+(v.submittedAt?' on '+fmtDate(v.submittedAt):'')+'. You will see the badge here once it is approved.</div></div>';
-  var rej = st==="rejected" ? '<div class="auth-error">Your last submission was not approved'+(v.reason?': '+esc(v.reason):'')+'. You can submit again.</div>' : '';
-  var cOpts = COUNTIES.map(function(c){ return '<option value="'+esc(c)+'"'+((state.me&&state.me.county===c)?' selected':'')+'>'+esc(c)+'</option>'; }).join("");
-  var dOpts = VERIFY_DOCS.map(function(d){ return '<option value="'+d.id+'">'+esc(d.label)+'</option>'; }).join("");
-  return head + rej + '<div class="card" style="padding:16px;">' +
-    '<label style="margin-top:0;">County</label><select id="v-county"><option value="">Select county</option>'+cOpts+'</select>' +
-    '<label>Area or estate</label><input type="text" id="v-area" value="'+esc((state.me&&state.me.area)||"")+'" placeholder="e.g. Kilimani">' +
-    '<label>Street, building or landmark (optional)</label><input type="text" id="v-street" placeholder="e.g. Argwings Kodhek Rd, near the petrol station">' +
-    '<label>Document</label><select id="v-doctype"><option value="">Choose a document</option>'+dOpts+'</select>' +
-    '<p class="trust-note" style="margin-top:6px;">It must show your name and address and be dated within the last 3 months. You may hide account numbers and amounts.</p>' +
-    '<label>Photo or PDF (max 2 MB)</label><input type="file" id="v-file" accept="image/*,application/pdf"><div class="muted" id="v-file-name" style="margin-top:6px;font-size:12.5px;">'+(state._vFile?esc(state._vFile.name):'No file chosen')+'</div>' +
-    '<label style="display:flex;align-items:flex-start;gap:8px;font-weight:500;"><input type="checkbox" id="v-consent" style="width:auto;margin-top:3px;">I agree that Kazi may review this document only to verify my address.</label>' +
-    '<button class="btn btn-primary btn-block" style="margin-top:14px;" data-action="submitverify">Submit for review</button></div>';
-}
-
 /* ===================== Navigation ===================== */
 function goView(v, extra){
   state.view = v;
@@ -912,42 +706,17 @@ function goView(v, extra){
   if (extra) Object.assign(state, extra);
   window.scrollTo(0,0);
   if (v === "dashboard" || v === "browse" || v === "mytasks") loadTasks();
-  if (v === "wallet") { state._wMethod = null; loadWallet(); }
-  if (v === "verify") { state._vFile = null; loadVerification(); }
   render();
 }
-function openProfile(id){
-  state.profileId = id;
-  state.view = "profile";
-  state._viewedProfile = null;
-
-  if (id === state.me.id) {
-    api.get("/api/profiles/me")
-      .then(function(r){
-        state.me = Object.assign({}, state.me, r.profile);
-        render();
-      })
-      .catch(function(){
-        showToast("Couldn't load your profile.");
-        render();
-      });
-  } else {
-    loadProfile(id);
-    loadReviews(id);
-    render();
-  }
-
-  window.scrollTo(0,0);
+function openTask(id){
+  state.taskId = id; state.view = "detail";
+  loadOffers(id);
+  window.scrollTo(0,0); render();
 }
 function openProfile(id){
   state.profileId = id; state.view = "profile"; state._viewedProfile = null;
   loadProfile(id); loadReviews(id);
   window.scrollTo(0,0); render();
-}
-function openTask(id){
-  state.taskId = id;
-  goView("detail");
-  loadOffers(id);
 }
 function openChat(taskId){
   goView("messages", { chatTaskId: taskId });
@@ -976,16 +745,15 @@ function render(){
 function renderPublicHome(){
   return '<div class="public-home">' +
     '<header class="home-nav">' +
-      '<div class="home-logo klogo">'+KLOGO(36)+'<span class="kword">Kazi<i>.</i></span></div>' +
-      '<nav class="home-links"><a href="#services">Browse tasks</a><a href="#how">How it works</a><a href="#popular">Popular on Kazi</a><a href="#earn">Earn money</a><a href="#trust">Trust & safety</a></nav>' +
+      '<div class="home-logo">Kazi<span>.</span></div>' +
+      '<nav class="home-links"><a href="#services">Browse tasks</a><a href="#how">How it works</a><a href="#popular">Popular on Kazi</a><a href="#earn">Earn money</a></nav>' +
       '<div class="home-actions"><button class="btn" data-public-auth="login">Log in</button><button class="btn btn-primary" data-public-auth="register">Sign up</button></div>' +
     '</header>' +
     '<section class="redesigned-home-hero">' +
-      '<aside class="earn-left"><span class="earn-chip">FOR TASKERS</span><h2>Earn up to KSh 20,000 a month</h2><p>Doing tasks that fit your skills: your best art, design, cleaning, tutoring and more.</p><button class="btn btn-marigold" data-public-auth="register">Start earning</button><ul><li>Choose work near you</li><li>Set your own offers</li><li>Get paid securely via M-Pesa</li></ul></aside>' +
       '<div class="hero-copy">' +
         '<div class="hero-kicker">KENYA’S LOCAL TASK MARKETPLACE</div>' +
         '<h1>Get things done.</h1>' +
-        '<p>Post a task and find the right person nearby, or turn the skills you already have into extra income.</p>' +
+        '<p>Post a task and find the right person nearby — or turn the skills you already have into extra income.</p>' +
         '<div class="home-search redesigned-search">' +
           '<div class="search-cell"><label>What do you need?</label><input id="home-task" type="text" placeholder="e.g. Deep clean 1 bedroom"></div>' +
           '<div class="search-cell"><label>Location</label><select id="home-county"><option value="">All Kenya</option>'+COUNTIES.map(function(c){return '<option value="'+esc(c)+'">'+esc(c)+'</option>';}).join('')+'</select></div>' +
@@ -1017,26 +785,15 @@ function renderPublicHome(){
       '<div class="feature card"><div class="icon">2</div><h3>Compare and connect</h3><p>Review profiles, ratings and offers, then message the person you choose.</p></div>' +
       '<div class="feature card"><div class="icon">3</div><h3>Get it done</h3><p>Complete the task, pay securely and leave a review.</p></div>' +
     '</section>' +
-    '<section class="home-services" id="trust">' +
-      '<div class="home-section-head"><div><span class="eyebrow">TRUST & SAFETY</span><h2>Built so both sides can rely on it.</h2></div></div>' +
-      '<div class="home-features redesigned-features" style="margin-top:0;">' +
-        '<div class="feature card"><div class="icon">M</div><h3>Secure M-Pesa payments</h3><p>Every payment uses M-Pesa STK Push. You approve it on your own phone with your own PIN, and Kazi never sees it.</p></div>' +
-        '<div class="feature card"><div class="icon">✓</div><h3>Charged only when confirmed</h3><p>Kazi Pro and task payments are only recorded after M-Pesa confirms the payment. A cancelled or failed prompt never charges you.</p></div>' +
-        '<div class="feature card"><div class="icon">★</div><h3>Ratings and reviews</h3><p>Check profiles and past reviews before you choose, and leave an honest review once the task is done.</p></div>' +
-        '<div class="feature card"><div class="icon">◎</div><h3>Private by default</h3><p>Your payout details are never shown on your public profile, and task messages stay inside the Kazi chat.</p></div>' +
-        '<div class="feature card"><div class="icon">!</div><h3>Keep it on Kazi</h3><p>Agree details, chat and pay through Kazi so there is a record if something needs to be looked at.</p></div>' +
-      '</div>' +
-    '</section>' +
     '<section class="earn-banner" id="earn"><div class="earn-banner-inner"><div><span class="eyebrow light">FOR TASKERS</span><h2>Turn your skills into extra income.</h2><p>Find flexible opportunities across Kenya. Browse tasks from KSh 500 to KSh 20,000 and make offers that match your skills and time.</p></div><button class="btn" data-public-auth="register">Become a tasker</button></div></section>' +
     '<section class="community-note" id="about"><div class="community-note-inner"><div><span class="eyebrow">THE KAZI COMMUNITY</span><h2>A simple marketplace for getting things done.</h2><p>Profiles, ratings, reviews, messaging, task alerts and secure payment flows keep the experience organized for both posters and taskers.</p></div><button class="btn btn-primary" data-public-auth="register">Join Kazi</button></div></section>' +
-    '<footer class="home-footer"><div><b>Kazi</b> · Kenya’s local task marketplace</div><div><a href="#how">How it works</a><a href="#trust">Trust & safety</a><a href="#earn">Earn money</a></div><div>Payments processed through Safaricom M-Pesa</div></footer>' +
   '</div>';
 }
 function renderAuthScreen(){
   var mode = state.authMode;
   return '<div class="auth-shell"><div class="auth-card">' +
     '<button class="btn btn-ghost btn-sm" data-action="backhome">← Back to Kazi</button>' +
-    '<div class="auth-logo klogo" style="justify-content:center">'+KLOGO(44)+'<span class="kword">Kazi<i>.</i></span></div>' +
+    '<div class="auth-logo">Kazi<span>.</span></div>' +
     '<div class="auth-sub">Get it done, near you</div>' +
     (state._authError ? '<div class="auth-error">'+esc(state._authError)+'</div>' : '') +
     (mode==="login" ?
@@ -1071,9 +828,9 @@ function bindPublicHomeEvents(){
 }
 function topbarHtml(){
   return '<header class="topbar">' +
-    '<div class="brand" data-nav="dashboard"><span class="brand-mark" style="background:none;padding:0">'+KLOGO(34)+'</span><span>Kazi<small>get it done</small></span></div>' +
+    '<div class="brand" data-nav="dashboard"><span class="brand-mark">K</span><span>Kazi<small>get it done</small></span></div>' +
     '<div class="top-search">⌕<input id="global-search" type="text" placeholder="Search tasks" value="'+esc(state.query)+'"></div>' +
-    '<div class="top-tools"><button class="tool-btn" title="Notifications">◈</button><button class="tool-btn" title="Theme">☾</button><div class="avatar-sm">'+esc(initials(state.me.name))+'</div></div>' +
+    '<div class="top-tools"><button class="tool-btn" title="Notifications">🔔</button><button class="tool-btn" title="Theme">☾</button><div class="avatar-sm">'+esc(initials(state.me.name))+'</div></div>' +
   '</header>';
 }
 function sidebarHtml(){
@@ -1081,13 +838,11 @@ function sidebarHtml(){
     {id:'dashboard',glyph:'▦',label:'Dashboard'},
     {id:'browse',glyph:'⌕',label:'Browse tasks'},
     {id:'post',glyph:'＋',label:'Post a task'},
-    {id:'alerts',glyph:'◈',label:'Task alerts'},
+    {id:'alerts',glyph:'🔔',label:'Task alerts'},
     {id:'messages',glyph:'◌',label:'Chats'},
     {id:'mytasks',glyph:'▤',label:'My tasks'},
     {id:'calculator',glyph:'▣',label:'Earn calculator'},
     {id:'guidelines',glyph:'♢',label:'Community guidelines'},
-    {id:'wallet',glyph:'▭',label:'Wallet & withdraw'},
-    {id:'verify',glyph:'✓',label:'Verify address'},
     {id:'profile',glyph:'◎',label:'Profile'}
   ];
   return '<aside class="sidebar"><div class="sidebar-label">MANAGE KAZI</div>'+items.map(function(it){var active=state.view===it.id?' active':'';return '<button class="side-link'+active+'" data-nav="'+it.id+'"><span class="ico">'+it.glyph+'</span>'+it.label+'</button>';}).join('')+'</aside>';
@@ -1114,8 +869,6 @@ function viewHtml(){
     case 'alerts': return renderTaskAlerts();
     case 'calculator': return renderEarnCalculator();
     case 'guidelines': return renderGuidelines();
-    case 'wallet': return renderWallet();
-    case 'verify': return renderVerify();
     case 'profile': return renderProfilePage();
     default: return renderBrowse();
   }
@@ -1159,7 +912,7 @@ function renderDashboard(){
     '</div>' +
     '<div class="v2-lower">' +
       '<section class="dash-panel-v2 v2-wide-panel"><div class="v2-panel-head"><div><h3>Recent tasks</h3><p>Latest activity from your Kazi marketplace</p></div><button class="btn btn-sm" data-nav="browse">View all</button></div><div class="v2-task-tabs"><button class="v2-task-tab active">All tasks</button><button class="v2-task-tab">Posted by me</button><button class="v2-task-tab">I’m working on</button><button class="v2-task-tab">Completed</button></div><table class="v2-table"><thead><tr><th>Task</th><th>Budget</th><th>Status</th><th>Location</th></tr></thead><tbody>'+recentRows+'</tbody></table></section>' +
-      '<section class="dash-panel-v2 v2-wide-panel"><div class="v2-panel-head"><div><h3>Popular on Kazi</h3><p>Most active categories in the current feed</p></div></div><div class="v2-pop-grid">'+popular.map(function(c){return '<div class="v2-pop"><b>'+esc(c.label)+'</b><span>'+(catCounts[c.id]||0)+' task'+((catCounts[c.id]||0)===1?'':'s')+'</span></div>';}).join('')+'</div><div class="v2-quick"><button class="v2-quick-btn" data-nav="alerts"><span>◈ Task alerts</span><span>Open →</span></button><button class="v2-quick-btn" data-nav="calculator"><span>▣ Earn calculator</span><span>Open →</span></button><button class="v2-quick-btn" data-nav="guidelines"><span>♢ Community guidelines</span><span>Read →</span></button><button class="v2-quick-btn" data-nav="profile"><span>◎ Complete profile</span><span>'+(state.me.bio?'Edit':'Set up')+' →</span></button></div></section>' +
+      '<section class="dash-panel-v2 v2-wide-panel"><div class="v2-panel-head"><div><h3>Popular on Kazi</h3><p>Most active categories in the current feed</p></div></div><div class="v2-pop-grid">'+popular.map(function(c){return '<div class="v2-pop"><b>'+esc(c.glyph)+' '+esc(c.label)+'</b><span>'+(catCounts[c.id]||0)+' task'+((catCounts[c.id]||0)===1?'':'s')+'</span></div>';}).join('')+'</div><div class="v2-quick"><button class="v2-quick-btn" data-nav="alerts"><span>🔔 Task alerts</span><span>Open →</span></button><button class="v2-quick-btn" data-nav="calculator"><span>▣ Earn calculator</span><span>Open →</span></button><button class="v2-quick-btn" data-nav="guidelines"><span>♢ Community guidelines</span><span>Read →</span></button><button class="v2-quick-btn" data-nav="profile"><span>◎ Complete profile</span><span>'+(state.me.bio?'Edit':'Set up')+' →</span></button></div></section>' +
     '</div>' +
   '</div>';
 }
@@ -1168,7 +921,6 @@ function filteredTasks(){
   var min=Number(state.minPrice||500), max=Number(state.maxPrice||20000);
   var list=state.tasks.filter(function(t){
     var b=Number(t.budget)||0;
-    if(state.status!=='all' && t.status && t.status!=='open') return false;
     return b>=min && b<=max;
   });
   list.sort(function(a,b){
@@ -1183,11 +935,23 @@ function filteredTasks(){
 function renderBrowse(){
   var visible=filteredTasks();
   var html = '' +
-  '<div class="filter-panel card top-filter">' +
+  '<div class="hero browse-hero" style="margin:-18px -16px 0;border-radius:0 0 18px 18px;">' +
+    '<div><span class="eyebrow light">KAZI MARKETPLACE</span><h1>Find work that fits you.</h1>' +
+    '<p>Search local tasks, compare budgets and choose work that matches your skills and earning goals.</p></div>' +
+    '<div class="search-row"><input type="text" id="search-input" placeholder="Search tasks — e.g. clean house" value="'+esc(state.query)+'"><button class="btn btn-marigold" data-action="search">Search</button></div>' +
+  '</div>' +
+  '<div class="service-browser">' +
+    '<div class="service-browser-head"><div><span class="eyebrow">BROWSE SERVICES</span><h2>What kind of work are you looking for?</h2><p>Choose a service to see matching tasks. You can also search, filter and sort the marketplace.</p></div>' +
+    '<div class="service-search"><span>⌕</span><input id="service-search" type="text" placeholder="Search services..." autocomplete="off"></div></div>' +
+    '<div class="service-featured">' + CATEGORIES.slice(0,12).map(function(c){return '<div class="service-tile '+(state.category===c.id?"active":"")+'" data-cat="'+c.id+'"><span class="service-icon">'+c.glyph+'</span><b>'+esc(c.label)+'</b></div>';}).join('') + '</div>' +
+    '<div class="service-all-title"><h3>All services</h3><span>'+CATEGORIES.length+' services</span></div>' +
+    '<div class="service-grid" id="service-grid"><div class="service-tile '+(state.category===""?"active":"")+'" data-cat=""><span class="service-icon">🌐</span><b>All tasks</b></div>' +
+      CATEGORIES.map(function(c){return '<div class="service-tile '+(state.category===c.id?"active":"")+'" data-cat="'+c.id+'" data-service-label="'+esc(c.label.toLowerCase())+'"><span class="service-icon">'+c.glyph+'</span><b>'+esc(c.label)+'</b></div>';}).join('') +
+    '</div>' +
+  '</div>' +
+  '<div class="filter-panel card">' +
     '<div class="filter-title"><div><b>Filters</b><span class="muted"> Refine the tasks you want to see</span></div><button class="btn btn-sm" data-action="resetfilters">Reset</button></div>' +
-     '<div class="filter-grid">' +
-      '<div><label>Category</label><select id="filter-cat"><option value="">All categories</option>'+CATEGORIES.map(function(c){return '<option value="'+esc(c.id)+'" '+(state.category===c.id?'selected':'')+'>'+esc(c.label)+'</option>';}).join('')+'</select></div>' +
-      '<div><label>Task status</label><select id="filter-status"><option value="open" '+(state.status!=='all'?'selected':'')+'>Open tasks</option><option value="all" '+(state.status==='all'?'selected':'')+'>All tasks</option></select></div>' +
+    '<div class="filter-grid">' +
       '<div><label>County</label><select id="filter-county"><option value="">All counties</option>'+COUNTIES.map(function(c){return '<option value="'+esc(c)+'" '+(state.county===c?'selected':'')+'>'+esc(c)+'</option>';}).join('')+'</select></div>' +
       '<div><label>Sort by</label><select id="filter-sort"><option value="newest" '+(state.sortBy==='newest'?'selected':'')+'>Newest</option><option value="price_low" '+(state.sortBy==='price_low'?'selected':'')+'>Price: Low to High</option><option value="price_high" '+(state.sortBy==='price_high'?'selected':'')+'>Price: High to Low</option><option value="rating" '+(state.sortBy==='rating'?'selected':'')+'>Highest rated</option><option value="oldest" '+(state.sortBy==='oldest'?'selected':'')+'>Oldest</option></select></div>' +
       '<div class="price-filter"><label>Price / earning range</label><div class="range-values"><span>KSh '+Number(state.minPrice).toLocaleString()+'</span><span>KSh '+Number(state.maxPrice).toLocaleString()+'</span></div><div class="range-pair"><input id="filter-min" type="range" min="500" max="20000" step="500" value="'+state.minPrice+'"><input id="filter-max" type="range" min="500" max="20000" step="500" value="'+state.maxPrice+'"></div><div class="range-labels"><span>500</span><span>20,000</span></div></div>' +
@@ -1198,26 +962,12 @@ function renderBrowse(){
       '<div><label>Other filters</label><div class="filter-checks"><span class="filter-check">Nearby</span><span class="filter-check">Highly rated</span><span class="filter-check">Verified</span></div></div>' +
     '</div>' +
   '</div>' +
-  '<div class="hero browse-hero" style="margin:16px -16px 0;border-radius:18px;">' +
-    '<div><span class="eyebrow light">KAZI MARKETPLACE</span><h1>Find work that fits you.</h1>' +
-    '<p>Search local tasks, compare budgets and choose work that matches your skills and earning goals.</p></div>' +
-    '<div class="search-row"><input type="text" id="search-input" placeholder="Search tasks — e.g. clean house" value="'+esc(state.query)+'"><button class="btn btn-marigold" data-action="search">Search</button></div>' +
-  '</div>' +
-  '<div class="service-browser">' +
-    '<div class="service-browser-head"><div><span class="eyebrow">BROWSE SERVICES</span><h2>What kind of work are you looking for?</h2><p>Choose a service to see matching tasks. You can also search, filter and sort the marketplace.</p></div>' +
-    '<div class="service-search"><span>⌕</span><input id="service-search" type="text" placeholder="Search services..." autocomplete="off"></div></div>' +
-    '<div class="service-featured">' + CATEGORIES.slice(0,12).map(function(c){return '<div class="service-tile '+(state.category===c.id?"active":"")+'" data-cat="'+c.id+'"><span class="service-icon">'+esc(catMono(c.label))+'</span><b>'+esc(c.label)+'</b></div>';}).join('') + '</div>' +
-    '<div class="service-all-title"><h3>All services</h3><span>'+CATEGORIES.length+' services</span></div>' +
-    '<div class="service-grid" id="service-grid"><div class="service-tile '+(state.category===""?"active":"")+'" data-cat=""><span class="service-icon">≡</span><b>All tasks</b></div>' +
-      CATEGORIES.map(function(c){return '<div class="service-tile '+(state.category===c.id?"active":"")+'" data-cat="'+c.id+'" data-service-label="'+esc(c.label.toLowerCase())+'"><span class="service-icon">'+esc(catMono(c.label))+'</span><b>'+esc(c.label)+'</b></div>';}).join('') +
-    '</div>' +
-  '</div>' +
   '<div class="page" style="padding-left:0;padding-right:0;"><div class="section-head"><h2>'+(state.county?esc(state.county)+' tasks':'Open tasks')+'</h2><span class="muted">'+visible.length+' found</span></div>'+tasksListHtml(visible)+'</div>';
   return html;
 }
 function renderDetail(){
   var t = state.tasks.filter(function(x){return x.id===state.taskId;})[0];
-  if (!t) return '<div class="empty"><div class="glyph"></div>Task not found.</div>';
+  if (!t) return '<div class="empty"><div class="glyph">🔍</div>Task not found.</div>';
   var offers = state.offersByTask[t.id] || [];
   var isOwner = t.postedById === state.me.id;
   var isAssignedTasker = t.assignedToId === state.me.id;
@@ -1231,29 +981,30 @@ function renderDetail(){
       actionBlock = '<div class="card" style="padding:16px;margin-top:8px;">' +
         '<p style="margin:0 0 12px;">Assigned to <b>'+esc(t.assignedToName)+'</b>'+proBadge(t.assigneeIsPro)+'. Chat to arrange details, then mark complete when the job is done.</p>' +
         '<div style="display:flex;gap:10px;flex-wrap:wrap;">' +
-        '<button class="btn btn-primary" data-action="chat" data-task="'+t.id+'">Message '+esc((t.assignedToName||"").split(" ")[0])+'</button>' +
+        '<button class="btn btn-primary" data-action="chat" data-task="'+t.id+'">💬 Message '+esc((t.assignedToName||"").split(" ")[0])+'</button>' +
         '<button class="btn" data-action="complete" data-task="'+t.id+'">Mark as completed</button>' +
         '</div></div>';
     } else if (t.status==="completed") {
       actionBlock = '<div class="card" style="padding:16px;margin-top:8px;display:flex;flex-direction:column;gap:10px;">' +
         '<p style="margin:0;">Task completed by <b>'+esc(t.assignedToName)+'</b>.</p>' +
         (t.paid ? '<div class="pill pill-done" style="align-self:flex-start;">Paid</div>' :
-        '<button class="btn btn-marigold" data-action="pay" data-task="'+t.id+'">Pay '+fmtKES(t.budget)+' with M-Pesa</button>') +
-        '<button class="btn" data-action="review" data-task="'+t.id+'" data-for="'+t.assignedToId+'">Leave a review</button>' +
+        '<button class="btn btn-marigold" data-action="pay" data-task="'+t.id+'">📲 Pay '+fmtKES(t.budget)+' with M-Pesa</button>') +
+        '<button class="btn" data-action="review" data-task="'+t.id+'" data-for="'+t.assignedToId+'">⭐ Leave a review</button>' +
         '</div>';
     }
   } else {
     if (t.status==="open" && t.lockedForMe) {
       actionBlock = '<div class="card" style="padding:16px;margin-top:8px;background:#FFF7EC;border-color:var(--marigold);">' +
-        '<p style="margin:0 0 12px;"><b>Pro early access.</b> Pro taskers can see and bid on this task before it opens to everyone.</p>' +
+        '<p style="margin:0 0 12px;">⏳ <b>Pro early access.</b> Pro taskers can see and bid on this task before it opens to everyone.</p>' +
         '<button class="btn btn-marigold btn-block" data-action="gopro">Go Pro — '+fmtKES(PRO_FEE)+'/month</button>' +
         '</div>';
     } else if (t.status==="open") {
-      actionBlock = '<button class="btn btn-marigold btn-block" data-action="offer" data-task="'+t.id+'">'+(iOffered? "Update your offer" : "Send an offer")+'</button>';
+      actionBlock = '<button class="btn btn-marigold btn-block" data-action="offer" data-task="'+t.id+'">'+(iOffered? "Update your offer" : "Send an offer")+'</button>' +
+        '<p class="muted" style="font-size:12px;margin-top:8px;">A '+fmtKES(BID_FEE)+' bidding fee applies each time you send an offer.</p>';
     } else if (isAssignedTasker) {
       actionBlock = '<div class="card" style="padding:16px;margin-top:8px;">' +
         '<p style="margin:0 0 12px;">You\'re doing this task. Message the poster if you need details.</p>' +
-        '<button class="btn btn-primary btn-block" data-action="chat" data-task="'+t.id+'">Message '+esc((t.postedByName||"").split(" ")[0])+'</button>' +
+        '<button class="btn btn-primary btn-block" data-action="chat" data-task="'+t.id+'">💬 Message '+esc((t.postedByName||"").split(" ")[0])+'</button>' +
         '</div>';
     } else {
       actionBlock = '<div class="card" style="padding:14px 16px;margin-top:8px;color:var(--muted);">This task has already been '+(t.status==="completed"?"completed":"assigned")+'.</div>';
@@ -1265,7 +1016,7 @@ function renderDetail(){
   '<div class="detail-head">' +
     '<span class="pill '+(t.status==="completed"?"pill-done":t.status==="assigned"?"pill-assigned":"pill-open")+'">'+(t.status==="completed"?"Completed":t.status==="assigned"?"Assigned":"Open")+'</span>' +
     '<h1>'+esc(t.title)+'</h1>' +
-    '<div class="meta muted">'+esc(catLabel(t.category))+' · '+esc(t.area? t.area+", ":"")+esc(t.county)+' · '+timeAgo(t.createdAt)+'</div>' +
+    '<div class="meta muted">'+catGlyph(t.category)+' '+esc(catLabel(t.category))+' · 📍 '+esc(t.area? t.area+", ":"")+esc(t.county)+' · '+timeAgo(t.createdAt)+'</div>' +
   '</div>' +
   '<div class="detail-budget">'+fmtKES(t.budget)+(t.budgetType==="hourly"?'<span style="font-size:14px;color:var(--muted);font-weight:500;"> / hour</span>':'')+'</div>' +
   '<p style="margin:14px 0;white-space:pre-wrap;">'+esc(t.description)+'</p>' +
@@ -1276,7 +1027,7 @@ function renderDetail(){
   actionBlock;
 }
 function offersHtml(task, offers, ownerView){
-  if (!offers.length) return '<div class="empty" style="padding:24px 12px;"><div class="glyph"></div>No offers yet — check back soon.</div>';
+  if (!offers.length) return '<div class="empty" style="padding:24px 12px;"><div class="glyph">📨</div>No offers yet — check back soon.</div>';
   return '<div class="card" style="padding:4px 16px;">' + offers.map(function(o){
     return '<div class="offer-row">' +
       '<div class="avatar" data-openprofile="'+esc(o.taskerId)+'">'+esc(initials(o.taskerName))+'</div>' +
@@ -1291,29 +1042,15 @@ function offersHtml(task, offers, ownerView){
     '</div>';
   }).join("") + '</div>';
 }
-function tasksListHtml(list){
-  if (!list || !list.length) return '<div class="empty" style="padding:28px 12px;">No tasks to show yet.</div>';
-  return '<div class="task-list">' + list.map(function(t){
-    var st = t.status==="completed" ? "Completed" : t.status==="assigned" ? "Assigned" : "Open";
-    var cls = t.status==="completed" ? "pill-done" : t.status==="assigned" ? "pill-assigned" : "pill-open";
-    return '<div class="card task-card" data-open="'+esc(t.id)+'">' +
-      '<div class="top-row"><h3>'+esc(t.title)+'</h3><span class="budget">'+fmtKES(t.budget)+(t.budgetType==="hourly"?'<small> /hr</small>':'')+'</span></div>' +
-      '<div class="meta muted">'+esc(catLabel(t.category))+' · '+esc(t.area? t.area+", ":"")+esc(t.county)+' · '+timeAgo(t.createdAt)+'</div>' +
-      '<div><span class="pill '+cls+'">'+st+'</span></div>' +
-    '</div>';
-  }).join("") + '</div>';
-}
 function renderPost(){
   var d = state.postDraft;
   var body = "";
   if (d.step===1) {
-    body = '<h2 class="post-q">What do you need done?</h2><p class="muted" style="margin:0 0 12px;">Pick a service and we will take you straight to the details.</p>' +
-      '<input type="text" id="d-catsearch" class="cat-search" placeholder="Search services, e.g. accountant" autocomplete="off">' +
-      '<div class="cat-list" id="cat-list">' + postCategories().map(function(c){
-        return '<button type="button" class="cat-row'+(d.category===c.id?' active':'')+'" data-draftcat="'+c.id+'" data-label="'+esc(c.label.toLowerCase())+'"><span>'+esc(c.label)+'</span><i>›</i></button>';
-      }).join("") + '</div><div class="muted" id="cat-empty" style="display:none;padding:14px 4px;">No matching service. Try "Other".</div>';
+    body = '<label>What kind of task is it?</label><div class="cat-grid">' + CATEGORIES.map(function(c){
+      return '<div class="cat-chip '+(d.category===c.id?"active":"")+'" data-draftcat="'+c.id+'"><span class="glyph">'+c.glyph+'</span>'+esc(c.label)+'</div>';
+    }).join("") + '</div>';
   } else if (d.step===2) {
-    body = '<div class="chosen-cat"><span>'+esc(catLabel(d.category))+'</span><button type="button" class="btn btn-ghost btn-sm" data-postnav="back">Change</button></div><label>Title</label><input type="text" id="d-title" placeholder="e.g. Deep clean 2-bedroom flat" value="'+esc(d.title)+'">' +
+    body = '<label>Title</label><input type="text" id="d-title" placeholder="e.g. Deep clean 2-bedroom flat" value="'+esc(d.title)+'">' +
       '<label>Describe what needs doing</label><textarea id="d-desc" rows="4" placeholder="Give details a tasker would need to quote accurately">'+esc(d.description)+'</textarea>';
   } else if (d.step===3) {
     var opts = COUNTIES.map(function(c){ return '<option value="'+esc(c)+'" '+(d.county===c?'selected':'')+'>'+esc(c)+'</option>'; }).join("");
@@ -1327,7 +1064,7 @@ function renderPost(){
       '</div>' +
       '<label>Amount (KES)</label><input type="number" min="500" max="20000" id="d-budget" value="'+esc(d.budget)+'">' +
       '<div class="card" style="padding:14px 16px;margin-top:18px;background:var(--teal-100);border:none;">' +
-        '<b>'+esc(d.title||"Your task")+'</b><br><span class="muted">'+esc(catLabel(d.category))+' · '+esc(d.county||"—")+(d.area? ", "+esc(d.area):"")+'</span>' +
+        '<b>'+esc(d.title||"Your task")+'</b><br><span class="muted">'+catGlyph(d.category)+' '+esc(catLabel(d.category))+' · '+esc(d.county||"—")+(d.area? ", "+esc(d.area):"")+'</span>' +
       '</div>';
   }
   var canNext = d.step < 4;
@@ -1336,7 +1073,7 @@ function renderPost(){
   body +
   '<div style="display:flex;gap:10px;margin-top:22px;">' +
     (d.step>1? '<button class="btn" data-postnav="back">Back</button>' : '') +
-    (d.step===1? '' : d.step<4? '<button class="btn btn-primary" style="flex:1;" data-postnav="next" '+(canNext?'':'disabled')+'>Continue</button>' :
+    (d.step<4? '<button class="btn btn-primary" style="flex:1;" data-postnav="next" '+(canNext?'':'disabled')+'>Continue</button>' :
       '<button class="btn btn-marigold" style="flex:1;" data-action="submitpost" '+(d.budget?'':'disabled')+'>Post task</button>') +
   '</div>';
 }
@@ -1350,7 +1087,7 @@ function renderMyTasks(){
 function renderMessagesList(){
   var mine = state.tasks.filter(function(t){ return (t.postedById===state.me.id || t.assignedToId===state.me.id) && t.status!=="open"; });
   if (state.chatTaskId) return renderChat(state.chatTaskId);
-  if (!mine.length) return '<div class="empty"><div class="glyph"></div>No conversations yet.<br>Once a task is assigned, you can chat here.</div>';
+  if (!mine.length) return '<div class="empty"><div class="glyph">💬</div>No conversations yet.<br>Once a task is assigned, you can chat here.</div>';
   return '<h1 style="font-size:20px;">Chats</h1><div class="task-list">' + mine.map(function(t){
     var other = t.postedById===state.me.id ? t.assignedToName : t.postedByName;
     return '<div class="card task-card" data-chat="'+t.id+'"><h3 style="font-size:14.5px;">'+esc(t.title)+'</h3><div class="muted" style="font-size:12.5px;">with '+esc(other||"—")+'</div></div>';
@@ -1368,7 +1105,7 @@ function renderChat(taskId){
   '<div class="chat-thread">' + (msgs.length? msgs.map(function(m){
     var mine = m.fromId===state.me.id;
     return '<div class="msg '+(mine?"mine":"theirs")+'">'+(mine?'':'<div class="who">'+esc(m.fromName)+'</div>')+esc(m.text)+'</div>';
-  }).join("") : '<div class="muted" style="text-align:center;padding:20px 0;">Say hello </div>') + '</div>' +
+  }).join("") : '<div class="muted" style="text-align:center;padding:20px 0;">Say hello 👋</div>') + '</div>' +
   '<div class="chat-input-row">' +
     '<input type="text" id="chat-input" placeholder="Message '+esc((otherName||"").split(" ")[0]||"")+'…">' +
     '<button class="btn btn-primary" data-action="sendchat" data-task="'+taskId+'">Send</button>' +
@@ -1378,8 +1115,8 @@ function renderTaskAlerts(){
   return '<div class="dash-wrap"><div class="dash-title"><div><h1>Task alerts</h1><p>Get notified when new work matches your preferences.</p></div><button class="btn btn-marigold" data-nav="browse">Browse tasks</button></div>' +
     '<div class="card" style="padding:18px;margin-bottom:16px;"><h3 style="margin:0 0 6px;color:#fff;">Your alert preferences</h3><p class="muted" style="margin:0 0 15px;">Choose the kind of work you want Kazi to surface for you.</p><div class="filter-checks"><span class="filter-check active">Nearby tasks</span><span class="filter-check active">KSh 500–20,000</span><span class="filter-check">Today</span><span class="filter-check">This week</span><span class="filter-check">Highly rated posters</span></div></div>' +
     '<div class="alerts-list">' +
-      '<div class="alert-card"><div style="display:flex;gap:13px;align-items:center;"><div class="alert-icon">◈</div><div><h3>New jobs in your area</h3><p>We will notify you when tasks match your county, categories and earning range.</p></div></div><button class="btn btn-sm">View settings</button></div>' +
-      '<div class="alert-card"><div style="display:flex;gap:13px;align-items:center;"><div class="alert-icon">★</div><div><h3>Recommended tasks</h3><p>Cleaning, moving, repairs and other work based on your activity.</p></div></div><button class="btn btn-sm" data-nav="browse">View tasks</button></div>' +
+      '<div class="alert-card"><div style="display:flex;gap:13px;align-items:center;"><div class="alert-icon">🔔</div><div><h3>New jobs in your area</h3><p>We will notify you when tasks match your county, categories and earning range.</p></div></div><button class="btn btn-sm">View settings</button></div>' +
+      '<div class="alert-card"><div style="display:flex;gap:13px;align-items:center;"><div class="alert-icon">✨</div><div><h3>Recommended tasks</h3><p>Cleaning, moving, repairs and other work based on your activity.</p></div></div><button class="btn btn-sm" data-nav="browse">View tasks</button></div>' +
     '</div></div>';
 }
 function renderEarnCalculator(){
@@ -1407,14 +1144,14 @@ function renderProfilePage(){
 
   var editBlock = "";
   if (isMe) {
-    var proActive = isProActive(p);
-    editBlock = '<div class="card" style="padding:16px;margin-top:10px;">' +
+    var posterActive = isPosterSubActive(p), proActive = isProActive(p);
+    '<div class="card" style="padding:16px;margin-top:10px;">' +
       '<h3 style="font-size:14.5px;margin:0 0 6px;">Kazi Pro '+(proActive?proBadge(true):'')+'</h3>' +
       '<ul class="muted" style="margin:0 0 12px;padding-left:18px;font-size:13px;line-height:1.7;">' +
         '<li>See and bid on new tasks '+EARLY_ACCESS_HOURS+'h before everyone else</li>' +
         '<li>Your offers show first to posters</li><li>PRO badge on your profile and offers</li>' +
       '</ul>' +
-      (proActive ? '<p class="muted" style="margin:0 0 10px;font-size:13px;">Active until <b>'+fmtDate(p.proExpiresAt)+'</b>.</p>' : '') +
+      (proActive ? '<p class="muted" style="margin:0 0 10px;font-size:13px;">✅ Active until <b>'+fmtDate(p.proExpiresAt)+'</b>.</p>' : '') +
       '<button class="btn btn-marigold btn-sm" data-action="gopro">'+(proActive?"Renew — ":"Upgrade — ")+fmtKES(PRO_FEE)+'/mo</button>' +
     '</div>' +
     '<div class="card" style="padding:16px;margin-top:16px;">' +
@@ -1424,18 +1161,7 @@ function renderProfilePage(){
         '<div><label>Area</label><input type="text" id="p-area" value="'+esc(p.area||"")+'"></div>' +
       '</div>' +
       '<label style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="p-tasker" '+(p.isTasker?"checked":"")+' style="width:auto;">Available to be hired as a tasker</label>' +
-
-'<div style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line);">' +
-  '<h3 style="font-size:16px;margin:0 0 6px;">Payment & payout methods</h3>' +
-  '<p class="muted" style="font-size:12.5px;margin:0 0 10px;">Choose how you want to be paid. Your details are private and never shown on your public profile.</p>' +
-  pmChoicesHtml(p) +
-  '<div data-pm="mpesa" style="'+pmShow(p,'mpesa')+'"><label>M-Pesa phone number</label><input type="tel" id="p-mpesa" value="'+esc((p.paymentMethods&&p.paymentMethods.mpesaPhone)||"")+'" placeholder="07XX XXX XXX"></div>' +
-  '<div data-pm="bank" style="'+pmShow(p,'bank')+'"><label>Bank name</label><input type="text" id="p-bank-name" value="'+esc((p.paymentMethods&&p.paymentMethods.bankName)||"")+'" placeholder="Bank name"><label>Account name</label><input type="text" id="p-bank-account-name" value="'+esc((p.paymentMethods&&p.paymentMethods.bankAccountName)||"")+'" placeholder="Name on account"><label>Account number</label><input type="text" id="p-bank-account-number" value="'+esc((p.paymentMethods&&p.paymentMethods.bankAccountNumber)||"")+'" placeholder="Bank account number"></div>' +
-  paypalBlockHtml(p) +
-  '<div data-pm="googlepay" style="'+pmShow(p,'googlepay')+'"><label>Google Pay email</label><input type="email" id="p-google-pay" value="'+esc((p.paymentMethods&&p.paymentMethods.googlePayEmail)||"")+'" placeholder="Google Pay email"></div>' +
-  '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;"><button type="button" class="btn btn-sm" data-nav="wallet">Withdraw earnings</button><button type="button" class="btn btn-sm" data-nav="verify">Verify my address</button></div>' +
-'</div>' +
-      adminTillHtml(p) + '<button class="btn btn-primary btn-block" style="margin-top:14px;" data-action="saveprofile">Save profile</button>' +
+      '<button class="btn btn-primary btn-block" style="margin-top:14px;" data-action="saveprofile">Save profile</button>' +
     '</div>' +
     '<button class="btn" style="margin-top:16px;width:100%;" data-action="logout">Log out</button>';
   }
@@ -1444,7 +1170,7 @@ function renderProfilePage(){
   (state.profileId && state.profileId!==state.me.id ? '<button class="btn btn-ghost btn-sm" data-nav="browse" style="padding-left:0;">← Back</button>' : '') +
   '<div style="display:flex;align-items:center;gap:14px;margin-top:8px;">' +
     '<div class="avatar" style="width:56px;height:56px;font-size:19px;">'+esc(initials(p.name))+'</div>' +
-    '<div><h1 style="font-size:19px;margin:0;">'+esc(p.name || "")+proBadge(isProActive(p))+verifiedBadge(p.addressVerified)+'</h1>' +
+    '<div><h1 style="font-size:19px;margin:0;">'+esc(p.name || "")+proBadge(isProActive(p))+'</h1>' +
     '<div class="muted" style="font-size:12.5px;">'+esc(p.area? p.area+", ":"")+esc(p.county||"Location not set")+'</div></div>' +
   '</div>' +
   '<div class="rating-summary" style="margin:16px 0;">' +
@@ -1468,7 +1194,7 @@ function renderOfferModal(task){
   '<h2>Send an offer</h2><p class="muted" style="margin:0 0 16px;">for "'+esc(task.title)+'"</p>' +
   '<label style="margin-top:0;">Your price (KES)</label><input type="number" id="offer-amount" min="0" value="'+task.budget+'">' +
   '<label>Message to the poster</label><textarea id="offer-msg" rows="3" placeholder="Say when you\'re free and any questions"></textarea>' +
-  '<button class="btn btn-marigold btn-block" style="margin-top:16px;" data-action="submitoffer" data-task="'+task.id+'">Send offer</button>';
+  '<button class="btn btn-marigold btn-block" style="margin-top:16px;" data-action="submitoffer" data-task="'+task.id+'">Continue to bidding fee</button>';
 }
 function renderReviewModal(taskId, forUserId){
   return '<button class="close-x" data-close="1">✕</button><h2>Leave a review</h2>' +
@@ -1501,13 +1227,9 @@ function bindViewEvents(){
   }
   if(fmin) fmin.addEventListener("input",function(){syncPrice('min');});
   if(fmax) fmax.addEventListener("input",function(){syncPrice('max');});
-  bindClick("resetfilters",function(){state.county="";state.category="";state.query="";state.minPrice=500;state.maxPrice=20000;state.sortBy="newest";state.status="open";loadTasks();});
-  var fcat=document.getElementById("filter-cat"); if(fcat) fcat.addEventListener("change",function(){state.category=fcat.value;loadTasks();});
-  var fst=document.getElementById("filter-status"); if(fst) fst.addEventListener("change",function(){state.status=fst.value;render();});
+  bindClick("resetfilters",function(){state.county="";state.category="";state.query="";state.minPrice=500;state.maxPrice=20000;state.sortBy="newest";loadTasks();});
 
-  document.querySelectorAll("[data-draftcat]").forEach(function(el){ el.addEventListener("click", function(){ state.postDraft.category = el.getAttribute("data-draftcat"); state.postDraft.step = 2; render(); window.scrollTo(0,0); setTimeout(function(){ var t=document.getElementById("d-title"); if(t) t.focus(); },60); }); });
-  var catSearch=document.getElementById("d-catsearch");
-  if(catSearch) catSearch.addEventListener("input",function(){ var q=catSearch.value.trim().toLowerCase(), shown=0; document.querySelectorAll(".cat-row").forEach(function(r){ var ok=!q||r.getAttribute("data-label").indexOf(q)>-1; r.style.display=ok?"":"none"; if(ok) shown++; }); var e=document.getElementById("cat-empty"); if(e) e.style.display=shown?"none":"block"; });
+  document.querySelectorAll("[data-draftcat]").forEach(function(el){ el.addEventListener("click", function(){ state.postDraft.category = el.getAttribute("data-draftcat"); render(); }); });
   document.querySelectorAll("[data-budtype]").forEach(function(el){ el.addEventListener("click", function(){ state.postDraft.budgetType = el.getAttribute("data-budtype"); render(); }); });
   ["d-title","d-desc","d-county","d-area","d-date","d-budget"].forEach(function(id){
     var field=document.getElementById(id);
@@ -1529,7 +1251,7 @@ function bindViewEvents(){
         if (d.step===3 && !d.county) { showToast("Choose a county before continuing."); return; }
         state.postDraft.step = Math.min(4, d.step+1);
       } else state.postDraft.step = Math.max(1, state.postDraft.step-1);
-      render(); window.scrollTo(0,0);
+      render();
     });
   });
   var submitPost = document.querySelector('[data-action="submitpost"]');
@@ -1551,6 +1273,7 @@ function bindViewEvents(){
   document.querySelectorAll("[data-chat]").forEach(function(el){ el.addEventListener("click", function(){ openChat(el.getAttribute("data-chat")); }); });
 
   bindClick("gopro", function(){ openChargeModal({ purpose:"pro_sub", amount:PRO_FEE, title:"Kazi Pro", subtitle:"Priority offers + "+EARLY_ACCESS_HOURS+"h early access to new tasks", successHeadline:"You're Pro!", successNote:"Enjoy priority placement and early access." }); });
+  bindClick("renewposter", function(){ openChargeModal({ purpose:"poster_sub", amount:POSTER_FEE, meta:{}, title:"Poster plan", subtitle:"Unlimited task posting for 30 days", successHeadline:"Subscribed!", successNote:"Your poster plan is active." }); });
   bindClick("logout", function(){ doLogout(); });
 
   var calcBtn=document.querySelector('[data-action="calculate"]');
@@ -1558,44 +1281,17 @@ function bindViewEvents(){
     var p=Number((document.getElementById('calc-price')||{}).value)||0, n=Number((document.getElementById('calc-tasks')||{}).value)||0, w=Number((document.getElementById('calc-weeks')||{}).value)||0, e=Number((document.getElementById('calc-expenses')||{}).value)||0;
     var result=Math.max(0,p*n*w-e); var out=document.getElementById('calc-result'); if(out) out.textContent=fmtKES(result);
   });
-document.querySelectorAll("[data-pmchoice]").forEach(function(el){ el.addEventListener("click", function(){
-  var id = el.getAttribute("data-pmchoice"); state._pmChoice = id;
-  document.querySelectorAll("[data-pmchoice]").forEach(function(b){ b.classList.toggle("active", b.getAttribute("data-pmchoice")===id); });
-  document.querySelectorAll("[data-pm]").forEach(function(pn){ pn.style.display = pn.getAttribute("data-pm")===id ? "" : "none"; });
-}); });
-document.querySelectorAll("[data-wmethod]").forEach(function(el){ el.addEventListener("click", function(){
-  var a = document.getElementById("w-amount"); state._wAmount = a ? a.value : "";
-  state._wMethod = el.getAttribute("data-wmethod"); render();
-}); });
-bindClick("withdraw", function(){ requestWithdrawal(); });
-bindClick("submitverify", function(){ submitVerification(); });
-var vFile = document.getElementById("v-file");
-if (vFile) vFile.addEventListener("change", function(){
-  var f = vFile.files && vFile.files[0], nm = document.getElementById("v-file-name");
-  if (!f) { state._vFile = null; if (nm) nm.textContent = "No file chosen"; return; }
-  if (f.size > VERIFY_MAX_BYTES) { state._vFile = null; vFile.value = ""; if (nm) nm.textContent = "No file chosen"; showToast("That file is over 2 MB. Choose a smaller one."); return; }
-  state._vFile = f; if (nm) nm.textContent = f.name;
-});
-var saveBtn = document.querySelector('[data-action="saveprofile"]');
-if (saveBtn) saveBtn.addEventListener("click", function(){
-  saveProfile({
-    bio: (document.getElementById("p-bio")||{}).value || "",
-    county: (document.getElementById("p-county")||{}).value || "",
-    area: (document.getElementById("p-area")||{}).value || "",
-    isTasker: !!(document.getElementById("p-tasker")||{}).checked,
 
-    paymentMethods: {
-      mpesaPhone: (document.getElementById("p-mpesa")||{}).value || "",
-      bankName: (document.getElementById("p-bank-name")||{}).value || "",
-      bankAccountName: (document.getElementById("p-bank-account-name")||{}).value || "",
-      bankAccountNumber: (document.getElementById("p-bank-account-number")||{}).value || "",
-      paypalEmail: (document.getElementById("p-paypal")||{}).value || "",
-      googlePayEmail: (document.getElementById("p-google-pay")||{}).value || "",
-      preferredMethod: state._pmChoice || ""
-    }
+  var saveBtn = document.querySelector('[data-action="saveprofile"]');
+  if (saveBtn) saveBtn.addEventListener("click", function(){
+    saveProfile({
+      bio: (document.getElementById("p-bio")||{}).value || "",
+      county: (document.getElementById("p-county")||{}).value || "",
+      area: (document.getElementById("p-area")||{}).value || "",
+      isTasker: !!(document.getElementById("p-tasker")||{}).checked
+    });
   });
-});
-  }
+}
 function bindModalEvents(){
   var back = document.querySelector(".modal-back");
   if (back) back.addEventListener("click", function(ev){ if (ev.target===back) closeModal(); });
@@ -1603,11 +1299,8 @@ function bindModalEvents(){
 
   var submitOffer = document.querySelector('[data-action="submitoffer"]');
   if (submitOffer) submitOffer.addEventListener("click", function(){
-    var offerTask = submitOffer.getAttribute("data-task");
-    var offerAmount = (document.getElementById("offer-amount")||{}).value;
-    var offerMsg = (document.getElementById("offer-msg")||{}).value;
     closeModal();
-    attemptSendOffer(offerTask, offerAmount, offerMsg);
+    attemptSendOffer(submitOffer.getAttribute("data-task"), document.getElementById("offer-amount").value, document.getElementById("offer-msg").value);
   });
   var doCharge = document.querySelector('[data-action="docharge"]');
   if (doCharge) doCharge.addEventListener("click", function(){
@@ -1642,91 +1335,13 @@ function captureDraftFields(){
   if ((t=document.getElementById("d-date"))) d.dueDate = t.value;
   if ((t=document.getElementById("d-budget"))) d.budget = t.value;
 }
+
+/* Renewing an existing poster plan reuses the same "poster_sub" purpose with an
+   empty meta — the backend only creates a task from meta when meta.title is set,
+   so an empty meta safely just extends the subscription. */
+
 boot();
 })();
-
-/* ===== Added: logo, verification (Prolific-style), PayPal link, admin till ===== */
-function KLOGO(s){return '<svg viewBox="0 0 48 48" width="{s}" height="{s}" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#071b49"/><path d="M16 12v24M33 14L19 25l14 11" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="35" cy="13" r="4.5" fill="#e7b85c"/></svg>'.replace(/\{s\}/g,s);}
-function renderVerify(){
-  var me=state.me||{}, iv=state.idv=state.idv||{};
-  if(!iv._loaded){iv._loaded=true;api.get('/api/verification/status').then(function(s){if(s.phoneVerified)iv.phone='verified';if(s.idStatus&&s.idStatus!=='none')iv.id=s.idStatus;render();}).catch(function(){});}
-  var phoneOk=!!(me.phoneVerified||iv.phone==='verified');
-  var idSt=iv.id||(me.idVerified?'verified':'none'); var idOk=idSt==='verified';
-  var cur=!phoneOk?1:(!idOk?2:3);
-  function step(n,title,sub,ok){return '<div class="idv-step '+(ok?'done':(cur===n?'active':''))+'"><div class="idv-num">'+(ok?'✓':n)+'</div><div><b>'+title+'</b><small>'+sub+'</small></div></div>';}
-  var h='<h1 style="font-size:22px;margin:0 0 4px;">Verify your identity</h1><p class="muted" style="margin:0;">Verified taskers get more offers accepted. Takes about 3 minutes. Your details are encrypted and never shown publicly.</p>'+
-   '<div class="idv-steps">'+step(1,'Confirm your phone number',phoneOk?esc(me.phone||'Verified'):'We text you a 6-digit code',phoneOk)+step(2,'Verify your ID','National ID, passport or driving licence + selfie',idOk)+step(3,'Confirm your address','Utility bill or similar document',false)+'</div>';
-  if(cur===1){
-    h+='<div class="card idv-panel"><h3 style="margin:0 0 4px">Phone verification</h3>'+
-    (iv.phone==='sent'
-     ?'<p class="muted" style="margin:0 0 10px">Enter the 6-digit code we sent to '+esc(iv.sentTo||'')+'.</p><input type="text" inputmode="numeric" maxlength="6" id="idv-code" class="code-input" placeholder="••••••"><button class="btn btn-primary btn-block" style="margin-top:12px" data-idv="confirm-phone">Verify code</button><button class="btn btn-ghost btn-block" data-idv="send-phone">Resend code</button>'
-     :'<label style="margin-top:8px">Phone number</label><input type="tel" id="idv-phone" value="'+esc(me.phone||'')+'" placeholder="07XX XXX XXX"><button class="btn btn-primary btn-block" style="margin-top:12px" data-idv="send-phone">Send code</button><div class="idv-note">Standard SMS rates may apply.</div>')+'</div>';
-  } else if(cur===2){
-    h+=(idSt==='pending'?'<div class="card idv-panel"><b>Under review.</b><div class="muted">We received your ID and selfie. You will be notified once approved.</div></div>':
-    '<div class="card idv-panel"><h3 style="margin:0 0 4px">ID verification</h3><label>Document type</label><select id="idv-type"><option value="national_id">National ID</option><option value="passport">Passport</option><option value="driving_licence">Driving licence</option></select>'+
-    '<label>Photo of the document (front)</label><input type="file" id="idv-front" accept="image/*"><label>Selfie holding the document</label><input type="file" id="idv-selfie" accept="image/*" capture="user">'+
-    '<div class="idv-note">Make sure all four corners are visible, text is readable and there is no glare.</div>'+
-    '<label style="display:flex;gap:8px;font-weight:500;align-items:flex-start"><input type="checkbox" id="idv-consent" style="width:auto;margin-top:3px">I agree Kazi may use these images only to verify my identity.</label>'+
-    '<button class="btn btn-primary btn-block" style="margin-top:12px" data-idv="submit-id">Submit for review</button></div>');
-  } else { h+='<div class="card idv-panel">'+renderAddressVerify()+'</div>'; }
-  return h;
-}
-function idvErr(e,fb){showToast(e&&e.status===404?'This verification step is not switched on yet.':((e&&e.message)||fb));}
-document.addEventListener('click',async function(ev){
-  var b=ev.target.closest&&ev.target.closest('[data-idv]'); if(!b) return;
-  var a=b.getAttribute('data-idv'), iv=state.idv=state.idv||{}; b.disabled=true;
-  try{
-    if(a==='send-phone'){
-      var ph=((document.getElementById('idv-phone')||{}).value||iv.sentTo||'').trim(); if(!ph){showToast('Enter your phone number.');return;}
-      await api.post('/api/verification/phone/send',{phone:ph}); iv.phone='sent'; iv.sentTo=ph; showToast('Code sent.'); render();
-    } else if(a==='confirm-phone'){
-      var c=((document.getElementById('idv-code')||{}).value||'').trim(); if(c.length<4){showToast('Enter the code.');return;}
-      await api.post('/api/verification/phone/confirm',{phone:iv.sentTo,code:c}); iv.phone='verified'; if(state.me) state.me.phoneVerified=true; showToast('Phone verified ✓'); render();
-    } else if(a==='submit-id'){
-      var f=(document.getElementById('idv-front')||{}).files, s=(document.getElementById('idv-selfie')||{}).files;
-      if(!f||!f[0]||!s||!s[0]){showToast('Add the document photo and a selfie.');return;}
-      if(!(document.getElementById('idv-consent')||{}).checked){showToast('Please tick the consent box.');return;}
-      if(f[0].size>2097152||s[0].size>2097152){showToast('Each image must be under 2 MB.');return;}
-      await api.post('/api/verification/identity',{docType:document.getElementById('idv-type').value,front:await readFileAsDataUrl(f[0]),selfie:await readFileAsDataUrl(s[0])});
-      iv.id='pending'; showToast('Submitted for review.'); render();
-    }
-  }catch(e){idvErr(e,'Something went wrong.');} finally{b.disabled=false;}
-});
-
-/* PayPal account linking */
-function paypalBlockHtml(p){
-  var m=(p&&p.paymentMethods)||{}, show=pmShow(p,'paypal');
-  var inner=m.paypalLinked
-   ?'<div class="pp-linked"><span style="font-size:20px">✅</span><div><b>PayPal linked</b><div class="muted">'+esc(m.paypalEmail||'')+'</div></div><button type="button" class="btn btn-sm" style="margin-left:auto" data-pp="unlink">Unlink</button></div><input type="hidden" id="p-paypal" value="'+esc(m.paypalEmail||'')+'">'
-   :'<button type="button" class="pp-btn" data-pp="link">Link with <b>Pay</b><b style="color:#009cde">Pal</b></button><p class="muted" style="font-size:12px;margin:6px 0 0">You will log in on PayPal and approve Kazi. We never see your password.</p><label>Or enter PayPal email manually</label><input type="email" id="p-paypal" value="'+esc(m.paypalEmail||'')+'" placeholder="PayPal email">';
-  return '<div data-pm="paypal" style="'+show+'">'+inner+'</div>';
-}
-document.addEventListener('click',async function(ev){
-  var b=ev.target.closest&&ev.target.closest('[data-pp]'); if(!b) return;
-  try{
-    if(b.getAttribute('data-pp')==='link'){var r=await api.get('/api/paypal/link-url'); if(r&&r.url) window.location.href=r.url; else showToast('PayPal linking is not switched on yet.');}
-    else{await api.post('/api/paypal/unlink',{}); var me=await api.get('/api/auth/me'); state.me=me.user; render(); showToast('PayPal unlinked.');}
-  }catch(e){showToast(e&&e.status===404?'PayPal linking is not switched on yet.':((e&&e.message)||'PayPal error.'));}
-});
-(function(){var q=new URLSearchParams(location.search),code=q.get('paypal_code')||((q.get('scope')||'').indexOf('openid')>-1?q.get('code'):null);if(!code)return;history.replaceState({},'',location.pathname);
-  var tries=0,iv=setInterval(async function(){if(!state.me&&++tries<40)return;clearInterval(iv);if(!state.me)return;
-    try{var lr=await api.post('/api/paypal/link',{code:code});var me=await api.get('/api/auth/me');state.me=me.user;var pm=Object.assign({},(state.me.paymentMethods||{}),{paypalEmail:lr.email,preferredMethod:'paypal'});try{await api.patch('/api/profiles/me',{paymentMethods:pm});}catch(_){}state.me.paymentMethods=Object.assign(pm,{paypalLinked:true});state._pmChoice='paypal';showToast('PayPal linked ✓');goView('profile');}catch(e){showToast('Could not link PayPal.');}},250);})();
-
-/* Admin: M-Pesa till */
-function adminTillHtml(p){
-  if(!p||!(p.role==='admin'||p.isAdmin)) return '';
-  var s=state.adminSettings||{};
-  return '<div style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line)"><h3 style="font-size:16px;margin:0 0 6px">Admin · Revenue till</h3><p class="muted" style="font-size:12.5px;margin:0 0 8px">Kazi fees and Pro subscriptions are paid into this M-Pesa Till (Buy Goods).</p>'+
-   '<label>M-Pesa Till number</label><input type="text" inputmode="numeric" id="a-till" value="'+esc(s.tillNumber||'')+'" placeholder="e.g. 5123456"><label>Till account name</label><input type="text" id="a-till-name" value="'+esc(s.tillName||'')+'" placeholder="Business name on till">'+
-   '<button type="button" class="btn btn-sm" style="margin-top:10px" data-admin="till">Save till</button></div>';
-}
-document.addEventListener('click',async function(ev){
-  var b=ev.target.closest&&ev.target.closest('[data-admin]'); if(!b) return;
-  var till=((document.getElementById('a-till')||{}).value||'').trim();
-  if(!/^\d{5,8}$/.test(till)){showToast('Enter a valid Till number (5–8 digits).');return;}
-  try{state.adminSettings=(await api.patch('/api/admin/settings',{tillNumber:till,tillName:(document.getElementById('a-till-name')||{}).value||''}))||{tillNumber:till};showToast('Till saved ✓');}
-  catch(e){showToast(e&&e.status===404?'Backend needs the /api/admin/settings route.':((e&&e.message)||'Could not save till.'));}
-});
 </script>
 </body>
 </html>

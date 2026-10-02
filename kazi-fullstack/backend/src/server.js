@@ -14,7 +14,8 @@ const adminRouter = require("./routes/admin");
 
 const app = express();
 app.use(cors({ origin: process.env.FRONTEND_URL || "*" }));
-app.use(express.json());
+app.use(express.json({ limit: '8mb' }));
+require('./kazi-extras')(app);
 
 app.get("/api/health", (req, res) => res.json({ ok: true }));
 

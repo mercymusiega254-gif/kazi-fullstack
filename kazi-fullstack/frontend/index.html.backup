@@ -1649,7 +1649,6 @@ boot();
 function KLOGO(s){return '<svg viewBox="0 0 48 48" width="{s}" height="{s}" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#071b49"/><path d="M16 12v24M33 14L19 25l14 11" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="35" cy="13" r="4.5" fill="#e7b85c"/></svg>'.replace(/\{s\}/g,s);}
 function renderVerify(){
   var me=state.me||{}, iv=state.idv=state.idv||{};
-  if(!iv._loaded){iv._loaded=true;api.get('/api/verification/status').then(function(s){if(s.phoneVerified)iv.phone='verified';if(s.idStatus&&s.idStatus!=='none')iv.id=s.idStatus;render();}).catch(function(){});}
   var phoneOk=!!(me.phoneVerified||iv.phone==='verified');
   var idSt=iv.id||(me.idVerified?'verified':'none'); var idOk=idSt==='verified';
   var cur=!phoneOk?1:(!idOk?2:3);
@@ -1708,9 +1707,9 @@ document.addEventListener('click',async function(ev){
     else{await api.post('/api/paypal/unlink',{}); var me=await api.get('/api/auth/me'); state.me=me.user; render(); showToast('PayPal unlinked.');}
   }catch(e){showToast(e&&e.status===404?'PayPal linking is not switched on yet.':((e&&e.message)||'PayPal error.'));}
 });
-(function(){var q=new URLSearchParams(location.search),code=q.get('paypal_code')||((q.get('scope')||'').indexOf('openid')>-1?q.get('code'):null);if(!code)return;history.replaceState({},'',location.pathname);
+(function(){var q=new URLSearchParams(location.search),code=q.get('paypal_code');if(!code)return;history.replaceState({},'',location.pathname);
   var tries=0,iv=setInterval(async function(){if(!state.me&&++tries<40)return;clearInterval(iv);if(!state.me)return;
-    try{var lr=await api.post('/api/paypal/link',{code:code});var me=await api.get('/api/auth/me');state.me=me.user;var pm=Object.assign({},(state.me.paymentMethods||{}),{paypalEmail:lr.email,preferredMethod:'paypal'});try{await api.patch('/api/profiles/me',{paymentMethods:pm});}catch(_){}state.me.paymentMethods=Object.assign(pm,{paypalLinked:true});state._pmChoice='paypal';showToast('PayPal linked ✓');goView('profile');}catch(e){showToast('Could not link PayPal.');}},250);})();
+    try{await api.post('/api/paypal/link',{code:code});var me=await api.get('/api/auth/me');state.me=me.user;state._pmChoice='paypal';showToast('PayPal linked ✓');goView('profile');}catch(e){showToast('Could not link PayPal.');}},250);})();
 
 /* Admin: M-Pesa till */
 function adminTillHtml(p){
