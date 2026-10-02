@@ -64,6 +64,7 @@
   ]
 }
 </script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2048%2048%22%20aria-hidden%3D%22true%22%3E%3Crect%20rx%3D%2213%22%20fill%3D%22%23071b49%22/%3E%3Cpath%20d%3D%22M16%2012v24M33%2014L19%2025l14%2011%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22/%3E%3Ccircle%20cx%3D%2235%22%20cy%3D%2213%22%20r%3D%224.5%22%20fill%3D%22%23e7b85c%22/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -322,6 +323,28 @@ input[type=text],input[type=tel],input[type=number],input[type=date],select,text
 .trust-note{font-size:12.5px;color:var(--muted);margin:10px 0 0}
 .home-footer{padding:26px 7%;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}.home-footer a{margin-right:18px;text-decoration:none}
 .verified-pill{background:#dff5ec;color:#0b7a56;vertical-align:1px}
+
+.klogo{display:flex;align-items:center;gap:9px}.kword{font-family:'Space Grotesk',Inter,sans-serif;font-weight:700;font-size:24px;color:#071b49;letter-spacing:-.03em}.kword i{color:#e7b85c;font-style:normal}.brand .kword{color:#fff;font-size:20px}
+.promo-bar{background:linear-gradient(90deg,#071b49,#183b7a);color:#fff;padding:10px 7%;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;text-align:center;font-size:13.5px}.promo-bar b{color:#e7b85c}.promo-bar button{background:#e7b85c;color:#241300;border:0;border-radius:20px;padding:6px 14px;font-weight:700;font-size:12.5px}
+.top-filter{margin-top:0!important}.filter-grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))!important}
+.idv-steps{display:grid;gap:10px;margin:14px 0}.idv-step{display:flex;gap:14px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.idv-step.active{border-color:var(--accent);box-shadow:0 0 0 3px rgba(31,102,255,.1)}.idv-num{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:#e8edf7;color:#183b7a;flex:none}.idv-step.done .idv-num{background:var(--good);color:#fff}.idv-step b{display:block}.idv-step small{color:var(--muted)}
+.idv-panel{padding:18px;margin-bottom:14px}.code-input{font-size:26px;letter-spacing:.5em;text-align:center;font-weight:700}.idv-note{background:#eef3ff;border-radius:10px;padding:10px 12px;font-size:12.5px;color:#183b7a;margin-top:12px}
+.pp-linked{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;margin-top:10px}.pp-btn{background:#ffc439;color:#111;border:0;border-radius:24px;padding:11px 18px;font-weight:700;width:100%;margin-top:10px}.pp-btn b{color:#003087}
+
+.redesigned-home-hero{display:grid!important;grid-template-columns:1fr 1.25fr;gap:36px;align-items:center;justify-content:stretch}
+.redesigned-home-hero .hero-copy{text-align:left!important;margin:0!important;max-width:none!important}
+.redesigned-home-hero .hero-kicker{text-align:left!important}
+.redesigned-home-hero h1,.redesigned-home-hero .hero-copy>p,.redesigned-home-hero .redesigned-search{margin-left:0!important;margin-right:0!important}
+.redesigned-home-hero h1{font-size:clamp(40px,4.6vw,62px)!important}
+.redesigned-home-hero .redesigned-search{grid-template-columns:1fr 1fr!important;max-width:none!important}
+.redesigned-home-hero .redesigned-search .search-cell{border-bottom:1px solid var(--line)}
+.redesigned-home-hero .redesigned-search button{grid-column:1/-1;min-height:48px}
+.redesigned-home-hero .hero-proof{justify-content:flex-start!important;flex-wrap:wrap}
+.earn-left{background:linear-gradient(160deg,#071b49,#183b7a);color:#fff;border-radius:24px;padding:34px 30px;box-shadow:0 16px 40px rgba(7,27,73,.18)}
+.earn-left h2{color:#fff;font-size:clamp(30px,3.4vw,44px);line-height:1.05;margin:10px 0 14px}.earn-left p{color:#dce8ff;font-size:15.5px;margin:0 0 20px}
+.earn-chip{background:#e7b85c;color:#241300;font-size:11px;font-weight:800;letter-spacing:.12em;border-radius:20px;padding:4px 10px}
+.earn-left .btn{padding:13px 24px;font-size:15px}.earn-left ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:8px;color:#fff;font-size:13.5px}.earn-left li:before{content:"✓ ";color:#e7b85c;font-weight:800}
+@media(max-width:900px){.redesigned-home-hero{grid-template-columns:1fr!important}}
 </style>
 </head>
 <body>
@@ -503,7 +526,7 @@ var state = {
   authMode: "login",
   taskId: null,
   profileId: null,
-  county: "", category: "", query: "", minPrice: 500, maxPrice: 20000, sortBy: "newest",
+  status: "open", county: "", category: "", query: "", minPrice: 500, maxPrice: 20000, sortBy: "newest",
   tasks: [], tasksLoaded: false,
   offersByTask: {}, reviewsByUser: {},
   messagesByTask: {}, chatTaskId: null, chatPoll: null,
@@ -859,9 +882,9 @@ async function submitVerification(){
     showToast(e && e.status===404 ? "Address verification is not switched on yet." : (e && e.status===413 ? "That file is too large." : ((e && e.message) || "Couldn't submit.")));
   }
 }
-function renderVerify(){
+function renderAddressVerify(){
   var v = state.verify, st = v && v.status ? String(v.status).toLowerCase() : "none";
-  var head = '<h1 style="font-size:20px;">Verify your address</h1>' +
+  var head = '<h2 style="font-size:17px;margin:0 0 6px;">Verify your address</h2>' +
     '<p class="muted" style="margin:0 0 14px;">Verified members show an "Address verified" badge on their profile, which helps others trust who they are dealing with. Only the badge is shown. Your address and document are never public.</p>';
   if (state.verifyLoading && !v) return head + '<div class="card" style="padding:16px;">Loading…</div>';
   if (state.verifyError==="setup") return head + '<div class="card" style="padding:16px;">Address verification is not switched on yet. Check back soon.</div>';
@@ -953,15 +976,16 @@ function render(){
 function renderPublicHome(){
   return '<div class="public-home">' +
     '<header class="home-nav">' +
-      '<div class="home-logo">Kazi<span>.</span></div>' +
+      '<div class="home-logo klogo">'+KLOGO(36)+'<span class="kword">Kazi<i>.</i></span></div>' +
       '<nav class="home-links"><a href="#services">Browse tasks</a><a href="#how">How it works</a><a href="#popular">Popular on Kazi</a><a href="#earn">Earn money</a><a href="#trust">Trust & safety</a></nav>' +
       '<div class="home-actions"><button class="btn" data-public-auth="login">Log in</button><button class="btn btn-primary" data-public-auth="register">Sign up</button></div>' +
     '</header>' +
     '<section class="redesigned-home-hero">' +
+      '<aside class="earn-left"><span class="earn-chip">FOR TASKERS</span><h2>Earn up to KSh 20,000 a month</h2><p>Doing tasks that fit your skills: your best art, design, cleaning, tutoring and more.</p><button class="btn btn-marigold" data-public-auth="register">Start earning</button><ul><li>Choose work near you</li><li>Set your own offers</li><li>Get paid securely via M-Pesa</li></ul></aside>' +
       '<div class="hero-copy">' +
         '<div class="hero-kicker">KENYA’S LOCAL TASK MARKETPLACE</div>' +
         '<h1>Get things done.</h1>' +
-        '<p>Post a task and find the right person nearby — or turn the skills you already have into extra income.</p>' +
+        '<p>Post a task and find the right person nearby, or turn the skills you already have into extra income.</p>' +
         '<div class="home-search redesigned-search">' +
           '<div class="search-cell"><label>What do you need?</label><input id="home-task" type="text" placeholder="e.g. Deep clean 1 bedroom"></div>' +
           '<div class="search-cell"><label>Location</label><select id="home-county"><option value="">All Kenya</option>'+COUNTIES.map(function(c){return '<option value="'+esc(c)+'">'+esc(c)+'</option>';}).join('')+'</select></div>' +
@@ -1012,7 +1036,7 @@ function renderAuthScreen(){
   var mode = state.authMode;
   return '<div class="auth-shell"><div class="auth-card">' +
     '<button class="btn btn-ghost btn-sm" data-action="backhome">← Back to Kazi</button>' +
-    '<div class="auth-logo">Kazi<span>.</span></div>' +
+    '<div class="auth-logo klogo" style="justify-content:center">'+KLOGO(44)+'<span class="kword">Kazi<i>.</i></span></div>' +
     '<div class="auth-sub">Get it done, near you</div>' +
     (state._authError ? '<div class="auth-error">'+esc(state._authError)+'</div>' : '') +
     (mode==="login" ?
@@ -1047,7 +1071,7 @@ function bindPublicHomeEvents(){
 }
 function topbarHtml(){
   return '<header class="topbar">' +
-    '<div class="brand" data-nav="dashboard"><span class="brand-mark">K</span><span>Kazi<small>get it done</small></span></div>' +
+    '<div class="brand" data-nav="dashboard"><span class="brand-mark" style="background:none;padding:0">'+KLOGO(34)+'</span><span>Kazi<small>get it done</small></span></div>' +
     '<div class="top-search">⌕<input id="global-search" type="text" placeholder="Search tasks" value="'+esc(state.query)+'"></div>' +
     '<div class="top-tools"><button class="tool-btn" title="Notifications">◈</button><button class="tool-btn" title="Theme">☾</button><div class="avatar-sm">'+esc(initials(state.me.name))+'</div></div>' +
   '</header>';
@@ -1144,6 +1168,7 @@ function filteredTasks(){
   var min=Number(state.minPrice||500), max=Number(state.maxPrice||20000);
   var list=state.tasks.filter(function(t){
     var b=Number(t.budget)||0;
+    if(state.status!=='all' && t.status && t.status!=='open') return false;
     return b>=min && b<=max;
   });
   list.sort(function(a,b){
@@ -1158,7 +1183,22 @@ function filteredTasks(){
 function renderBrowse(){
   var visible=filteredTasks();
   var html = '' +
-  '<div class="hero browse-hero" style="margin:-18px -16px 0;border-radius:0 0 18px 18px;">' +
+  '<div class="filter-panel card top-filter">' +
+    '<div class="filter-title"><div><b>Filters</b><span class="muted"> Refine the tasks you want to see</span></div><button class="btn btn-sm" data-action="resetfilters">Reset</button></div>' +
+     '<div class="filter-grid">' +
+      '<div><label>Category</label><select id="filter-cat"><option value="">All categories</option>'+CATEGORIES.map(function(c){return '<option value="'+esc(c.id)+'" '+(state.category===c.id?'selected':'')+'>'+esc(c.label)+'</option>';}).join('')+'</select></div>' +
+      '<div><label>Task status</label><select id="filter-status"><option value="open" '+(state.status!=='all'?'selected':'')+'>Open tasks</option><option value="all" '+(state.status==='all'?'selected':'')+'>All tasks</option></select></div>' +
+      '<div><label>County</label><select id="filter-county"><option value="">All counties</option>'+COUNTIES.map(function(c){return '<option value="'+esc(c)+'" '+(state.county===c?'selected':'')+'>'+esc(c)+'</option>';}).join('')+'</select></div>' +
+      '<div><label>Sort by</label><select id="filter-sort"><option value="newest" '+(state.sortBy==='newest'?'selected':'')+'>Newest</option><option value="price_low" '+(state.sortBy==='price_low'?'selected':'')+'>Price: Low to High</option><option value="price_high" '+(state.sortBy==='price_high'?'selected':'')+'>Price: High to Low</option><option value="rating" '+(state.sortBy==='rating'?'selected':'')+'>Highest rated</option><option value="oldest" '+(state.sortBy==='oldest'?'selected':'')+'>Oldest</option></select></div>' +
+      '<div class="price-filter"><label>Price / earning range</label><div class="range-values"><span>KSh '+Number(state.minPrice).toLocaleString()+'</span><span>KSh '+Number(state.maxPrice).toLocaleString()+'</span></div><div class="range-pair"><input id="filter-min" type="range" min="500" max="20000" step="500" value="'+state.minPrice+'"><input id="filter-max" type="range" min="500" max="20000" step="500" value="'+state.maxPrice+'"></div><div class="range-labels"><span>500</span><span>20,000</span></div></div>' +
+    '</div>' +
+    '<div class="filter-extra">' +
+      '<div><label>Task type</label><div class="filter-checks"><span class="filter-check active">All</span><span class="filter-check">Fixed price</span><span class="filter-check">Hourly</span></div></div>' +
+      '<div><label>Availability</label><div class="filter-checks"><span class="filter-check active">Any time</span><span class="filter-check">Today</span><span class="filter-check">This week</span></div></div>' +
+      '<div><label>Other filters</label><div class="filter-checks"><span class="filter-check">Nearby</span><span class="filter-check">Highly rated</span><span class="filter-check">Verified</span></div></div>' +
+    '</div>' +
+  '</div>' +
+  '<div class="hero browse-hero" style="margin:16px -16px 0;border-radius:18px;">' +
     '<div><span class="eyebrow light">KAZI MARKETPLACE</span><h1>Find work that fits you.</h1>' +
     '<p>Search local tasks, compare budgets and choose work that matches your skills and earning goals.</p></div>' +
     '<div class="search-row"><input type="text" id="search-input" placeholder="Search tasks — e.g. clean house" value="'+esc(state.query)+'"><button class="btn btn-marigold" data-action="search">Search</button></div>' +
@@ -1170,19 +1210,6 @@ function renderBrowse(){
     '<div class="service-all-title"><h3>All services</h3><span>'+CATEGORIES.length+' services</span></div>' +
     '<div class="service-grid" id="service-grid"><div class="service-tile '+(state.category===""?"active":"")+'" data-cat=""><span class="service-icon">≡</span><b>All tasks</b></div>' +
       CATEGORIES.map(function(c){return '<div class="service-tile '+(state.category===c.id?"active":"")+'" data-cat="'+c.id+'" data-service-label="'+esc(c.label.toLowerCase())+'"><span class="service-icon">'+esc(catMono(c.label))+'</span><b>'+esc(c.label)+'</b></div>';}).join('') +
-    '</div>' +
-  '</div>' +
-  '<div class="filter-panel card">' +
-    '<div class="filter-title"><div><b>Filters</b><span class="muted"> Refine the tasks you want to see</span></div><button class="btn btn-sm" data-action="resetfilters">Reset</button></div>' +
-    '<div class="filter-grid">' +
-      '<div><label>County</label><select id="filter-county"><option value="">All counties</option>'+COUNTIES.map(function(c){return '<option value="'+esc(c)+'" '+(state.county===c?'selected':'')+'>'+esc(c)+'</option>';}).join('')+'</select></div>' +
-      '<div><label>Sort by</label><select id="filter-sort"><option value="newest" '+(state.sortBy==='newest'?'selected':'')+'>Newest</option><option value="price_low" '+(state.sortBy==='price_low'?'selected':'')+'>Price: Low to High</option><option value="price_high" '+(state.sortBy==='price_high'?'selected':'')+'>Price: High to Low</option><option value="rating" '+(state.sortBy==='rating'?'selected':'')+'>Highest rated</option><option value="oldest" '+(state.sortBy==='oldest'?'selected':'')+'>Oldest</option></select></div>' +
-      '<div class="price-filter"><label>Price / earning range</label><div class="range-values"><span>KSh '+Number(state.minPrice).toLocaleString()+'</span><span>KSh '+Number(state.maxPrice).toLocaleString()+'</span></div><div class="range-pair"><input id="filter-min" type="range" min="500" max="20000" step="500" value="'+state.minPrice+'"><input id="filter-max" type="range" min="500" max="20000" step="500" value="'+state.maxPrice+'"></div><div class="range-labels"><span>500</span><span>20,000</span></div></div>' +
-    '</div>' +
-    '<div class="filter-extra">' +
-      '<div><label>Task type</label><div class="filter-checks"><span class="filter-check active">All</span><span class="filter-check">Fixed price</span><span class="filter-check">Hourly</span></div></div>' +
-      '<div><label>Availability</label><div class="filter-checks"><span class="filter-check active">Any time</span><span class="filter-check">Today</span><span class="filter-check">This week</span></div></div>' +
-      '<div><label>Other filters</label><div class="filter-checks"><span class="filter-check">Nearby</span><span class="filter-check">Highly rated</span><span class="filter-check">Verified</span></div></div>' +
     '</div>' +
   '</div>' +
   '<div class="page" style="padding-left:0;padding-right:0;"><div class="section-head"><h2>'+(state.county?esc(state.county)+' tasks':'Open tasks')+'</h2><span class="muted">'+visible.length+' found</span></div>'+tasksListHtml(visible)+'</div>';
@@ -1404,11 +1431,11 @@ function renderProfilePage(){
   pmChoicesHtml(p) +
   '<div data-pm="mpesa" style="'+pmShow(p,'mpesa')+'"><label>M-Pesa phone number</label><input type="tel" id="p-mpesa" value="'+esc((p.paymentMethods&&p.paymentMethods.mpesaPhone)||"")+'" placeholder="07XX XXX XXX"></div>' +
   '<div data-pm="bank" style="'+pmShow(p,'bank')+'"><label>Bank name</label><input type="text" id="p-bank-name" value="'+esc((p.paymentMethods&&p.paymentMethods.bankName)||"")+'" placeholder="Bank name"><label>Account name</label><input type="text" id="p-bank-account-name" value="'+esc((p.paymentMethods&&p.paymentMethods.bankAccountName)||"")+'" placeholder="Name on account"><label>Account number</label><input type="text" id="p-bank-account-number" value="'+esc((p.paymentMethods&&p.paymentMethods.bankAccountNumber)||"")+'" placeholder="Bank account number"></div>' +
-  '<div data-pm="paypal" style="'+pmShow(p,'paypal')+'"><label>PayPal email</label><input type="email" id="p-paypal" value="'+esc((p.paymentMethods&&p.paymentMethods.paypalEmail)||"")+'" placeholder="PayPal email"></div>' +
+  paypalBlockHtml(p) +
   '<div data-pm="googlepay" style="'+pmShow(p,'googlepay')+'"><label>Google Pay email</label><input type="email" id="p-google-pay" value="'+esc((p.paymentMethods&&p.paymentMethods.googlePayEmail)||"")+'" placeholder="Google Pay email"></div>' +
   '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;"><button type="button" class="btn btn-sm" data-nav="wallet">Withdraw earnings</button><button type="button" class="btn btn-sm" data-nav="verify">Verify my address</button></div>' +
 '</div>' +
-      '<button class="btn btn-primary btn-block" style="margin-top:14px;" data-action="saveprofile">Save profile</button>' +
+      adminTillHtml(p) + '<button class="btn btn-primary btn-block" style="margin-top:14px;" data-action="saveprofile">Save profile</button>' +
     '</div>' +
     '<button class="btn" style="margin-top:16px;width:100%;" data-action="logout">Log out</button>';
   }
@@ -1474,7 +1501,9 @@ function bindViewEvents(){
   }
   if(fmin) fmin.addEventListener("input",function(){syncPrice('min');});
   if(fmax) fmax.addEventListener("input",function(){syncPrice('max');});
-  bindClick("resetfilters",function(){state.county="";state.category="";state.query="";state.minPrice=500;state.maxPrice=20000;state.sortBy="newest";loadTasks();});
+  bindClick("resetfilters",function(){state.county="";state.category="";state.query="";state.minPrice=500;state.maxPrice=20000;state.sortBy="newest";state.status="open";loadTasks();});
+  var fcat=document.getElementById("filter-cat"); if(fcat) fcat.addEventListener("change",function(){state.category=fcat.value;loadTasks();});
+  var fst=document.getElementById("filter-status"); if(fst) fst.addEventListener("change",function(){state.status=fst.value;render();});
 
   document.querySelectorAll("[data-draftcat]").forEach(function(el){ el.addEventListener("click", function(){ state.postDraft.category = el.getAttribute("data-draftcat"); state.postDraft.step = 2; render(); window.scrollTo(0,0); setTimeout(function(){ var t=document.getElementById("d-title"); if(t) t.focus(); },60); }); });
   var catSearch=document.getElementById("d-catsearch");
@@ -1615,6 +1644,88 @@ function captureDraftFields(){
 }
 boot();
 })();
+
+/* ===== Added: logo, verification (Prolific-style), PayPal link, admin till ===== */
+function KLOGO(s){return '<svg viewBox="0 0 48 48" width="{s}" height="{s}" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#071b49"/><path d="M16 12v24M33 14L19 25l14 11" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="35" cy="13" r="4.5" fill="#e7b85c"/></svg>'.replace(/\{s\}/g,s);}
+function renderVerify(){
+  var me=state.me||{}, iv=state.idv=state.idv||{};
+  var phoneOk=!!(me.phoneVerified||iv.phone==='verified');
+  var idSt=iv.id||(me.idVerified?'verified':'none'); var idOk=idSt==='verified';
+  var cur=!phoneOk?1:(!idOk?2:3);
+  function step(n,title,sub,ok){return '<div class="idv-step '+(ok?'done':(cur===n?'active':''))+'"><div class="idv-num">'+(ok?'✓':n)+'</div><div><b>'+title+'</b><small>'+sub+'</small></div></div>';}
+  var h='<h1 style="font-size:22px;margin:0 0 4px;">Verify your identity</h1><p class="muted" style="margin:0;">Verified taskers get more offers accepted. Takes about 3 minutes. Your details are encrypted and never shown publicly.</p>'+
+   '<div class="idv-steps">'+step(1,'Confirm your phone number',phoneOk?esc(me.phone||'Verified'):'We text you a 6-digit code',phoneOk)+step(2,'Verify your ID','National ID, passport or driving licence + selfie',idOk)+step(3,'Confirm your address','Utility bill or similar document',false)+'</div>';
+  if(cur===1){
+    h+='<div class="card idv-panel"><h3 style="margin:0 0 4px">Phone verification</h3>'+
+    (iv.phone==='sent'
+     ?'<p class="muted" style="margin:0 0 10px">Enter the 6-digit code we sent to '+esc(iv.sentTo||'')+'.</p><input type="text" inputmode="numeric" maxlength="6" id="idv-code" class="code-input" placeholder="••••••"><button class="btn btn-primary btn-block" style="margin-top:12px" data-idv="confirm-phone">Verify code</button><button class="btn btn-ghost btn-block" data-idv="send-phone">Resend code</button>'
+     :'<label style="margin-top:8px">Phone number</label><input type="tel" id="idv-phone" value="'+esc(me.phone||'')+'" placeholder="07XX XXX XXX"><button class="btn btn-primary btn-block" style="margin-top:12px" data-idv="send-phone">Send code</button><div class="idv-note">Standard SMS rates may apply.</div>')+'</div>';
+  } else if(cur===2){
+    h+=(idSt==='pending'?'<div class="card idv-panel"><b>Under review.</b><div class="muted">We received your ID and selfie. You will be notified once approved.</div></div>':
+    '<div class="card idv-panel"><h3 style="margin:0 0 4px">ID verification</h3><label>Document type</label><select id="idv-type"><option value="national_id">National ID</option><option value="passport">Passport</option><option value="driving_licence">Driving licence</option></select>'+
+    '<label>Photo of the document (front)</label><input type="file" id="idv-front" accept="image/*"><label>Selfie holding the document</label><input type="file" id="idv-selfie" accept="image/*" capture="user">'+
+    '<div class="idv-note">Make sure all four corners are visible, text is readable and there is no glare.</div>'+
+    '<label style="display:flex;gap:8px;font-weight:500;align-items:flex-start"><input type="checkbox" id="idv-consent" style="width:auto;margin-top:3px">I agree Kazi may use these images only to verify my identity.</label>'+
+    '<button class="btn btn-primary btn-block" style="margin-top:12px" data-idv="submit-id">Submit for review</button></div>');
+  } else { h+='<div class="card idv-panel">'+renderAddressVerify()+'</div>'; }
+  return h;
+}
+function idvErr(e,fb){showToast(e&&e.status===404?'This verification step is not switched on yet.':((e&&e.message)||fb));}
+document.addEventListener('click',async function(ev){
+  var b=ev.target.closest&&ev.target.closest('[data-idv]'); if(!b) return;
+  var a=b.getAttribute('data-idv'), iv=state.idv=state.idv||{}; b.disabled=true;
+  try{
+    if(a==='send-phone'){
+      var ph=((document.getElementById('idv-phone')||{}).value||iv.sentTo||'').trim(); if(!ph){showToast('Enter your phone number.');return;}
+      await api.post('/api/verification/phone/send',{phone:ph}); iv.phone='sent'; iv.sentTo=ph; showToast('Code sent.'); render();
+    } else if(a==='confirm-phone'){
+      var c=((document.getElementById('idv-code')||{}).value||'').trim(); if(c.length<4){showToast('Enter the code.');return;}
+      await api.post('/api/verification/phone/confirm',{phone:iv.sentTo,code:c}); iv.phone='verified'; if(state.me) state.me.phoneVerified=true; showToast('Phone verified ✓'); render();
+    } else if(a==='submit-id'){
+      var f=(document.getElementById('idv-front')||{}).files, s=(document.getElementById('idv-selfie')||{}).files;
+      if(!f||!f[0]||!s||!s[0]){showToast('Add the document photo and a selfie.');return;}
+      if(!(document.getElementById('idv-consent')||{}).checked){showToast('Please tick the consent box.');return;}
+      if(f[0].size>2097152||s[0].size>2097152){showToast('Each image must be under 2 MB.');return;}
+      await api.post('/api/verification/identity',{docType:document.getElementById('idv-type').value,front:await readFileAsDataUrl(f[0]),selfie:await readFileAsDataUrl(s[0])});
+      iv.id='pending'; showToast('Submitted for review.'); render();
+    }
+  }catch(e){idvErr(e,'Something went wrong.');} finally{b.disabled=false;}
+});
+
+/* PayPal account linking */
+function paypalBlockHtml(p){
+  var m=(p&&p.paymentMethods)||{}, show=pmShow(p,'paypal');
+  var inner=m.paypalLinked
+   ?'<div class="pp-linked"><span style="font-size:20px">✅</span><div><b>PayPal linked</b><div class="muted">'+esc(m.paypalEmail||'')+'</div></div><button type="button" class="btn btn-sm" style="margin-left:auto" data-pp="unlink">Unlink</button></div><input type="hidden" id="p-paypal" value="'+esc(m.paypalEmail||'')+'">'
+   :'<button type="button" class="pp-btn" data-pp="link">Link with <b>Pay</b><b style="color:#009cde">Pal</b></button><p class="muted" style="font-size:12px;margin:6px 0 0">You will log in on PayPal and approve Kazi. We never see your password.</p><label>Or enter PayPal email manually</label><input type="email" id="p-paypal" value="'+esc(m.paypalEmail||'')+'" placeholder="PayPal email">';
+  return '<div data-pm="paypal" style="'+show+'">'+inner+'</div>';
+}
+document.addEventListener('click',async function(ev){
+  var b=ev.target.closest&&ev.target.closest('[data-pp]'); if(!b) return;
+  try{
+    if(b.getAttribute('data-pp')==='link'){var r=await api.get('/api/paypal/link-url'); if(r&&r.url) window.location.href=r.url; else showToast('PayPal linking is not switched on yet.');}
+    else{await api.post('/api/paypal/unlink',{}); var me=await api.get('/api/auth/me'); state.me=me.user; render(); showToast('PayPal unlinked.');}
+  }catch(e){showToast(e&&e.status===404?'PayPal linking is not switched on yet.':((e&&e.message)||'PayPal error.'));}
+});
+(function(){var q=new URLSearchParams(location.search),code=q.get('paypal_code');if(!code)return;history.replaceState({},'',location.pathname);
+  var tries=0,iv=setInterval(async function(){if(!state.me&&++tries<40)return;clearInterval(iv);if(!state.me)return;
+    try{await api.post('/api/paypal/link',{code:code});var me=await api.get('/api/auth/me');state.me=me.user;state._pmChoice='paypal';showToast('PayPal linked ✓');goView('profile');}catch(e){showToast('Could not link PayPal.');}},250);})();
+
+/* Admin: M-Pesa till */
+function adminTillHtml(p){
+  if(!p||!(p.role==='admin'||p.isAdmin)) return '';
+  var s=state.adminSettings||{};
+  return '<div style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line)"><h3 style="font-size:16px;margin:0 0 6px">Admin · Revenue till</h3><p class="muted" style="font-size:12.5px;margin:0 0 8px">Kazi fees and Pro subscriptions are paid into this M-Pesa Till (Buy Goods).</p>'+
+   '<label>M-Pesa Till number</label><input type="text" inputmode="numeric" id="a-till" value="'+esc(s.tillNumber||'')+'" placeholder="e.g. 5123456"><label>Till account name</label><input type="text" id="a-till-name" value="'+esc(s.tillName||'')+'" placeholder="Business name on till">'+
+   '<button type="button" class="btn btn-sm" style="margin-top:10px" data-admin="till">Save till</button></div>';
+}
+document.addEventListener('click',async function(ev){
+  var b=ev.target.closest&&ev.target.closest('[data-admin]'); if(!b) return;
+  var till=((document.getElementById('a-till')||{}).value||'').trim();
+  if(!/^\d{5,8}$/.test(till)){showToast('Enter a valid Till number (5–8 digits).');return;}
+  try{state.adminSettings=(await api.patch('/api/admin/settings',{tillNumber:till,tillName:(document.getElementById('a-till-name')||{}).value||''}))||{tillNumber:till};showToast('Till saved ✓');}
+  catch(e){showToast(e&&e.status===404?'Backend needs the /api/admin/settings route.':((e&&e.message)||'Could not save till.'));}
+});
 </script>
 </body>
 </html>
