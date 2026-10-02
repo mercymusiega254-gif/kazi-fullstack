@@ -40,6 +40,15 @@ async function initSchema() {
     ADD COLUMN IF NOT EXISTS role TEXT NOT NULL DEFAULT 'user';
   `);
   await pool.query(`
+    ALTER TABLE users
+    ADD COLUMN IF NOT EXISTS mpesa_phone TEXT,
+    ADD COLUMN IF NOT EXISTS bank_name TEXT,
+    ADD COLUMN IF NOT EXISTS bank_account_name TEXT,
+    ADD COLUMN IF NOT EXISTS bank_account_number TEXT,
+    ADD COLUMN IF NOT EXISTS paypal_email TEXT,
+    ADD COLUMN IF NOT EXISTS google_pay_email TEXT;
+  `);
+  await pool.query(`
     CREATE TABLE IF NOT EXISTS tasks (
       id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
       title TEXT NOT NULL,
